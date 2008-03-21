@@ -13,7 +13,6 @@ namespace M2M.Position.Implement
     public abstract class AbstractPositionSet : IPositionSet
     {
         static protected string errorStr = "A collection that is read-only does not allow the addition, removal, or modification of elements after the collection is created.";
-        protected bool isReadOnly = true;
 
         #region ICollection<IPosition> Members
 
@@ -40,7 +39,7 @@ namespace M2M.Position.Implement
 
         public virtual bool IsReadOnly
         {
-            get { return isReadOnly; }
+            get { return true; }
         }
 
         #endregion

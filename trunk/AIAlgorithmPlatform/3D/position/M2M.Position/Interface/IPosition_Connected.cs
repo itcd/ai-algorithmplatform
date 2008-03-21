@@ -10,5 +10,6 @@ namespace M2M.Position.Interface
     public interface IPosition_Connected : IPosition, IConnected
     {
         new IPosition_ConnectedSet GetAdjacency();
+       
     }
 }

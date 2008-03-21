@@ -12,10 +12,13 @@ namespace M2M.Position.Implement
     {
         public static void CopyTo(IPosition_ConnectedSet src, IPositionSet dest)
         {
-            dest.Clear();
-            foreach (IPosition_Connected p in src)
+            if (src != null && dest != null)
             {
-                dest.Add(p);
+                dest.Clear();
+                foreach (IPosition_Connected p in src)
+                {
+                    dest.Add(p);
+                }
             }
         }
     }

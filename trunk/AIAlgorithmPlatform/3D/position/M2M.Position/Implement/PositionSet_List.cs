@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using M2M.Position.Interface;
+using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition>;
+using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
 
 namespace M2M.Position.Implement
 {
-    public class PositionSet_List : AbstractPositionSet
+    [Serializable]
+    public class PositionSet_List : AbstractPositionSet, IPositionSet
     {
-        private List<IPosition> list;
+        protected List<IPosition> list;
 
         public PositionSet_List()
         {
@@ -18,6 +22,18 @@ namespace M2M.Position.Implement
         public PositionSet_List(int size)
         {
             list = new List<IPosition>(size);
+        }
+
+        #region ICollection<IPosition> Members
+
+        public override void Add(IPosition item)
+        {
+            list.Add(item);
+        }
+
+        public override void Clear()
+        {
+            list.Clear();
         }
 
         public override bool Contains(IPosition item)
@@ -30,14 +46,39 @@ namespace M2M.Position.Implement
             list.CopyTo(array, arrayIndex);
         }
 
+        public override bool Remove(IPosition item)
+        {
+            return list.Remove(item);
+        }
+
         public override int Count
         {
             get { return list.Count; }
         }
 
-        public override void Add(IPosition item)
+        public override bool IsReadOnly
         {
-        
+            get { return false; }
         }
+
+        #endregion
+
+        #region IEnumerable<IPosition> Members
+
+        IEnumerator<IPosition> IEnumerable<IPosition>.GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+
+        #endregion
+
+        #region IEnumerable Members
+
+        public override IEnumerator GetEnumerator()
+        {
+            return ((IEnumerable<IPosition>)this).GetEnumerator();
+        }
+
+        #endregion
     }
 }
