@@ -22,7 +22,7 @@ namespace M2M.Position.Implement
 
         #region IAdjacency Members
 
-        public IPosition_Connected GetPosition()
+        public IPosition_Connected GetPosition_Connected()
         {
             return p;
         }
