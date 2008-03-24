@@ -6,7 +6,6 @@ using System.Text;
 
 using M2M.Position.Interface;
 using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition>;
-using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
 
 namespace M2M.Position.Implement
 {

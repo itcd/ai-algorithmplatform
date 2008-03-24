@@ -59,6 +59,7 @@
     <Compile Include="Interface\IPosition2D.cs" />
     <Compile Include="Interface\IPosition3D.cs" />
     <Compile Include="Interface\IPosition_Connected.cs" />
+    <Compile Include="Interface\using_type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator\RandomMaze.cs" />
     <Compile Include="RandomGenerator\RandomMaze_Config.cs" />
