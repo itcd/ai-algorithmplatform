@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AlgorithmDemo.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PositionSetToGetConvexHullColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">GreenYellow</Value>
+    </Setting>
+    <Setting Name="ConvexHullPositionSetInSpecificLevelColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="LinePositionSetInSpecificLevelColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 128, 128</Value>
+    </Setting>
+    <Setting Name="ChildPositionSetInSpecificLevelOfConvexHullColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 0, 128</Value>
+    </Setting>
+    <Setting Name="RealConvexHullColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="BottonLevelPositionSetColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

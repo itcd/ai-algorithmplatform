@@ -1,0 +1,142 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D4ABC5D1-6157-4989-BC24-3F3EF4F6C033}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnalyseForTime</RootNamespace>
+    <AssemblyName>AnalyseForTime</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>./bin/Debug/</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>AnalyseForTime</AssemblyName>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>./bin/Release/</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>AnalyseForTime</AssemblyName>
+    <DebugSymbols>True</DebugSymbols>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analyse.cs" />
+    <Compile Include="NNAnalyseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NNAnalyseForm.Designer.cs">
+      <DependentUpon>NNAnalyseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="NNAnalyseForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NNAnalyseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../KDT/KDT.csproj">
+      <Project>{B1AD5EB0-27D5-462D-8781-E45F2DD44CDE}</Project>
+      <Name>KDT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\CurvePlotTool\CurvePlot\CurvePlotDrawer.csproj">
+      <Project>{724AFCF5-074C-4615-82CC-E3F103005E6F}</Project>
+      <Name>CurvePlotDrawer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\RandomAlgorithm\RandomMakerAlgorithm\RandomMakerAlgorithm.csproj">
+      <Project>{FC8AFA68-4FE1-48CE-B445-EBEFC75D111F}</Project>
+      <Name>RandomMakerAlgorithm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\M2MAlgorithm\M2M\M2M.csproj">
+      <Project>{6692443A-2630-4701-AE88-1665F2FB8768}</Project>
+      <Name>M2M</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NearestNeighbor\NearestNeighbor.csproj">
+      <Project>{31E2BBD4-4E51-4790-B81F-B71BA5246B3E}</Project>
+      <Name>NearestNeighbor %282D\algorithm\nearestNeighbor\NearestNeighbor%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
+      <Project>{AFE94F13-C09F-475D-9D67-4A31CCF48042}</Project>
+      <Name>PositionSetViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position\Position_Implement\Position_Implement.csproj">
+      <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
+      <Name>Position_Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position\Position_Interface\Position_Interface.csproj">
+      <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
+      <Name>Position_Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position\RandomPositionSetGenerator\RandomPositionSetGenerator.csproj">
+      <Project>{E65A302C-D957-401D-B540-130989AC798B}</Project>
+      <Name>RandomPositionSetGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\Configuration\Configuration.csproj">
+      <Project>{36FC5D55-98C6-4EC8-A8CE-8168D42C3BBE}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\CountTimeTool\CountTimeTool.csproj">
+      <Project>{57A88133-03B3-4A40-B07A-9C3200CC197C}</Project>
+      <Name>CountTimeTool</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
