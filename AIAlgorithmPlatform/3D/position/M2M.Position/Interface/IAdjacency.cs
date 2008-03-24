@@ -9,7 +9,7 @@ namespace M2M.Position.Interface
 {
     public interface IAdjacency
     {
-        IPosition_Connected GetPosition();
+        IPosition_Connected GetPosition_Connected();
         Real GetDistance();
     }
 }
