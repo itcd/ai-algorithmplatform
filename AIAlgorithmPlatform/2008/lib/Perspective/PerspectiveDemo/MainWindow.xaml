@@ -1,0 +1,70 @@
+﻿<Window x:Class="PerspectiveDemo.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:PerspectiveDemo"
+    xmlns:p="http://www.codeplex.com/perspective"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dn35="Dn35"
+
+    Title="Perspective" Loaded="Window_Loaded" WindowState="Maximized">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommand_Executed" />
+        <CommandBinding Command="local:AppCommands.OpenPageCommand" Executed="OpenPageCommand_Executed" />
+        <CommandBinding Command="local:AppCommands.LoadSkinCommand" Executed="LoadSkinCommand_Executed" />
+    </Window.CommandBindings>
+    <p:ResourceStringDecorator BaseName="PerspectiveDemo.Strings.MainWindow">
+        <DockPanel Name="dockPanel1">
+            <TabControl Background="White"
+                DockPanel.Dock="Left"
+                Name="tabControl1" 
+                Width="200" 
+                >
+                <TabItem Header="{p:ResourceString Content}" >
+                    <TreeView 
+                        Name="treeView1" >
+                        <TreeViewItem Header="{p:ResourceString WPFDemo}" IsExpanded="False">
+                            <TreeViewItem Header="Drawing" IsExpanded="True">
+                                <Hyperlink Command="local:AppCommands.OpenPageCommand" CommandParameter="Pages/DrawingContext.xaml" >
+                                    <Run Text="{p:ResourceString DrawingContext}"/></Hyperlink>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="{p:ResourceString PerspectiveDemo}" IsExpanded="True">
+                            <TreeViewItem Header="2D" IsExpanded="True">
+                                <Hyperlink Command="local:AppCommands.OpenPageCommand" CommandParameter="Pages/DpiScaling.xaml">
+                                    <Run Text="{p:ResourceString DpiScaling}"/></Hyperlink>
+                            </TreeViewItem>
+                            <mc:AlternateContent>
+                                <mc:Choice Requires="dn35">
+                                    <TreeViewItem Header="{p:ResourceString ThreeD}" IsExpanded="True">
+                                        <Hyperlink Command="local:AppCommands.OpenPageCommand" CommandParameter="Pages/Base3D.xaml">
+                                    <Run Text="{p:ResourceString Demo3D}"/></Hyperlink>
+                                    </TreeViewItem>
+                                </mc:Choice>
+                            </mc:AlternateContent>
+                        </TreeViewItem>
+                    </TreeView>
+                </TabItem>
+                <TabItem Header="{p:ResourceString Skin}" >
+                    <GroupBox >
+                        <StackPanel>
+                            <RadioButton 
+                                x:Name="rbLaMoisson"
+                                Command="local:AppCommands.LoadSkinCommand" 
+                                CommandParameter="LaMoisson">LaMoisson</RadioButton>
+                            <RadioButton 
+                                x:Name="rbPsycheRock"
+                                IsChecked="True"
+                                Command="local:AppCommands.LoadSkinCommand" 
+                                CommandParameter="PsycheRock">PsycheRock</RadioButton>
+                            <RadioButton 
+                                x:Name="rbBlackAndWhite"
+                                Command="local:AppCommands.LoadSkinCommand" 
+                                CommandParameter="BlackAndWhite">BlackAndWhite</RadioButton>
+                        </StackPanel>
+                    </GroupBox>
+                </TabItem>
+            </TabControl>
+            <Frame Name="frame1" />
+        </DockPanel>
+    </p:ResourceStringDecorator>
+</Window>

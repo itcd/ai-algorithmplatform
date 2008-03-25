@@ -1,0 +1,126 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6692443A-2630-4701-AE88-1665F2FB8768}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>M2M</RootNamespace>
+    <AssemblyName>M2M</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>./bin/Debug/</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>Library</OutputType>
+    <AssemblyName>M2M</AssemblyName>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>./bin/Release/</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>Library</OutputType>
+    <AssemblyName>M2M</AssemblyName>
+    <DebugSymbols>True</DebugSymbols>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AM2MStructure.cs" />
+    <Compile Include="DelegateDefinition.cs" />
+    <Compile Include="ILevel.cs" />
+    <Compile Include="IM2MStructure.cs" />
+    <Compile Include="IPart.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="M2MStructure_General.cs" />
+    <Compile Include="M2MSCreater_ForGeneralM2MStruture.cs" />
+    <Compile Include="M2M_CH\M2M_CH.cs" />
+    <Compile Include="M2M_NN\M2M_NN%28old%29.cs" />
+    <Compile Include="M2M_NN\M2M_NN.cs" />
+    <Compile Include="M2M_NN\NearestNeighbor_ByM2MStructure.cs" />
+    <Compile Include="M2M_PF\BuildPartSetConnectionForM2MStructure.cs" />
+    <Compile Include="M2M_PF\M2M_PF.cs" />
+    <Compile Include="M2M_PF\PartSet_Connected_Adjacency.cs" />
+    <Compile Include="M2M_PF\Part_Connected.cs" />
+    <Compile Include="M2M_PF\Part_Multi.cs" />
+    <Compile Include="Part.cs" />
+    <Compile Include="M2M_PF\IPart_Connected.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryTable.cs" />
+    <Compile Include="QueryTableByArray.cs" />
+    <Compile Include="QueryTableByHash.cs" />
+    <Compile Include="QueryTableByListHash.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlockLineAlgorithm\BlockLineAlgorithm.csproj">
+      <Project>{FCBFC918-4081-477E-8172-80B47C06E82B}</Project>
+      <Name>BlockLineAlgorithm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConvexHull\ConvexHullEngine\ConvexHullEngine.csproj">
+      <Project>{14A59065-D97F-44F1-8529-F8AE07906593}</Project>
+      <Name>ConvexHullEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\nearestNeighbor\NearestNeighbor\NearestNeighbor.csproj">
+      <Project>{31E2BBD4-4E51-4790-B81F-B71BA5246B3E}</Project>
+      <Name>NearestNeighbor %282007\algorithm\nearestNeighbor\NearestNeighbor%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PathFinding\DataStructure\DataStructure.csproj">
+      <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
+      <Name>DataStructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PathFinding\SearchEngineLibrary\SearchEngineLibrary.csproj">
+      <Project>{73898E77-5313-4A08-A456-0795B1E548BF}</Project>
+      <Name>SearchEngineLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConvexHull\QuickHullAlgorithm\QuickHullAlgorithm.csproj">
+      <Project>{0F2944D7-29B8-4083-BD60-7010BA5436C1}</Project>
+      <Name>QuickHullAlgorithm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WriteLineInGridEngine\WriteLineInGridEngine.csproj">
+      <Project>{D9F036CD-C384-40D7-8419-65DB4C16C00B}</Project>
+      <Name>WriteLineInGridEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
+      <Project>{A2A4DF30-D88D-4767-88A9-B57665F49740}</Project>
+      <Name>Position_Connected_Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position\Position_Implement\Position_Implement.csproj">
+      <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
+      <Name>Position_Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position\Position_Interface\Position_Interface.csproj">
+      <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
+      <Name>Position_Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
