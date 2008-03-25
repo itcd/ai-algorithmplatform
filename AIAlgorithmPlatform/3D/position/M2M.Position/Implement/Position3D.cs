@@ -11,7 +11,17 @@ namespace M2M.Position.Implement
     [Serializable]
     public class Position3D : IPosition3D
     {
-        protected static int dimension = 3;
+        public Position3D()
+        { }
+
+        public Position3D(Real x, Real y, Real z)
+        {
+            dim_value[0] = x;
+            dim_value[1] = y;
+            dim_value[2] = z;
+        }
+
+        protected int dimension = 3;
         protected Real[] dim_value = new Real[3];
 
         #region IPosition3D Members

@@ -7,8 +7,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mydouble = System.Double;
 using M2M.Position;
 
-using System.Runtime.InteropServices;
-
 namespace UnitTest
 {
     /// <summary>
@@ -74,15 +72,6 @@ namespace UnitTest
             Console.WriteLine(i);
             //IPosition p;
             //p.GetValue(0);
-            int []a = new int[3];
-            int x, y, z;
-            x = a[0];
-            y = a[1];
-            z = a[2];
-            unsafe{
-            Double o = 1;
-            Console.WriteLine(sizeof(int));
-            }
         }
     }
 }

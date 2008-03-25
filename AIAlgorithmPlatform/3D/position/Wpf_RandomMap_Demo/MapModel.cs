@@ -6,6 +6,17 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
 using Petzold.Media3D;
+using Helper;
+
+using M2M.Position.Interface;
+using M2M.Position.Implement;
+
+using Real = System.Double;
+using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition>;
+using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
+using PositionSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition>;
+using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
+
 
 namespace Wpf_RandomMap_Demo
 {
@@ -27,6 +38,8 @@ namespace Wpf_RandomMap_Demo
             Transform3DGroup tg;
             TranslateTransform3D tt;
 
+            var positionSet = new PositionSet();
+
             // Add model to the model group
             int i, j;
             for (i = 0; i < width; i++)
@@ -37,11 +50,18 @@ namespace Wpf_RandomMap_Demo
                         mGeometry = new GeometryModel3D(sphere, material);
                         tg = new Transform3DGroup();
                         tt = new TranslateTransform3D(i * b.SizeX, j * b.SizeY, 0);
+
+                        positionSet.Add(new Position3D(i * b.SizeX, j * b.SizeY, 0));
+
                         tg.Children.Add(tt);
                         mGeometry.Transform = tg;
                         group.Children.Add(mGeometry);
                     }
                 }
+
+            var scene = new Scene();
+            scene.AddElement(new PositionSetElement(positionSet));
+            scene.ShowScene();
         }
 
         public static void generateMap3D(Model3DGroup group, int[, ,] map, int width, int height, int depth)
