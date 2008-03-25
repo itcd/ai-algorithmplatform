@@ -52,17 +52,17 @@ namespace M2M.Position.Implement
 
         public double GetValue(int dimensionIndex)
         {
-            checkBound(dimensionIndex);
+            //checkBound(dimensionIndex);
             return dim_value[dimensionIndex];
         }
 
         #endregion
 
-        protected void checkBound(int dimensionIndex)
-        {
-            if (dimensionIndex < 0 || dimensionIndex >= dimension)
-                throw new InvalidOperationException("The dimension index is out of range.");
-        }
+        //protected void checkBound(int dimensionIndex)
+        //{
+        //    if (dimensionIndex < 0 || dimensionIndex >= dimension)
+        //        throw new InvalidOperationException("The dimension index is out of range.");
+        //}
 
         public void SetX(Real value)
         {
@@ -81,7 +81,7 @@ namespace M2M.Position.Implement
 
         public void SetValue(int dimensionIndex, Real value)
         {
-            checkBound(dimensionIndex);
+            //checkBound(dimensionIndex);
             dim_value[dimensionIndex] = value;
         }
     }

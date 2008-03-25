@@ -54,24 +54,80 @@ namespace UnitTest
         //
         // Use TestInitialize to run code before running each test 
         // [TestInitialize()]
-        // public void MyTestInitialize() { }
+        public void MyTestInitialize()
+        {
+            a[0] = -1;
+            a[1] = 0;
+            a[2] = 1;
+        }
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-        #endregion
+        #endregion     
+        
+        public int switchTest(int i)
+        {
+            switch(i)
+            {
+                case 0:
+                    return -1;
+                case 1:
+                    return 0;
+                case 2:
+                    return 1;
+            }
+            return -10;
+        }
+
+        int[] a = new int[3];
+
+        public int arrayTest(int i)
+        {
+            //if (i >= 0 && i < a.Length)
+                return a[i];
+            //else
+            //    return -10;
+        }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod_ReadSpeed()
         {
             //
             // TODO: Add test logic	here
             //
-            mydouble i = 10;
-            Console.WriteLine(i);
-            //IPosition p;
-            //p.GetValue(0);
+
+            unchecked 
+            {
+                int n = 100000000;
+                int sum;
+                long t1, t2;
+
+                sum = 0;
+                t1 = DateTime.Now.Ticks;
+                for (int i = 0; i < n; i++)
+                    for (int j = 0; j < 3; j++)
+                        sum += switchTest(j);
+                t2 = DateTime.Now.Ticks;
+                Console.WriteLine(sum);
+                Console.WriteLine(t1);
+                Console.WriteLine(t2);
+                Console.WriteLine(t2 - t1);
+
+                Console.WriteLine();
+
+                sum = 0;
+                t1 = DateTime.Now.Ticks;
+                for (int i = 0; i < n; i++)
+                    for (int j = 0; j < 3; j++)
+                        sum += arrayTest(j);
+                t2 = DateTime.Now.Ticks;
+                Console.WriteLine(sum);
+                Console.WriteLine(t1);
+                Console.WriteLine(t2);
+                Console.WriteLine(t2 - t1);
+            }
         }
     }
 }

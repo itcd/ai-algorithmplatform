@@ -8,7 +8,6 @@ using System.Windows.Media.Media3D;
 using Petzold.Media3D;
 using M2M.Util.Scene;
 
-using M2M.Position.Interface;
 using M2M.Position.Implement;
 
 using Real = System.Double;

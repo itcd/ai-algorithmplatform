@@ -66,7 +66,7 @@ namespace UnitTest
         /// 生成随机迷宫的测试
         /// </summary>
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod_RandomMaze()
         {
             //
             // TODO: Add test logic	here
