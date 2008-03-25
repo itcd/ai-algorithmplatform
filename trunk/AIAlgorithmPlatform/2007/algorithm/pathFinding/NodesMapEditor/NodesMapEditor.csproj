@@ -1,0 +1,166 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{57CFCCFD-62D5-43A2-A93B-05715EDBCC29}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NodesMapEditor</RootNamespace>
+    <AssemblyName>NodesMapEditor</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>./bin/Debug/</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>NodesMapEditor</AssemblyName>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>./bin/Release/</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>NodesMapEditor</AssemblyName>
+    <DebugSymbols>True</DebugSymbols>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForm.Designer.cs">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LineWidthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LineWidthForm.Designer.cs">
+      <DependentUpon>LineWidthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PositionInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PositionInfoForm.Designer.cs">
+      <DependentUpon>PositionInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineWidthForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LineWidthForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PositionInfoForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PositionInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj">
+      <Project>{BA7885E1-0246-4F08-9BB1-859ED96AD589}</Project>
+      <Name>Position_Connected_Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
+      <Project>{A2A4DF30-D88D-4767-88A9-B57665F49740}</Project>
+      <Name>Position_Connected_Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\position\position\Position_Interface\Position_Interface.csproj">
+      <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
+      <Name>Position_Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\CountTimeTool\CountTimeTool.csproj">
+      <Project>{57A88133-03B3-4A40-B07A-9C3200CC197C}</Project>
+      <Name>CountTimeTool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\DrawingLib\DrawingLib.csproj">
+      <Project>{4C2AF699-DDA9-4788-B12B-2EE9C6E9BFBA}</Project>
+      <Name>DrawingLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStructure\DataStructure.csproj">
+      <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
+      <Name>DataStructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SearchEngineLibrary\SearchEngineLibrary.csproj">
+      <Project>{73898E77-5313-4A08-A456-0795B1E548BF}</Project>
+      <Name>SearchEngineLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
