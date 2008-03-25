@@ -8,8 +8,8 @@
     <ProjectGuid>{573E3438-EED3-495B-8044-7D4614FF05D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Helper</RootNamespace>
-    <AssemblyName>Helper</AssemblyName>
+    <RootNamespace>M2M.Util.Scene</RootNamespace>
+    <AssemblyName>M2M.Util.Scene</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

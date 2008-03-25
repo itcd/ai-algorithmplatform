@@ -17,7 +17,7 @@ using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Positi
 using PositionSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition>;
 using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
 
-namespace Helper
+namespace M2M.Util.Scene
 {
     public interface Element
     {

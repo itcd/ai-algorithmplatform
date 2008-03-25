@@ -6,7 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 
 using Petzold.Media3D;
-using Helper;
+using M2M.Util.Scene;
 
 using M2M.Position.Interface;
 using M2M.Position.Implement;
