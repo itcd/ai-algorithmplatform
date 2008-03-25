@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Helper
+namespace M2M.Util.Scene
 {
 
     /// <summary>
