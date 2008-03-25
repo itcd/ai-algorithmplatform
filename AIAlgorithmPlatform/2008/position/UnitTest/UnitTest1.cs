@@ -77,8 +77,9 @@ namespace UnitTest
                     return 0;
                 case 2:
                     return 1;
+                default:
+                    return -10;
             }
-            return -10;
         }
 
         int[] a = new int[3];
