@@ -8,7 +8,7 @@ using Petzold.Media3D;
 using System.ComponentModel;
 using Configuration;
 
-using M2M.Position;
+//using M2M.Position;
 using M2M.Position.Interface;
 
 using Real = System.Double;
