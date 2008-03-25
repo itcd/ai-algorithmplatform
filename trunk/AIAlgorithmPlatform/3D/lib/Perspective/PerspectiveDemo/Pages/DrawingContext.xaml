@@ -1,9 +1,0 @@
-﻿<Page x:Class="PerspectiveDemo.Pages.DrawingContext"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:p="http://www.codeplex.com/perspective"
-    Title="DrawingContext">
-    <Grid>
-        <p:Ruler />    
-    </Grid>
-</Page>
