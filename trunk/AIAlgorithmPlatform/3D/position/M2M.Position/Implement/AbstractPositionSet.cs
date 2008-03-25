@@ -57,7 +57,7 @@ namespace M2M.Position.Implement
 
         public virtual IEnumerator GetEnumerator()
         {
-            return ((IEnumerable<IPosition>) this).GetEnumerator();
+            return this.GetEnumerator();
         }
 
         #endregion
