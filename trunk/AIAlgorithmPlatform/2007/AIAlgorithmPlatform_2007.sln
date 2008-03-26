@@ -131,21 +131,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionDemo", "demo\Functi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Position_Connected_Implement", "position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj", "{BA7885E1-0246-4F08-9BB1-859ED96AD589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFS_AStarforGrid", "algorithm\pathFinding\BFS_AStarforGrid\BFS_AStarforGrid.csproj", "{86303370-B729-44C8-A4FA-C218ABA121BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BFS_AStarforGrid", "algorithm\pathfinding\BFS_AStarforGrid\BFS_AStarforGrid.csproj", "{86303370-B729-44C8-A4FA-C218ABA121BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorDemo", "algorithm\pathFinding\ColorDemo\ColorDemo.csproj", "{E4790123-B6EB-4D00-88FE-172AC2673701}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorDemo", "algorithm\pathfinding\ColorDemo\ColorDemo.csproj", "{E4790123-B6EB-4D00-88FE-172AC2673701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructure", "algorithm\pathFinding\DataStructure\DataStructure.csproj", "{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructure", "algorithm\pathfinding\DataStructure\DataStructure.csproj", "{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridMap_Demo", "algorithm\pathFinding\GridMap_Demo\GridMap_Demo.csproj", "{2342FA33-02A7-409E-9B09-201905F70737}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridMap_Demo", "algorithm\pathfinding\GridMap_Demo\GridMap_Demo.csproj", "{2342FA33-02A7-409E-9B09-201905F70737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodesMapEditor", "algorithm\pathFinding\NodesMapEditor\NodesMapEditor.csproj", "{57CFCCFD-62D5-43A2-A93B-05715EDBCC29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodesMapEditor", "algorithm\pathfinding\NodesMapEditor\NodesMapEditor.csproj", "{57CFCCFD-62D5-43A2-A93B-05715EDBCC29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PositionSet_Connected_EditorDemo", "algorithm\pathFinding\PositionSet_Connected_EditorDemo\PositionSet_Connected_EditorDemo.csproj", "{59400DE5-FBB1-4211-85E8-5E0CBEF2B0D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PositionSet_Connected_EditorDemo", "algorithm\pathfinding\PositionSet_Connected_EditorDemo\PositionSet_Connected_EditorDemo.csproj", "{59400DE5-FBB1-4211-85E8-5E0CBEF2B0D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PositionSet_Connected_ViewerDemo", "algorithm\pathFinding\PositionSet_Connected_ViewerDemo\PositionSet_Connected_ViewerDemo.csproj", "{6C22C8F9-176B-45AD-80F7-9B5553A5A7AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PositionSet_Connected_ViewerDemo", "algorithm\pathfinding\PositionSet_Connected_ViewerDemo\PositionSet_Connected_ViewerDemo.csproj", "{6C22C8F9-176B-45AD-80F7-9B5553A5A7AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEngineLibrary", "algorithm\pathFinding\SearchEngineLibrary\SearchEngineLibrary.csproj", "{73898E77-5313-4A08-A456-0795B1E548BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEngineLibrary", "algorithm\pathfinding\SearchEngineLibrary\SearchEngineLibrary.csproj", "{73898E77-5313-4A08-A456-0795B1E548BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrawingLib", "util\DrawingLib\DrawingLib.csproj", "{4C2AF699-DDA9-4788-B12B-2EE9C6E9BFBA}"
 EndProject
