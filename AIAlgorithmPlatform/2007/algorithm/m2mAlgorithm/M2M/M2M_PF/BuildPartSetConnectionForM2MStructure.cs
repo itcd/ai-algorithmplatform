@@ -230,7 +230,7 @@ namespace M2M
                 currentPart_Connected.SetAttachment(new Tag_M2M_Part());
                 currentPart_Connected.SetX(currentMultiPart.GetX());
                 currentPart_Connected.SetY(currentMultiPart.GetY());
-                bool isNeedToAddToSubPartList = true;
+                bool isNeedToAddToSubPartList;// = true;
                 SubPartList.Add(currentPart_Connected);
 
                 currentPart_Connected.AddToSubPositionList(currentPosition_Connected);

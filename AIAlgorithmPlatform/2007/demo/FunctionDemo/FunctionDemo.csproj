@@ -111,7 +111,7 @@
       <Project>{31E2BBD4-4E51-4790-B81F-B71BA5246B3E}</Project>
       <Name>NearestNeighbor %282007\algorithm\nearestNeighbor\NearestNeighbor%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\algorithm\PathFinding\DataStructure\DataStructure.csproj">
+    <ProjectReference Include="..\..\util\DataStructure\DataStructure.csproj">
       <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
       <Name>DataStructure</Name>
     </ProjectReference>

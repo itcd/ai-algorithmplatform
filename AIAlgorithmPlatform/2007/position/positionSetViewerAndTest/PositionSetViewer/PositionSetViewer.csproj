@@ -142,7 +142,7 @@
       <Project>{6692443A-2630-4701-AE88-1665F2FB8768}</Project>
       <Name>M2M</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\algorithm\PathFinding\DataStructure\DataStructure.csproj">
+    <ProjectReference Include="..\..\..\util\DataStructure\DataStructure.csproj">
       <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
       <Name>DataStructure</Name>
     </ProjectReference>

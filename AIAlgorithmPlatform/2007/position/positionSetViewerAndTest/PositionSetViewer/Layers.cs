@@ -321,7 +321,7 @@ namespace PositionSetViewer
                         isUnActiveLayerChanged = false;
                     }
 
-                    bool isActiveBitmapExit = false;
+                    bool isActiveBitmapExit;// = false;
                     bool isUnActiveBitmapExit = false;
                     foreach (Layer lay in this)
                     {
@@ -397,7 +397,7 @@ namespace PositionSetViewer
                     //}            
                 }
             }
-            catch (System.InvalidOperationException e)
+            catch (InvalidOperationException)
             {
             }
         }
@@ -413,7 +413,7 @@ namespace PositionSetViewer
             isUnActiveLayerChanged = true;
         }
 
-        bool isActiveLayerChanged = true;
+        private bool isActiveLayerChanged;// = true;
         bool isUnActiveLayerChanged = true;
         public void InvalidateSpecificLayer(Layer layer)
         {

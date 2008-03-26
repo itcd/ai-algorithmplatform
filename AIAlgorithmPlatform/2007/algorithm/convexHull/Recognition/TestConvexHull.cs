@@ -60,7 +60,7 @@ namespace Recognition
             {
                 n = Int32.Parse( textBox1.Text );
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 return;
             }
@@ -69,7 +69,7 @@ namespace Recognition
             PositionSetEdit_ImplementByICollectionTemplate ps = new PositionSetEdit_ImplementByICollectionTemplate();
             Random r = new Random(DateTime.Now.Millisecond);
 
-            if (true)
+            //if (true)
             {
                 int minx = (int)(pb.Width * 0.05);
                 int miny = (int)(pb.Height * 0.05);
@@ -86,10 +86,10 @@ namespace Recognition
                 }
                 System.Console.WriteLine();
             }
-            else
-            {
-                ps = testData();
-            }
+            //else
+            //{
+            //    ps = testData();
+            //}
 
             IPositionSet convexPoints = convexhull.ConvexHull(ps);
             pb.Image = new Bitmap(pb.Width, pb.Height);

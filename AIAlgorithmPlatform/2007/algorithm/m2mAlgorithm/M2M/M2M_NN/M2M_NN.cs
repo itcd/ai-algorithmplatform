@@ -67,7 +67,7 @@ namespace M2M
 
         struct a
         {
-            int value;
+            //int value;
         };
 
         public bool CanInsert(IPosition point)

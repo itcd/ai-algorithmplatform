@@ -17,7 +17,7 @@ namespace SearchEngineLibrary
         {
             dict = new Dictionary<IPosition_Connected, Tag>();
             com = new TagComparer_Dictionary(dict);
-            open = new PriorityList<IPosition_Connected>(com);
+            open = new Priority_List<IPosition_Connected>(com);
         }
 
         public void InitEngineForMap(IPositionSet_Connected map)
@@ -91,7 +91,7 @@ namespace SearchEngineLibrary
             if (!Init(start, end))
                 return null;
 
-            PriorityList<IPosition_Connected> open_once = new PriorityList<IPosition_Connected>(open);
+            Priority_List<IPosition_Connected> open_once = new Priority_List<IPosition_Connected>(open);
             IPosition_Connected p = null, p_adj;
             IPositionSet_Connected_Adjacency adj;
             Tag p_tag, p_adj_tag;

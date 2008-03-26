@@ -56,7 +56,7 @@ namespace AlgorithmDemo
                             workerThread.Abort();
                         }
                     }
-                    catch (System.Threading.ThreadStateException exception)
+                    catch (System.Threading.ThreadStateException)
                     { }
                 }
             };

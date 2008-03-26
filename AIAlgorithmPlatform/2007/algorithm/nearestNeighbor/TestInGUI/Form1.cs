@@ -16,10 +16,10 @@ namespace TestInGUI
 {
     public partial class Form1 : Form
     {
-        private int height;
-        private int width;
-        private int oldx = 0;
-        private int oldy = 0;
+        //private int height;
+        //private int width;
+        //private int oldx = 0;
+        //private int oldy = 0;
         bool selecting = false;
         private List<IPosition> pointList;
 
