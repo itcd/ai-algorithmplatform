@@ -108,7 +108,7 @@ namespace Position_Implement
             }
         }
 
-        public void Clear()
+        public new void Clear()
         {
             positionSetList.Clear();
             positionSetEdit.Clear();

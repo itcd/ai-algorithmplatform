@@ -324,7 +324,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader LayerName;
-        private System.Windows.Forms.ColumnHeader Visible;
+        private new System.Windows.Forms.ColumnHeader Visible;
         private System.Windows.Forms.PropertyGrid layerPropertyGrid;
         private System.Windows.Forms.TrackBar ScaleTrackBar;
         private System.Windows.Forms.GroupBox groupBox2;

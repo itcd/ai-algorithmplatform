@@ -84,7 +84,7 @@
         #endregion
 
         public System.Windows.Forms.ListView PositionSetListView;
-        private System.Windows.Forms.ColumnHeader Name;
+        private new System.Windows.Forms.ColumnHeader Name;
         private System.Windows.Forms.ColumnHeader Type;
         private System.Windows.Forms.Button GetPositionSetBotton;
     }

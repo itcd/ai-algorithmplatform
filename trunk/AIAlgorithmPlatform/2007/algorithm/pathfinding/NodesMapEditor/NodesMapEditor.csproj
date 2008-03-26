@@ -143,7 +143,7 @@
       <Project>{4C2AF699-DDA9-4788-B12B-2EE9C6E9BFBA}</Project>
       <Name>DrawingLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataStructure\DataStructure.csproj">
+    <ProjectReference Include="..\..\..\util\DataStructure\DataStructure.csproj">
       <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
       <Name>DataStructure</Name>
     </ProjectReference>

@@ -75,7 +75,7 @@ namespace M2M
 
             enum State { None, CurrentPartSubPointNumIsOne, ChildPartSubPointNumIsOne };
 
-            State state = State.None;
+            //State state = State.None;
 
             public PositionSet_DescendentPosition(int DescendantLevelSequence, IPart AncestorPart, int AncestorLevelSequence, AM2MStructure M2MS)
             {
@@ -114,7 +114,7 @@ namespace M2M
                         {
                             childPart = (IPart)childPositionSet.GetPosition();
 
-                            if (true)
+                            //if (true)
                             {
                                 DescendentPositionSetOfChildPart =
                                     new PositionSet_DescendentPosition(DescendantLevelSequence,
@@ -123,12 +123,12 @@ namespace M2M
 
                                 DescendentPositionSetOfChildPart.InitToTraverseSet();
                             }
-                            else
-                            {
-                                state = State.ChildPartSubPointNumIsOne;
-                                state = State.None;
+                            //else
+                            //{
+                            //    state = State.ChildPartSubPointNumIsOne;
+                            //    state = State.None;
 
-                            }
+                            //}
                         }
                     }
                 }

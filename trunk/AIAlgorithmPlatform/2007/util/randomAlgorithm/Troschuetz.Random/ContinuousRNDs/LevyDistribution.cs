@@ -5,6 +5,8 @@ using Troschuetz.Random;
 namespace Troschuetz.Random
 {
   
+    ///<summary>
+    ///</summary>
     public class LevyDistribution : Distribution
     {
         #region instance fields
@@ -32,6 +34,8 @@ namespace Troschuetz.Random
         /// </summary>
         private double alpha;
 
+        ///<summary>
+        ///</summary>
         public double SCALE
         {
             get
@@ -91,7 +95,7 @@ namespace Troschuetz.Random
         }
 
         /// <summary>
-        /// Determines whether the specified value is valid for parameter <see cref="Gamma"/>.
+        /// Determines whether the specified value is valid for parameter <!--<see cref="Gamma"/>.-->
         /// </summary>
         /// <param name="value">The value to check.</param>
         /// <returns>

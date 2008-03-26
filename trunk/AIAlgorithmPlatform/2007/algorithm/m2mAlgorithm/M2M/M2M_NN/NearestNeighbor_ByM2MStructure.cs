@@ -67,7 +67,7 @@ namespace M2M
 
             throw new Exception("不应该到达这里!");
 
-            return 1;
+            //return 1;
         }
 
         public IPositionSet ApproximateSearchKNearestNeighbor2(IPosition targetPoint, int k)
@@ -246,7 +246,7 @@ namespace M2M
 
             throw new Exception("不应该到达这里!");
 
-            return 1;
+            //return 1;
         }
 
         class TravelThePointInPart

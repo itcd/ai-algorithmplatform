@@ -104,7 +104,7 @@ namespace TestForAlgorithmDemo
                 }
 
                 //结束演示（解除事件响应的绑定）
-                algorithmDemo_M2M_CH.EndDemo();
+                //algorithmDemo_M2M_CH.EndDemo();
 
             }).BeginInvoke(null, null);
         }

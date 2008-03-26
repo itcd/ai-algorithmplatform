@@ -18,7 +18,7 @@ namespace M2M.Util.Scene
     /// </summary>
     public partial class SceneWindows : Window
     {
-        private GeometryModel3D mGeometry;
+        //private GeometryModel3D mGeometry;
         private bool mDown;
         private Point mLastPos;
 

@@ -71,7 +71,7 @@
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataStructure\DataStructure.csproj">
+    <ProjectReference Include="..\..\..\util\DataStructure\DataStructure.csproj">
       <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
       <Name>DataStructure</Name>
     </ProjectReference>
