@@ -7,12 +7,13 @@ using System.Text;
 /// @date 2007.05.05
 /// @author Zhou
 /// 
-namespace DataStructure
+namespace DataStructure.PriorityQueue
 {
     /// <summary>
     /// 优先队列的数组实现
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [Serializable]
     public class PriorityQueue<T> : IPriorityQueue<T>
     {
         private const int DEFAULT_INITIAL_CAPACITY = 11;     //默认初始数组容量为11

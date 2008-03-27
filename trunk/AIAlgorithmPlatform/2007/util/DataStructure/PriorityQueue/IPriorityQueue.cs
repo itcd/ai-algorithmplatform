@@ -7,7 +7,7 @@ using System.Text;
 /// @date 2007.05.05
 /// @author Zhou
 /// 
-namespace DataStructure
+namespace DataStructure.PriorityQueue
 {
     public interface IPriorityQueue<T>
     {

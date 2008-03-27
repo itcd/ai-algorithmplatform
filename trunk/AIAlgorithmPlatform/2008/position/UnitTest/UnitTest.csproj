@@ -36,8 +36,11 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeapTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomMaze_Test.cs" />
     <Compile Include="UnitTest1.cs" />
@@ -49,6 +52,10 @@
     <ProjectReference Include="..\..\..\2007\util\Configuration\Configuration.csproj">
       <Project>{36FC5D55-98C6-4EC8-A8CE-8168D42C3BBE}</Project>
       <Name>Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\C5\C5\C5.csproj">
+      <Project>{D70489CD-ABDA-48FF-BD1E-BE3F7495BE71}</Project>
+      <Name>C5</Name>
     </ProjectReference>
     <ProjectReference Include="..\M2M.Position\M2M.Position.csproj">
       <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>

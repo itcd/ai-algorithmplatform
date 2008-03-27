@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Implement\Comparer\DijkstraTagComparer.cs" />
+    <Compile Include="Implement\Dijkstra.cs" />
     <Compile Include="Interface\ISearchPathEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,9 +56,6 @@
       <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
       <Name>M2M.Position</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implement\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

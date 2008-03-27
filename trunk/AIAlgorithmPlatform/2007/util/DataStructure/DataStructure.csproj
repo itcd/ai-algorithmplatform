@@ -48,7 +48,7 @@
     <Reference Include="System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PriorityQueue\Priority_List.cs" />
+    <Compile Include="PriorityQueue\PriorityQueue_List.cs" />
     <Compile Include="PriorityQueue\IPriorityQueue.cs" />
     <Compile Include="PriorityQueue\PriorityQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
