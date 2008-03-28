@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using DataStructure;
+using DataStructure.PriorityQueue;
 using Position_Connected_Interface;
 
 namespace SearchEngineLibrary
@@ -55,7 +56,7 @@ namespace SearchEngineLibrary
             Tag tag = (Tag)start.GetAttachment();
 
             //生成这次寻径使用的time stamp
-            time_stamp = TimeStamp.getTimeStamp(time_stamp);
+            time_stamp = TimeStamp.getNextTimeStamp(time_stamp);
 
             if (tag != null)
             {

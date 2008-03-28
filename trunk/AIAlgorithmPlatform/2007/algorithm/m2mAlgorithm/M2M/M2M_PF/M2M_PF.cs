@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DataStructure.PriorityQueue;
 using Position_Interface;
 using Position_Connected_Interface;
 using DataStructure;
@@ -162,7 +163,7 @@ namespace M2M
             Tag tag = (Tag)start.GetAttachment();
 
             ////生成这次寻径使用的time stamp
-            //time_stamp = TimeStamp.getTimeStamp(time_stamp);
+            //time_stamp = TimeStamp.getNextTimeStamp(time_stamp);
 
             if (tag != null)
             {
@@ -188,9 +189,9 @@ namespace M2M
             IPart_Connected startParentPart = ((Tag_M2M_Position)(start.GetAttachment())).parentPart;
             IPart_Connected endParentPart = ((Tag_M2M_Position)(end.GetAttachment())).parentPart;
 
-            ushort lastLevelTimeStamp = TimeStamp.getRandomTimeStamp(0);
-            ushort endTime_stamp = TimeStamp.getRandomTimeStamp(1);
-            ushort startTime_stamp = TimeStamp.getRandomTimeStamp(2);
+            ushort lastLevelTimeStamp = TimeStamp.getRandomTimeStamp();
+            ushort endTime_stamp = TimeStamp.getRandomTimeStamp();
+            ushort startTime_stamp = TimeStamp.getRandomTimeStamp();
 
             //从最上层的下一层开始进行搜索空间收缩
             for (int levelSequence = 1; levelSequence < m2mStructure.GetLevelNum(); levelSequence++)
@@ -221,7 +222,7 @@ namespace M2M
                     //归入搜索空间的路径的最长长度
                     float PathLengthBound = float.MaxValue;
 
-                    endTime_stamp = TimeStamp.getTimeStamp(startTime_stamp);
+                    endTime_stamp = TimeStamp.getNextTimeStamp(startTime_stamp);
 
                     EndPartTag.timeStamp = endTime_stamp;
                     EndPartTag.ge = 0;
@@ -310,7 +311,7 @@ namespace M2M
                         }
                     }
 
-                    startTime_stamp = TimeStamp.getTimeStamp(endTime_stamp);
+                    startTime_stamp = TimeStamp.getNextTimeStamp(endTime_stamp);
                                         
                     StartPartTag.timeStamp = startTime_stamp;
                     StartPartTag.gs = 0;
@@ -449,7 +450,7 @@ namespace M2M
             Tag_M2M_Position tag = (Tag_M2M_Position)end.GetAttachment();
 
             //生成这次寻径使用的time stamp
-            time_stamp = TimeStamp.getTimeStamp(lastLevelTimeStamp);
+            time_stamp = TimeStamp.getNextTimeStamp(lastLevelTimeStamp);
 
             if (tag != null)
             {

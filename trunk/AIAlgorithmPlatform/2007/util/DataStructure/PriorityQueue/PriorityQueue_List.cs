@@ -25,7 +25,7 @@ namespace DataStructure.PriorityQueue
             list = new List<T>(initialCapacity);
         }
 
-        public PriorityQueue_List(List<T> list, IComparer<T> comparer)
+        public PriorityQueue_List(IEnumerable<T> list, IComparer<T> comparer)
         {
             com = comparer;
             this.list = new List<T>(list);        
@@ -42,10 +42,12 @@ namespace DataStructure.PriorityQueue
                         list.Add((T)a[i]);
         }
 
-        public bool addAll(List<T> l)
+        public bool addAll(IEnumerable<T> q)
         {
-            for (int i = 0; i < l.Count; i++)
-                add(l[i]);
+            foreach (T t in q)
+            {
+                add(t);
+            }
             return true;
         }
 
