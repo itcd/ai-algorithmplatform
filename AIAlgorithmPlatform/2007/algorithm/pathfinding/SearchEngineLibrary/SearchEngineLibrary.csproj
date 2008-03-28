@@ -51,10 +51,7 @@
     <Compile Include="AStar_Dijkstra_DataStructure\AStarTagComparer.cs" />
     <Compile Include="AStar_Dijkstra_DataStructure\DijkstraTagComparer.cs" />
     <Compile Include="AStar_Dijkstra_DataStructure\Dijkstra\old\TagComparer_Dictionary.cs" />
-    <Compile Include="AStar_Dijkstra_DataStructure\EuclideanDistance.cs" />
-    <Compile Include="AStar_Dijkstra_DataStructure\ManhattanDistance.cs" />
     <Compile Include="AStar_Dijkstra_DataStructure\Tag.cs" />
-    <Compile Include="AStar_Dijkstra_DataStructure\TimeStamp.cs" />
     <Compile Include="Dijkstra.cs" />
     <Compile Include="old\Dijkstra_Dictionary.cs" />
     <Compile Include="ISearchPathEngine.cs">

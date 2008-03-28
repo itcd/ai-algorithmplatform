@@ -2,9 +2,11 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using DataStructure.PriorityQueue;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using C5;
+//using C5;
+using DataStructure.PriorityQueue;
 
 namespace UnitTest
 {
@@ -62,19 +64,20 @@ namespace UnitTest
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod_HeapTest()
         {
             //
             // TODO: Add test logic	here
             //
             Random r = new Random();
-            IPriorityQueue<int> q = new IntervalHeap<int>();
-            for (int i = 0; i < 10; i++ )
-                q.Add(r.Next(short.MaxValue));
+            IPriorityQueue<int> q = new IntervalHeap_C5<int>();
+            //DataStructure.PriorityQueue.IPriorityQueue q = new DataStructure.PriorityQueue.IntervalHeap_C5<int>();
+            for (int i = 0; i < 10; i++)
+                q.add(r.Next(short.MaxValue));
 
-            for (int i = 0; i < 10; i++ )
+            for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(q.DeleteMin());
+                Console.WriteLine(q.removeFirst());
             }
         }
     }

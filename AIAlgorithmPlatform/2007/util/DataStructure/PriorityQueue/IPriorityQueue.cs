@@ -13,7 +13,7 @@ namespace DataStructure.PriorityQueue
     {
         bool add(T e);                           //向队列中添加指定的元素
         bool addAll(IPriorityQueue<T> q);        //将指定队列中的所有元素都添加到此队列中
-        bool addAll(List<T> l);                  //将指定数组中的所有元素添加到此队列中
+        bool addAll(IEnumerable<T> q);                  //将指定数组中的所有元素添加到此队列中
         void clear();                            //从优先级队列中移除所有元素
         T getFirst();                            //检索但不移除此队列的头
         T removeFirst();                         //检索并移除此队列的头

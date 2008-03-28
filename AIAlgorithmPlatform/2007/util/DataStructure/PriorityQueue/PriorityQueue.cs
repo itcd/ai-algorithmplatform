@@ -182,20 +182,24 @@ namespace DataStructure.PriorityQueue
 
         /// <summary>
         /// 将指定数组中的所有元素添加到此队列中
+        /// Ark(2008-3-28)将参数类型由List<T>改为IEnumerable<T>
         /// </summary>
         /// <param name="q"></param>
         /// <returns></returns>
-        public bool addAll(List<T> l)
+        public bool addAll(IEnumerable<T> q)
         {
-            if (l == null)
-                throw new NullReferenceException();
+            //if (l == null)
+            //    throw new NullReferenceException();
             bool modified = false;
-            for(int i = 0; i < l.Count; i++)
+            //for(int i = 0; i < l.Count; i++)
+            //{
+            //    if ( add(l[i]) )
+            //        modified = true;
+            //}
+            foreach (T t in q)
             {
-                if ( add(l[i]) )
-                    modified = true;
+                modified = modified || add(t);
             }
-
             return modified;
         }
 

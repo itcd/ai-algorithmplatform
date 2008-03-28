@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using DataStructure;
+using DataStructure.PriorityQueue;
 using Position_Connected_Interface;
 
 namespace SearchEngineLibrary
@@ -17,7 +18,7 @@ namespace SearchEngineLibrary
         {
             dict = new Dictionary<IPosition_Connected, Tag>();
             com = new TagComparer_Dictionary(dict);
-            open = new Priority_List<IPosition_Connected>(com);
+            open = new PriorityQueue_List<IPosition_Connected>(com);
         }
 
         public void InitEngineForMap(IPositionSet_Connected map)
@@ -91,7 +92,7 @@ namespace SearchEngineLibrary
             if (!Init(start, end))
                 return null;
 
-            Priority_List<IPosition_Connected> open_once = new Priority_List<IPosition_Connected>(open);
+            PriorityQueue_List<IPosition_Connected> open_once = new PriorityQueue_List<IPosition_Connected>(open);
             IPosition_Connected p = null, p_adj;
             IPositionSet_Connected_Adjacency adj;
             Tag p_tag, p_adj_tag;
