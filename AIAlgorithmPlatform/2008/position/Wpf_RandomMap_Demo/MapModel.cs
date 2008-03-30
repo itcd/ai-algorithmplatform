@@ -49,10 +49,10 @@ namespace Wpf_RandomMap_Demo
                         mGeometry = new GeometryModel3D(sphere, material);
                         tg = new Transform3DGroup();
                         tt = new TranslateTransform3D(i * b.SizeX, j * b.SizeY, 0);
-
+                        tg.Children.Add(tt);
                         positionSet.Add(new Position3D(i * b.SizeX, j * b.SizeY, 0));
 
-                        tg.Children.Add(tt);
+                        
                         mGeometry.Transform = tg;
                         group.Children.Add(mGeometry);
                     }

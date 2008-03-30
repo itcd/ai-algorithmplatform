@@ -80,21 +80,35 @@ namespace M2M.Util.Scene
     [CategoryAttribute("Drawer")]
     public class PointDrawer : ADrawer
     {
-        static MeshGeneratorBase m = new Petzold.Media3D.SphereMesh();
-        static MeshGeometry3D sphere = m.Geometry;
-        static Material material = new DiffuseMaterial(Brushes.AliceBlue);
+        MeshGeneratorBase meshGeneratorBase = null;
+        MeshGeometry3D sphere = null;
+        Material material = null;
+
+        Color materialColor = Colors.AliceBlue;
+        public Color MaterialColor
+        {
+            get { return materialColor; }
+            set {
+                materialColor = value;
+                material = new DiffuseMaterial(new SolidColorBrush(value));
+            }
+        }
+
+        public PointDrawer()
+        {
+            meshGeneratorBase = new Petzold.Media3D.CubeMesh();
+            sphere = meshGeneratorBase.Geometry;
+            material = new DiffuseMaterial(new SolidColorBrush(materialColor));
+        }
 
         public void Add(Real x, Real y, Real z)
         {
-            GeometryModel3D mGeometry;
-            Transform3DGroup tg;
-            TranslateTransform3D tt;
-            mGeometry = new GeometryModel3D(sphere, material);
-            tg = new Transform3DGroup();
-            tt = new TranslateTransform3D(x, y, z);
-            tg.Children.Add(tt);
-            mGeometry.Transform = tg;
-            elementGroup.Children.Add(mGeometry);
+            GeometryModel3D geometryModel3D = new GeometryModel3D(sphere, material);
+            Transform3DGroup transform3DGroup = new Transform3DGroup();
+            TranslateTransform3D translateTransform3D = new TranslateTransform3D(x, y, z);
+            transform3DGroup.Children.Add(translateTransform3D);
+            geometryModel3D.Transform = transform3DGroup;
+            elementGroup.Children.Add(geometryModel3D);
         }
     }
 
