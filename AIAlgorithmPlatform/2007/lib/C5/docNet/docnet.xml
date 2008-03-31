@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>docNet</name>
+    </assembly>
+    <members>
+        <member name="T:Try.Mapper`2">
+            <summary>
+            Hejsa
+            </summary>
+        </member>
+        <member name="T:Try.IEnumerable`1">
+            <summary>
+            Los accoutables
+            </summary>
+        </member>
+        <member name="M:Try.IEnumerable`1.Map``1(Try.Mapper{`0,``0})">
+            <summary>
+            Apply a delegate to all items of this collection.
+            </summary>
+            <param name="a">The delegate to apply</param>
+        </member>
+    </members>
+</doc>
