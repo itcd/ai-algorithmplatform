@@ -50,6 +50,7 @@ namespace Wpf_RandomMap_Demo
                         tg = new Transform3DGroup();
                         tt = new TranslateTransform3D(i * b.SizeX, j * b.SizeY, 0);
                         tg.Children.Add(tt);
+
                         positionSet.Add(new Position3D(i * b.SizeX, j * b.SizeY, 0));
 
                         

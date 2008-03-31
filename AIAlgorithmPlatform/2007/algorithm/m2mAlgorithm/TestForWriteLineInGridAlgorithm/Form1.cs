@@ -91,7 +91,8 @@ namespace TestForWriteLineInGridAlgorithm
 
         private void ShowLine()
         {
-            IWriteLineInGridEngine writeLineInGridEngine = new BlockLine();
+            IWriteLineInGridEngine writeLineInGridEngine = new Line2Block();
+            //IWriteLineInGridEngine writeLineInGridEngine = new Line2Block();
 
             IPositionSet line = writeLineInGridEngine.WriteLineInGrid(configurationForWriteLineInGridAlgorithm.GridWidth,
                  configurationForWriteLineInGridAlgorithm.GridHeight,
@@ -110,15 +111,18 @@ namespace TestForWriteLineInGridAlgorithm
             painterDialog.HoldOnMode();
             painterDialog.SetShowModeToForm();
 
-            Layer_PositionSet_Point layer = new Layer_PositionSet_Point(line);
-            layer.Point.PointRadius = 2;
-            layer.Point.PointColor = Color.Blue;
-            painterDialog.Layers.Add(layer);
+            if (line != null)
+            {
+                Layer_PositionSet_Point layer = new Layer_PositionSet_Point(line);
+                layer.Point.PointRadius = 2;
+                layer.Point.PointColor = Color.Blue;
+                painterDialog.Layers.Add(layer);
+            }
 
-            layer = new Layer_PositionSet_Point(startAndEnd);
-            layer.Point.PointRadius = 2;
-            layer.Point.PointColor = Color.Red;
-            painterDialog.Layers.Add(layer);
+            Layer_PositionSet_Path layer2 = new Layer_PositionSet_Path((IPositionSet)startAndEnd);
+            layer2.PathLine.LineWidth = 2;
+            layer2.PathLine.LineColor = Color.Red;
+            painterDialog.Layers.Add(layer2);
 
             painterDialog.Show();
         }

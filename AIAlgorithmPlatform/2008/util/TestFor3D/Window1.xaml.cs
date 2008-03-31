@@ -28,7 +28,7 @@ namespace TestFor3D
         public Window1()
         {
             InitializeComponent();
-
+            
             //group.Transform = new Transform3DGroup();
             model.Transform = new Transform3DGroup();
 
@@ -40,7 +40,7 @@ namespace TestFor3D
             Vector3D v1 = new Vector3D(30, 30, 0);
             GeometryModel3D StartPoint = new GeometryModel3D(sphere, material);
             var translateTransform3D1 = new TranslateTransform3D(v1);
-            var transform3DGroup1 = new Transform3DGroup();            
+            var transform3DGroup1 = new Transform3DGroup();
             transform3DGroup1.Children.Add(new ScaleTransform3D(2, 2, 2));
             transform3DGroup1.Children.Add(translateTransform3D1);
             StartPoint.Transform = transform3DGroup1;
