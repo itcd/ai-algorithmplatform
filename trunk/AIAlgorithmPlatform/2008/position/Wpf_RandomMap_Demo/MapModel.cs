@@ -9,12 +9,16 @@ using Petzold.Media3D;
 using M2M.Util.Scene;
 
 using M2M.Position.Implement;
+using M2M.Position.Interface;
 
 using Real = System.Double;
 using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition>;
 using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
 using PositionSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition>;
 using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
+
+using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
+using Position3DSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition3D>;
 
 
 namespace Wpf_RandomMap_Demo
@@ -37,7 +41,7 @@ namespace Wpf_RandomMap_Demo
             Transform3DGroup tg;
             TranslateTransform3D tt;
 
-            var positionSet = new PositionSet();
+            var position3DSet = new Position3DSet();
 
             // Add model to the model group
             int i, j;
@@ -50,17 +54,15 @@ namespace Wpf_RandomMap_Demo
                         tg = new Transform3DGroup();
                         tt = new TranslateTransform3D(i * b.SizeX, j * b.SizeY, 0);
                         tg.Children.Add(tt);
-
-                        positionSet.Add(new Position3D(i * b.SizeX, j * b.SizeY, 0));
-
-                        
+                        position3DSet.Add(new Position3D(i * b.SizeX, j * b.SizeY, 0));
+                                                
                         mGeometry.Transform = tg;
                         group.Children.Add(mGeometry);
                     }
                 }
 
             var scene = new Scene();
-            scene.AddElement(new PositionSetElement(positionSet));
+            scene.AddElement(new PositionSetElement(position3DSet));
             scene.ShowScene();
         }
 

@@ -10,4 +10,7 @@ namespace M2M.Position.Interface
     using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
     using PositionSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition>;
     using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
+
+    using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
+    using Position3DSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition3D>;
 }
