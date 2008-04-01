@@ -16,6 +16,9 @@ using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Positi
 using PositionSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition>;
 using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
 
+using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
+using Position3DSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition3D>;
+
 namespace M2M.Util.Scene
 {
     public interface Element
@@ -96,7 +99,7 @@ namespace M2M.Util.Scene
 
         public PointDrawer()
         {
-            meshGeneratorBase = new Petzold.Media3D.CubeMesh();
+            meshGeneratorBase = new Petzold.Media3D.SphereMesh();
             sphere = meshGeneratorBase.Geometry;
             material = new DiffuseMaterial(new SolidColorBrush(materialColor));
         }
@@ -105,6 +108,7 @@ namespace M2M.Util.Scene
         {
             GeometryModel3D geometryModel3D = new GeometryModel3D(sphere, material);
             Transform3DGroup transform3DGroup = new Transform3DGroup();
+            transform3DGroup.Children.Add(new ScaleTransform3D(0.5,0.5,0.5));
             TranslateTransform3D translateTransform3D = new TranslateTransform3D(x, y, z);
             transform3DGroup.Children.Add(translateTransform3D);
             geometryModel3D.Transform = transform3DGroup;
@@ -114,7 +118,7 @@ namespace M2M.Util.Scene
 
     public class PositionSetElement : Element
     {
-        IPositionSet positionSet = null;
+        IPosition3DSet position3DSet = null;
 
         PointDrawer pointDrawer = new PointDrawer();
         [CategoryAttribute("Drawer")]
@@ -124,16 +128,16 @@ namespace M2M.Util.Scene
             set { pointDrawer = value; }
         }
 
-        public PositionSetElement(IPositionSet positionSet)
+        public PositionSetElement(IPosition3DSet positionSet)
         {
-            this.positionSet = positionSet;
+            this.position3DSet = positionSet;
         }
 
         public void AddToScene(Model3DGroup elementGroup)
         {
             pointDrawer.ElementGroup = elementGroup;
-
-            foreach (IPosition position in positionSet)
+           
+            foreach (IPosition3D position in position3DSet)
             {
                 pointDrawer.Add(position.GetValue(0),
                     position.GetValue(1),

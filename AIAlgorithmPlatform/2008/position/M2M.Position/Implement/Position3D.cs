@@ -9,7 +9,7 @@ using Real = System.Double;
 namespace M2M.Position.Implement
 {
     [Serializable]
-    public class Position3D : IPosition3D
+    public class Position3D : IPosition3D  
     {
         public Position3D()
         { }
