@@ -8,5 +8,7 @@ namespace M2M.Position.Interface
     public interface IPosition_Connected : IPosition
     {
         IEnumerable<IAdjacency> GetAdjacency();
+        int GetIndex();
+        void SetIndex(int index);
     }
 }

@@ -12,12 +12,23 @@ namespace M2M.Position.Implement
     public class Position3D_Connected : Position3D, IPosition_Connected
     {
         protected List<IAdjacency> list = new List<IAdjacency>();
+        protected int index;
 
         #region IPosition_Connected Members
 
         public IEnumerable<IAdjacency> GetAdjacency()
         {
             return list;
+        }
+
+        public int GetIndex()
+        {
+            return index;
+        }
+
+        public void SetIndex(int i)
+        {
+            index = i;
         }
 
         #endregion

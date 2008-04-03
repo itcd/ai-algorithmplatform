@@ -16,6 +16,9 @@ namespace SearchEngineLibrary
 
         float pathLength = 0;
 
+        List<IPosition_Connected> path;
+        IPriorityQueue<IPosition_Connected> open;
+
         public float GetPathLength()
         {
             return pathLength;
@@ -74,9 +77,6 @@ namespace SearchEngineLibrary
 
             return true;
         }
-
-        List<IPosition_Connected> path;
-        IPriorityQueue<IPosition_Connected> open;
 
         //没有路径则返回null
         public List<IPosition_Connected> SearchPath(IPosition_Connected start, IPosition_Connected end)
