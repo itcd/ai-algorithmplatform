@@ -2,20 +2,23 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using M2M.Algorithm.Pathfinding.Implement.AStar_Dijkstra_DataStructure;
+using M2M.Algorithm.Pathfinding.Interface;
+using M2M.Position.Implement;
+using M2M.Position.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using mydouble = System.Double;
-using M2M.Position;
+using M2M.Algorithm.Pathfinding;
 
-namespace UnitTest
+namespace TestProject_pathfinding
 {
     /// <summary>
-    /// Summary description for UnitTest1
+    /// Summary description for Tag_UnitTest
     /// </summary>
     [TestClass]
-    public class UnitTest1
+    public class Tag_UnitTest
     {
-        public UnitTest1()
+        public Tag_UnitTest()
         {
             //
             // TODO: Add constructor logic here
@@ -54,81 +57,83 @@ namespace UnitTest
         //
         // Use TestInitialize to run code before running each test 
         // [TestInitialize()]
-        public void MyTestInitialize()
-        {
-            a[0] = -1;
-            a[1] = 0;
-            a[2] = 1;
-        }
+        // public void MyTestInitialize() { }
         //
         // Use TestCleanup to run code after each test has run
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-        #endregion     
-        
-        public int switchTest(int i)
-        {
-            switch(i)
-            {
-                case 0:
-                    return -1;
-                case 1:
-                    return 0;
-                case 2:
-                    return 1;
-                default:
-                    return -10;
-            }
-        }
-
-        int[] a = new int[3];
-
-        public int arrayTest(int i)
-        {
-            //if (i >= 0 && i < a.Length)
-                return a[i];
-            //else
-            //    return -10;
-        }
+        #endregion
 
         [TestMethod]
-        public void TestMethod_ReadSpeed()
+        public void TestMethod1()
         {
             //
             // TODO: Add test logic	here
             //
-
-            unchecked 
+            unchecked
             {
-                int n = 100000000;
-                int sum;
+                int n = 1000000000;
+                //float sum;
                 long t1, t2;
 
-                sum = 0;
+                TagClass tc = new TagClass();
+
+                //sum = 0;
                 t1 = DateTime.Now.Ticks;
                 for (int i = 0; i < n; i++)
-                    for (int j = 0; j < 3; j++)
-                        sum += switchTest(j);
+                {
+                    tc.t.closed = !tc.t.closed;
+                    //sum += tc.t.f;
+                }
+
                 t2 = DateTime.Now.Ticks;
-                Console.WriteLine(sum);
+                //Console.WriteLine(sum);
                 Console.WriteLine(t1);
                 Console.WriteLine(t2);
                 Console.WriteLine(t2 - t1);
 
                 Console.WriteLine();
 
-                sum = 0;
+                //sum = 0;
                 t1 = DateTime.Now.Ticks;
                 for (int i = 0; i < n; i++)
-                    for (int j = 0; j < 3; j++)
-                        sum += arrayTest(j);
+                {
+                    ((Tag) tc.it).closed = !((Tag) tc.it).closed;
+                    //sum += ((Tag)tc.it).f;
+                }
                 t2 = DateTime.Now.Ticks;
-                Console.WriteLine(sum);
+                //Console.WriteLine(sum);
+                Console.WriteLine(t1);
+                Console.WriteLine(t2);
+                Console.WriteLine(t2 - t1);
+
+                Console.WriteLine();
+
+                //sum = 0;
+                t1 = DateTime.Now.Ticks;
+                for (int i = 0; i < n; i++)
+                {
+                    ((Tag)tc.o).closed = !((Tag)tc.o).closed;
+                    //sum += ((Tag)tc.o).f;
+                }
+                t2 = DateTime.Now.Ticks;
+                //Console.WriteLine(sum);
                 Console.WriteLine(t1);
                 Console.WriteLine(t2);
                 Console.WriteLine(t2 - t1);
             }
         }
+
+        //[TestMethod]
+        //public void TestMethod2()
+        //{
+        //    IPosition_Connected_Tag p_tag = new Position3D_Connected_Tag();
+        //    Tag t = new Tag();
+        //    t.f = 10;
+        //    p_tag.Tag = t;
+        //    Tag t_new = p_tag.Tag;
+        //    Console.WriteLine(t_new.f);
+        //}
     }
 }

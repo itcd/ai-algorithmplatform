@@ -45,13 +45,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Implement\Comparer\DijkstraTagComparer.cs" />
+    <Compile Include="Implement\AStar_Dijkstra_DataStructure\AStarTagComparer.cs" />
+    <Compile Include="Implement\AStar_Dijkstra_DataStructure\DijkstraTagComparer.cs" />
+    <Compile Include="Implement\AStar_Dijkstra_DataStructure\ITag.cs" />
+    <Compile Include="Implement\AStar_Dijkstra_DataStructure\Tag.cs" />
     <Compile Include="Implement\Dijkstra.cs" />
     <Compile Include="Interface\ISearchPathEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\2007\util\DataStructure\DataStructure.csproj">
+      <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
+      <Name>DataStructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\position\M2M.Position\M2M.Position.csproj">
       <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
       <Name>M2M.Position</Name>
