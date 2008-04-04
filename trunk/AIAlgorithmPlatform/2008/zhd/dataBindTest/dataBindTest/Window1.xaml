@@ -1,0 +1,13 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="dataBindTest.Window1"
+	x:Name="Window"
+	Title="Window1"
+	Width="640" Height="480">
+
+	<Grid x:Name="LayoutRoot">
+		<Slider Margin="73,0,89,53" VerticalAlignment="Bottom" Height="28" Maximum="100" Minimum="5" Value="12" x:Name="slider"/>
+		<TextBox Margin="73,45,89,97" Text="我们的项目在Google Code的地址&#xd;&#xa;http://code.google.com/p/ai-algorithmplatform/&#xd;&#xa;每人都需要一个gmail帐户来访问Google Code的svn服务器。&#xd;&#xa;参与项目开发的同学请回复如下信息：&#xd;&#xa;&lt;你的姓名&gt;&#xd;&#xa;&lt;你的 gmail 邮箱&gt;&#xd;&#xa;然后你的gmail帐户作为project member加到我们在Google Code的项目中。&#xd;&#xa;" TextWrapping="Wrap" FontSize="{Binding Path=Value, ElementName=slider, Mode=Default}"/>
+	</Grid>
+</Window>
