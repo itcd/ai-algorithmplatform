@@ -1,0 +1,16 @@
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\ResolveAssemblyReference.cache
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Window1.baml
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Window1.g.cs
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\App.g.cs
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Mesh_Transform_Demo_MarkupCompile.cache
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Mesh_Transform_Demo.g.resources
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Mesh_Transform_Demo.Properties.Resources.resources
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Mesh_Transform_Demo.csproj.GenerateResource.Cache
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\bin\Debug\Mesh_Transform_Demo.exe
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\bin\Debug\Mesh_Transform_Demo.pdb
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\bin\Debug\3DTools.dll
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\bin\Debug\Petzold.Media3D.dll
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\bin\Debug\3DTools.pdb
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\bin\Debug\Petzold.Media3D.pdb
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Mesh_Transform_Demo.exe
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\Mesh_Transform_Demo\obj\Debug\Mesh_Transform_Demo.pdb
