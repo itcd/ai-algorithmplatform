@@ -10,6 +10,7 @@ namespace M2M.Position.Interface
     public interface IPosition
     {
         int GetDimension();
+        [Obsolete("Recommend to use the GetX, GetY or GetZ method.")]
         Real GetValue(int dimensionIndex);
     }
 }

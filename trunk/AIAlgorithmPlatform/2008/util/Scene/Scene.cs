@@ -121,6 +121,7 @@ namespace M2M.Util.Scene
         IPosition3DSet position3DSet = null;
 
         PointDrawer pointDrawer = new PointDrawer();
+
         [CategoryAttribute("Drawer")]
         public PointDrawer PointDrawer
         {
@@ -139,9 +140,9 @@ namespace M2M.Util.Scene
            
             foreach (IPosition3D position in position3DSet)
             {
-                pointDrawer.Add(position.GetValue(0),
-                    position.GetValue(1),
-                    position.GetValue(2));
+                pointDrawer.Add(position.GetX(),
+                    position.GetY(),
+                    position.GetZ());
             }
         }
     }
