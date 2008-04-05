@@ -16,3 +16,21 @@ D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\WPF3DH
 D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\Petzold.Media3D.pdb
 D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper.exe
 D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper.pdb
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper.exe
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper.pdb
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\TestForWPF3DHelper.exe
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\TestForWPF3DHelper.pdb
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\3DTools.dll
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\Petzold.Media3D.dll
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\WPF3DHelper.dll
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\3DTools.pdb
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\WPF3DHelper.pdb
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\bin\Debug\Petzold.Media3D.pdb
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\ResolveAssemblyReference.cache
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\Window1.baml
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\Window1.g.cs
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\App.g.cs
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper_MarkupCompile.cache
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper.g.resources
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper.Properties.Resources.resources
+D:\program\Silverlight and WPF\trunk\AIAlgorithmPlatform\2008\util\TestForWPF3DHelper\obj\Debug\TestForWPF3DHelper.csproj.GenerateResource.Cache

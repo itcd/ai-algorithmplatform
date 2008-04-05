@@ -26,18 +26,11 @@ namespace TestForWPF3DHelper
         public Window1()
         {
             InitializeComponent();
+            model.Transform = new Transform3DGroup();
 
-            MeshGeometry3D mesh1 = new MeshGeometry3D();
+            MeshGeometry3D mesh1 = new CubeMesh().Geometry;
             MeshGeometry3D mesh2 = new MeshGeometry3D();
             MeshGeometry3D mesh3;
-
-            mesh1.Positions.Add(new Point3D(10, 0, 0));
-            mesh1.Positions.Add(new Point3D(0, 10, 0));
-            mesh1.Positions.Add(new Point3D(0, 0, 10));
-
-            mesh1.TriangleIndices.Add(0);
-            mesh1.TriangleIndices.Add(1);
-            mesh1.TriangleIndices.Add(2);
 
             mesh2.Positions.Add(new Point3D(20, 20, 0));
             mesh2.Positions.Add(new Point3D(0, 20, 20));
@@ -67,6 +60,66 @@ namespace TestForWPF3DHelper
             group.Children.Add(mGeometry3);
 
             model.Content = group;
+        }
+
+        private bool mDown;
+        private Point mLastPos;
+
+        private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            camera.Position = new Point3D(camera.Position.X, camera.Position.Y, camera.Position.Z - e.Delta / 25D);
+        }
+
+        private void Grid_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mDown)
+            {
+                Point pos = Mouse.GetPosition(viewport);
+                Point actualPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
+                double dx = actualPos.X - mLastPos.X, dy = actualPos.Y - mLastPos.Y;
+
+                double mouseAngle = 0;
+                if (dx != 0 && dy != 0)
+                {
+                    mouseAngle = Math.Asin(Math.Abs(dy) / Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2)));
+                    if (dx < 0 && dy > 0) mouseAngle += Math.PI / 2;
+                    else if (dx < 0 && dy < 0) mouseAngle += Math.PI;
+                    else if (dx > 0 && dy < 0) mouseAngle += Math.PI * 1.5;
+                }
+                else if (dx == 0 && dy != 0) mouseAngle = Math.Sign(dy) > 0 ? Math.PI / 2 : Math.PI * 1.5;
+                else if (dx != 0 && dy == 0) mouseAngle = Math.Sign(dx) > 0 ? 0 : Math.PI;
+
+                double axisAngle = mouseAngle + Math.PI / 2;
+
+                Vector3D axis = new Vector3D(Math.Cos(axisAngle) * 4, Math.Sin(axisAngle) * 4, 0);
+
+                double rotation = 0.01 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
+
+                //QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
+
+                //tg.Children.Add(new RotateTransform3D(r));
+
+                Transform3DGroup tg = model.Transform as Transform3DGroup;
+                QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
+                tg.Children.Add(new RotateTransform3D(r));
+
+                mLastPos = actualPos;
+            }
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                mDown = true;
+                Point pos = Mouse.GetPosition(viewport);
+                mLastPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
+            }
+        }
+
+        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            mDown = false;
         }
     }
 }
