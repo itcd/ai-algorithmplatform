@@ -12,8 +12,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Media3D;
-using _3DTools;
 using Petzold.Media3D;
+using M2M.Position.Implement;
+using M2M.Position.Interface;
 
 namespace M2M.Util
 {
@@ -27,39 +28,52 @@ namespace M2M.Util
             InitializeComponent();
             model.Transform = new Transform3DGroup();
 
-            MeshGeometry3D mesh1 = new CubeMesh().Geometry;
-            MeshGeometry3D mesh2 = new SphereMesh().Geometry;
-            mesh2 = WPF3DHelper.Translate(mesh2, new Vector3D(0,0,10));
-            MeshGeometry3D mesh3;
+            Test1();
+            Test2();
+        }
 
-            //mesh2.Positions.Add(new Point3D(20, 20, 0));
-            //mesh2.Positions.Add(new Point3D(0, 20, 20));
-            //mesh2.Positions.Add(new Point3D(20, 0, 20));
+        private void Test1()
+        {
+            List<IPosition3D> point3DList = new List<IPosition3D>();
 
-            //mesh2.TriangleIndices.Add(0);
-            //mesh2.TriangleIndices.Add(1);
-            //mesh2.TriangleIndices.Add(2);
+            double range = 5;
 
-            //List<MeshGeometry3D> list = new List<MeshGeometry3D>();
-            //list.Add(mesh1);
-            //list.Add(mesh2);
-            mesh3 = WPF3DHelper.Combine(mesh2, mesh1);
-            //mesh3 = WPF3DHelper.WPF3DHelper.Combine(list);
+            for (int i = 0; i < 500; i++)
+            {
+                point3DList.Add(new Position3D(
+                    (int)GetRandomInRange(range), (int)GetRandomInRange(range), (int)GetRandomInRange(range)));
+            }
 
-            mesh1 = WPF3DHelper.Translate(mesh1, new Vector3D(20, 20, 20));
-            mesh2 = WPF3DHelper.Scale(mesh2, new Vector3D(-3, -3, -3), new Point3D(0, 20, 20));
+            Scene scene = new Scene();
+            //scene.AddElement(new PositionSetElement(point3DList));
+            scene.AddElement(new GridSetElement(point3DList));
 
-            GeometryModel3D mGeometry1 = new GeometryModel3D(mesh1, new DiffuseMaterial(Brushes.Red));
-            GeometryModel3D mGeometry2 = new GeometryModel3D(mesh2, new DiffuseMaterial(Brushes.Green));
-            GeometryModel3D mGeometry3 = new GeometryModel3D(mesh3, new DiffuseMaterial(Brushes.Blue));
+            scene.ShowScene();
+        }
 
-            //model.Children.Add(mGeometry);
-            Model3DGroup group = new Model3DGroup();
-            group.Children.Add(mGeometry1);
-            group.Children.Add(mGeometry2);
-            group.Children.Add(mGeometry3);
+        private void Test2()
+        {
+            List<IPosition3D> point3DList = new List<IPosition3D>();
 
-            model.Content = group;
+            double range = 100;
+
+            for (int i = 0; i < 1000; i++)
+            {
+                point3DList.Add(new Position3D(
+                    GetRandomInRange(range), GetRandomInRange(range), GetRandomInRange(range)));
+            }
+
+            Scene scene = new Scene();
+            //scene.AddElement(new PositionSetElement(point3DList));
+            scene.AddElement(new PositionSetElement(point3DList));
+
+            scene.ShowScene();
+        }
+
+        Random random = new Random();
+        private double GetRandomInRange(double range)
+        {
+            return ((random.NextDouble() - 0.5) * 2 * range);
         }
 
         private bool mDown;

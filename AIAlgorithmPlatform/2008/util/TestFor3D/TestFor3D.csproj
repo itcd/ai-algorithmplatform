@@ -104,6 +104,10 @@
       <Project>{BEBED159-4DB6-4550-8342-7F3607177B71}</Project>
       <Name>Petzold.Media3D</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WPF3DHelper\WPF3DHelper.csproj">
+      <Project>{0E219C80-80EF-434C-B9E3-79C1B8B4AC33}</Project>
+      <Name>WPF3DHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
