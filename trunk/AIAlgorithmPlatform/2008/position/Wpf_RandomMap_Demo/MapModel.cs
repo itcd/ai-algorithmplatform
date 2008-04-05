@@ -41,7 +41,7 @@ namespace Wpf_RandomMap_Demo
             Transform3DGroup tg;
             TranslateTransform3D tt;
 
-            var position3DSet = new Position3DSet();
+            //var position3DSet = new Position3DSet();
 
             // Add model to the model group
             int i, j;
@@ -54,16 +54,16 @@ namespace Wpf_RandomMap_Demo
                         tg = new Transform3DGroup();
                         tt = new TranslateTransform3D(i * b.SizeX, j * b.SizeY, 0);
                         tg.Children.Add(tt);
-                        position3DSet.Add(new Position3D(i * b.SizeX, j * b.SizeY, 0));
+                        //position3DSet.Add(new Position3D(i * b.SizeX, j * b.SizeY, 0));
                                                 
                         mGeometry.Transform = tg;
                         group.Children.Add(mGeometry);
                     }
                 }
 
-            var scene = new Scene();
-            scene.AddElement(new PositionSetElement(position3DSet));
-            scene.ShowScene();
+            //var scene = new Scene();
+            //scene.AddElement(new PositionSetElement(position3DSet));
+            //scene.ShowScene();
         }
 
         public static void generateMap3D(Model3DGroup group, int[, ,] map, int width, int height, int depth)

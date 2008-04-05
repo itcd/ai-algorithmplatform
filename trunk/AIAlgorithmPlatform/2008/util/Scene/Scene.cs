@@ -23,7 +23,7 @@ namespace M2M.Util
 {
     public interface Element
     {
-        void AddToScene(Model3DGroup elementGroup);
+        void AddToScene(Visual3DCollection elementGroup);
     }
 
     public class Scene
@@ -32,12 +32,12 @@ namespace M2M.Util
 
         List<Element> ElementList = new List<Element>();
 
-        Model3DGroup elementGroup = null;
+        Visual3DCollection elementGroup = null;
 
         public Scene()
         {
             sceneWindows = new SceneWindows();
-            elementGroup = sceneWindows.group;
+            elementGroup = sceneWindows.model.Children;
 
             sceneWindows.MouseRightButtonDown += delegate { new ConfiguratedByForm(ElementList[0]); };
         }
@@ -120,30 +120,439 @@ namespace M2M.Util
     {
         IPosition3DSet position3DSet = null;
 
-        PointDrawer pointDrawer = new PointDrawer();
+        MeshGeneratorBase meshGeneratorBase = null;
+        MeshGeometry3D sphere = null;
+        Material material = null;
+        Model3DGroup modelGroup = new Model3DGroup();
 
-        [CategoryAttribute("Drawer")]
-        public PointDrawer PointDrawer
+        //PointDrawer pointDrawer = new PointDrawer();
+        //[CategoryAttribute("Drawer")]
+        //public PointDrawer PointDrawer
+        //{
+        //    get { return pointDrawer; }
+        //    set { pointDrawer = value; }
+        //}
+
+        Color materialColor = Colors.AliceBlue;
+        [CategoryAttribute("Appearance")]
+        public Color MaterialColor
         {
-            get { return pointDrawer; }
-            set { pointDrawer = value; }
+            get { return materialColor; }
+            set
+            {
+                materialColor = value;
+                material = new DiffuseMaterial(new SolidColorBrush(value));
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    model.Material = material;
+                }
+            }
         }
+
+        public enum EMaterialStyle{EmissiveMaterial, DiffuseMaterial, SpecularMaterial};
+
+        EMaterialStyle materialStyle = EMaterialStyle.DiffuseMaterial;
+        [CategoryAttribute("Appearance")]
+        public EMaterialStyle MaterialStyle
+        {
+            get { return materialStyle; }
+            set {
+                materialStyle = value;
+
+                if (value == EMaterialStyle.DiffuseMaterial)
+                {
+                    material = new DiffuseMaterial(new SolidColorBrush(materialColor));
+                }
+                else if (value == EMaterialStyle.EmissiveMaterial)
+                {
+                    material = new EmissiveMaterial(new SolidColorBrush(materialColor));
+                }
+                else if (value == EMaterialStyle.SpecularMaterial)
+                {
+                    material = new SpecularMaterial(new SolidColorBrush(materialColor), 1);
+                }
+                
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    model.Material = material;
+                }
+            }
+        }
+
+        public enum EShape { Cube, Sphere, Dodecahedron, Icosahedron, Octahedron, Tetrahedron};
+        EShape shape = EShape.Tetrahedron;
+        [CategoryAttribute("Appearance")]
+        public EShape Shape
+        {
+            get { return shape; }
+            set {
+                shape = value;
+
+                Geometry3D geometry3D = null;
+
+                if (value == EShape.Cube)
+                {
+                    geometry3D = new CubeMesh().Geometry;
+                }
+                else if (value == EShape.Dodecahedron)
+                {
+                    geometry3D = new DodecahedronMesh().Geometry;
+                }
+                else if (value == EShape.Icosahedron)
+                {
+                    geometry3D = new IcosahedronMesh().Geometry;
+                }
+                else if (value == EShape.Octahedron)
+                {
+                    geometry3D = new OctahedronMesh().Geometry;
+                }
+                else if (value == EShape.Sphere)
+                {
+                    geometry3D = new SphereMesh().Geometry;
+                }
+                else if (value == EShape.Tetrahedron)
+                {
+                    geometry3D = new TetrahedronMesh().Geometry;
+                }
+
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    model.Geometry = geometry3D;
+                }
+            }
+        }
+
+        double scale = 0.25;
+        [CategoryAttribute("Appearance")]
+        public double Scale
+        {
+            get { return scale; }
+            set {
+                scale = value;
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    ((Transform3DGroup)model.Transform).Children[0] = new ScaleTransform3D(value * 2, value * 2, value * 2);
+                }
+            }
+        }
+
 
         public PositionSetElement(IPosition3DSet positionSet)
         {
             this.position3DSet = positionSet;
         }
 
-        public void AddToScene(Model3DGroup elementGroup)
+        public void AddToScene(Visual3DCollection elementGroup)
         {
-            pointDrawer.ElementGroup = elementGroup;
+            //pointDrawer.ElementGroup = elementGroup;
+
+            meshGeneratorBase = new Petzold.Media3D.OctahedronMesh();
+            sphere = meshGeneratorBase.Geometry;
+            //Color materialColor = new DiffuseMaterial(new SolidColorBrush(value));
+            material = new DiffuseMaterial(new SolidColorBrush(Colors.AliceBlue));
            
             foreach (IPosition3D position in position3DSet)
             {
-                pointDrawer.Add(position.GetX(),
-                    position.GetY(),
-                    position.GetZ());
+                //pointDrawer.Add(position.GetX(),
+                //    position.GetY(),
+                //    position.GetZ());
+
+                GeometryModel3D geometryModel3D = new GeometryModel3D(sphere, material);
+                Transform3DGroup transform3DGroup = new Transform3DGroup();
+                transform3DGroup.Children.Add(new ScaleTransform3D(0.5, 0.5, 0.5));
+                TranslateTransform3D translateTransform3D = new TranslateTransform3D(
+                    position.GetX(), position.GetY(), position.GetZ());
+                transform3DGroup.Children.Add(translateTransform3D);
+                geometryModel3D.Transform = transform3DGroup;
+                modelGroup.Children.Add(geometryModel3D);
             }
+
+            var modelVisual3D = new ModelVisual3D();
+            modelVisual3D.Content = modelGroup;
+            elementGroup.Add(modelVisual3D);
+
+            //var positionSetMesh = new MeshGeometry3D();
+            //MeshGeometry3D sphereMesh = new Sphere().Geometry;
+
+            //foreach (IPosition3D position in position3DSet)
+            //{
+            //    MeshGeometry3D mesh = WPF3DHelper.Translate(sphereMesh, new Vector3D(
+            //        position.GetX(), position.GetY(), position.GetZ()));
+
+            //    WPF3DHelper.CombineTo(positionSetMesh, mesh);
+            //}
+
+            //GeometryModel3D positionSetModel = new GeometryModel3D(positionSetMesh, material);
+
+            //var modelVisual3D = new ModelVisual3D();
+            //modelVisual3D.Content = positionSetModel;
+            //elementGroup.Add(modelVisual3D);
+        }
+    }
+
+    public class GridSetElement : Element
+    {
+        IPosition3DSet position3DSet = null;
+
+        MeshGeneratorBase meshGeneratorBase = null;
+        MeshGeometry3D shape = null;
+        Material material = null;
+        Model3DGroup modelGroup = new Model3DGroup();
+
+        //PointDrawer pointDrawer = new PointDrawer();
+        //[CategoryAttribute("Drawer")]
+        //public PointDrawer PointDrawer
+        //{
+        //    get { return pointDrawer; }
+        //    set { pointDrawer = value; }
+        //}
+
+        Color materialColor = Colors.AliceBlue;
+        [CategoryAttribute("Appearance")]
+        public Color MaterialColor
+        {
+            get { return materialColor; }
+            set
+            {
+                materialColor = value;
+                material = new DiffuseMaterial(new SolidColorBrush(value));
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    model.Material = material;
+                }
+            }
+        }
+
+        public enum EMaterialStyle { EmissiveMaterial, DiffuseMaterial, SpecularMaterial };
+
+        EMaterialStyle materialStyle = EMaterialStyle.DiffuseMaterial;
+        [CategoryAttribute("Appearance")]
+        public EMaterialStyle MaterialStyle
+        {
+            get { return materialStyle; }
+            set
+            {
+                materialStyle = value;
+
+                if (value == EMaterialStyle.DiffuseMaterial)
+                {
+                    material = new DiffuseMaterial(new SolidColorBrush(materialColor));
+                }
+                else if (value == EMaterialStyle.EmissiveMaterial)
+                {
+                    material = new EmissiveMaterial(new SolidColorBrush(materialColor));
+                }
+                else if (value == EMaterialStyle.SpecularMaterial)
+                {
+                    material = new SpecularMaterial(new SolidColorBrush(materialColor), 1);
+                }
+
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    model.Material = material;
+                }
+            }
+        }
+
+        //public enum EShape { Cube, Sphere, Dodecahedron, Icosahedron, Octahedron, Tetrahedron };
+        //EShape shape = EShape.Tetrahedron;
+        //[CategoryAttribute("Appearance")]
+        //public EShape Shape
+        //{
+        //    get { return shape; }
+        //    set
+        //    {
+        //        shape = value;
+
+        //        Geometry3D geometry3D = null;
+
+        //        if (value == EShape.Cube)
+        //        {
+        //            geometry3D = new CubeMesh().Geometry;
+        //        }
+        //        else if (value == EShape.Dodecahedron)
+        //        {
+        //            geometry3D = new DodecahedronMesh().Geometry;
+        //        }
+        //        else if (value == EShape.Icosahedron)
+        //        {
+        //            geometry3D = new IcosahedronMesh().Geometry;
+        //        }
+        //        else if (value == EShape.Octahedron)
+        //        {
+        //            geometry3D = new OctahedronMesh().Geometry;
+        //        }
+        //        else if (value == EShape.Sphere)
+        //        {
+        //            geometry3D = new SphereMesh().Geometry;
+        //        }
+        //        else if (value == EShape.Tetrahedron)
+        //        {
+        //            geometry3D = new TetrahedronMesh().Geometry;
+        //        }
+
+        //        foreach (GeometryModel3D model in modelGroup.Children)
+        //        {
+        //            model.Geometry = geometry3D;
+        //        }
+        //    }
+        //}
+
+        double scale = 1;
+        [CategoryAttribute("Appearance")]
+        public double Scale
+        {
+            get { return scale; }
+            set
+            {
+                scale = value;
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    Transform3DGroup transform3DGroup = (Transform3DGroup)model.Transform;
+                    //transform3DGroup.Children[0] = new ScaleTransform3D(value, value, value);
+                    //transform3DGroup.Transform.Children[1] = new TranslateTransform3D( value * 2, value * 2, value * 2); 
+                    transform3DGroup.Children[2] = new ScaleTransform3D(value, value, value);
+                }
+            }
+        }
+
+
+        public GridSetElement(IPosition3DSet positionSet)
+        {
+            this.position3DSet = positionSet;
+        }
+
+        public void AddToScene(Visual3DCollection elementGroup)
+        {
+            //pointDrawer.ElementGroup = elementGroup;
+
+            meshGeneratorBase = new Petzold.Media3D.CubeMesh();
+            shape = meshGeneratorBase.Geometry;
+            //Color materialColor = new DiffuseMaterial(new SolidColorBrush(value));
+            material = new DiffuseMaterial(new SolidColorBrush(Colors.AliceBlue));
+
+            foreach (IPosition3D position in position3DSet)
+            {
+                //pointDrawer.Add(position.GetX(),
+                //    position.GetY(),
+                //    position.GetZ());
+
+                GeometryModel3D geometryModel3D = new GeometryModel3D(shape, material);
+                Transform3DGroup transform3DGroup = new Transform3DGroup();
+                transform3DGroup.Children.Add(new ScaleTransform3D(0.5, 0.5, 0.5));
+                transform3DGroup.Children.Add(new TranslateTransform3D(
+                    position.GetX(), position.GetY(), position.GetZ()));
+                transform3DGroup.Children.Add(new ScaleTransform3D(1,1,1));
+                geometryModel3D.Transform = transform3DGroup;
+                modelGroup.Children.Add(geometryModel3D);
+            }
+
+            var modelVisual3D = new ModelVisual3D();
+            modelVisual3D.Content = modelGroup;
+            elementGroup.Add(modelVisual3D);
+
+            //var positionSetMesh = new MeshGeometry3D();
+            //MeshGeometry3D sphereMesh = new Sphere().Geometry;
+
+            //foreach (IPosition3D position in position3DSet)
+            //{
+            //    MeshGeometry3D mesh = WPF3DHelper.Translate(sphereMesh, new Vector3D(
+            //        position.GetX(), position.GetY(), position.GetZ()));
+
+            //    WPF3DHelper.CombineTo(positionSetMesh, mesh);
+            //}
+
+            //GeometryModel3D positionSetModel = new GeometryModel3D(positionSetMesh, material);
+
+            //var modelVisual3D = new ModelVisual3D();
+            //modelVisual3D.Content = positionSetModel;
+            //elementGroup.Add(modelVisual3D);
+        }
+    }
+
+    public class PositionSetElement2 : Element
+    {
+        IPosition3DSet position3DSet = null;
+
+        MeshGeneratorBase meshGeneratorBase = null;
+        MeshGeometry3D sphere = null;
+        Material material = null;
+        Model3DGroup modelGroup = new Model3DGroup();
+
+        //PointDrawer pointDrawer = new PointDrawer();
+        //[CategoryAttribute("Drawer")]
+        //public PointDrawer PointDrawer
+        //{
+        //    get { return pointDrawer; }
+        //    set { pointDrawer = value; }
+        //}
+
+        Color materialColor = Colors.AliceBlue;
+        public Color MaterialColor
+        {
+            get { return materialColor; }
+            set
+            {
+                materialColor = value;
+                material = new DiffuseMaterial(new SolidColorBrush(value));
+
+                foreach (GeometryModel3D model in modelGroup.Children)
+                {
+                    model.Material = material;
+                }
+            }
+        }
+
+        public PositionSetElement2(IPosition3DSet positionSet)
+        {
+            this.position3DSet = positionSet;
+        }
+
+        public void AddToScene(Visual3DCollection elementGroup)
+        {
+            //pointDrawer.ElementGroup = elementGroup;            
+
+            meshGeneratorBase = new Petzold.Media3D.SphereMesh();
+            sphere = meshGeneratorBase.Geometry;
+            //Color materialColor = new DiffuseMaterial(new SolidColorBrush(value));
+            material = new DiffuseMaterial(new SolidColorBrush(Colors.AliceBlue));
+
+            //foreach (IPosition3D position in position3DSet)
+            //{
+            //    //pointDrawer.Add(position.GetX(),
+            //    //    position.GetY(),
+            //    //    position.GetZ());
+
+            //    GeometryModel3D geometryModel3D = new GeometryModel3D(sphere, material);
+            //    Transform3DGroup transform3DGroup = new Transform3DGroup();
+            //    transform3DGroup.Children.Add(new ScaleTransform3D(0.5, 0.5, 0.5));
+            //    TranslateTransform3D translateTransform3D = new TranslateTransform3D(
+            //        position.GetX(), position.GetY(), position.GetZ());
+            //    transform3DGroup.Children.Add(translateTransform3D);
+            //    geometryModel3D.Transform = transform3DGroup;
+            //    modelGroup.Children.Add(geometryModel3D);
+            //}
+
+            //var modelVisual3D = new ModelVisual3D();
+            //modelVisual3D.Content = modelGroup;
+            //elementGroup.Add(modelVisual3D);
+
+            var positionSetMesh = new MeshGeometry3D();
+            MeshGeometry3D sphereMesh = new Sphere().Geometry;
+
+            foreach (IPosition3D position in position3DSet)
+            {
+                MeshGeometry3D mesh = WPF3DHelper.Translate(sphereMesh, new Vector3D(
+                    position.GetX(), position.GetY(), position.GetZ()));
+
+                WPF3DHelper.CombineTo(positionSetMesh, mesh);
+            }
+
+            GeometryModel3D positionSetModel = new GeometryModel3D(positionSetMesh, material);
+
+            var modelVisual3D = new ModelVisual3D();
+            modelVisual3D.Content = positionSetModel;
+            elementGroup.Add(modelVisual3D);
         }
     }
 }

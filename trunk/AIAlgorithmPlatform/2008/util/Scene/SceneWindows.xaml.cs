@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Media3D;
+using Petzold.Media3D;
 
 namespace M2M.Util
 {
@@ -18,17 +19,14 @@ namespace M2M.Util
     /// </summary>
     public partial class SceneWindows : Window
     {
-        //private GeometryModel3D mGeometry;
-        private bool mDown;
-        private Point mLastPos;
-
         public SceneWindows()
         {
             InitializeComponent();
-
-            group.Transform = new Transform3DGroup();
+            model.Transform = new Transform3DGroup();
         }
 
+        private bool mDown;
+        private Point mLastPos;
 
         private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -60,7 +58,11 @@ namespace M2M.Util
 
                 double rotation = 0.01 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
 
-                Transform3DGroup tg = group.Transform as Transform3DGroup;
+                //QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
+
+                //tg.Children.Add(new RotateTransform3D(r));
+
+                Transform3DGroup tg = model.Transform as Transform3DGroup;
                 QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
                 tg.Children.Add(new RotateTransform3D(r));
 
@@ -82,6 +84,5 @@ namespace M2M.Util
         {
             mDown = false;
         }
-
     }
 }

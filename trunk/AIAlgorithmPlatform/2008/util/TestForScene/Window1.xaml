@@ -1,11 +1,8 @@
-﻿<Window x:Class="M2M.Util.SceneWindows"
+﻿<Window x:Class="M2M.Util.Window1"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:shared="http://schemas.actiprosoftware.com/winfx/xaml/shared" 
-	xmlns:themes="http://schemas.actiprosoftware.com/winfx/xaml/themes"     
-	xmlns:navigation="http://schemas.actiprosoftware.com/winfx/xaml/navigation"     
-    Title="SceneWindows" MinWidth="400" MinHeight="300">
-<Grid Background="Black" MouseWheel="Grid_MouseWheel"
+    Title="Window1" Height="300" Width="300">
+    <Grid Background="Black" MouseWheel="Grid_MouseWheel"
 		MouseDown="Grid_MouseDown" MouseUp="Grid_MouseUp"
 		MouseMove="Grid_MouseMove">
         <Grid.RowDefinitions>
@@ -34,5 +31,4 @@
             </ModelVisual3D>
         </Viewport3D>
     </Grid>
-
 </Window>

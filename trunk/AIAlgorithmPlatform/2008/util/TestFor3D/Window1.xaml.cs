@@ -49,7 +49,7 @@ namespace TestFor3D
             Vector3D v2 = new Vector3D(-30, -30, 0);
             GeometryModel3D EndPoint = new GeometryModel3D(sphere, new DiffuseMaterial(Brushes.BurlyWood));
             EndPoint.Transform = new TranslateTransform3D(v2);
-;
+
             //ModelVisual3D modelVisual3D = new ModelVisual3D();
             //modelVisual3D.Content = StartPoint;
             //model.Children.Add(modelVisual3D);
