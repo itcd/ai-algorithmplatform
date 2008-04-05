@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestForWPF3DHelper.Properties
+namespace M2M.Util.Properties
 {
 
 

@@ -19,7 +19,7 @@ using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Inter
 using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
 using Position3DSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition3D>;
 
-namespace M2M.Util.Scene
+namespace M2M.Util
 {
     public interface Element
     {

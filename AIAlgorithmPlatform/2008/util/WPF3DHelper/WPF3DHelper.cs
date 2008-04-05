@@ -24,7 +24,7 @@ using System.Windows.Media.Media3D;
 //         overloads as a function which run CombineTo.
 //**************************************************************
 
-namespace WPF3DHelper
+namespace M2M.Util
 {
     public class WPF3DHelper
     {
