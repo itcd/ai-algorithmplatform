@@ -1,0 +1,5 @@
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\WPF3DHelper\obj\Debug\ResolveAssemblyReference.cache
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\WPF3DHelper\bin\Debug\WPF3DHelper.dll
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\WPF3DHelper\bin\Debug\WPF3DHelper.pdb
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\WPF3DHelper\obj\Debug\WPF3DHelper.dll
+D:\SRP\M2M\SVN\AIAlgorithmPlatform\2008\util\WPF3DHelper\obj\Debug\WPF3DHelper.pdb
