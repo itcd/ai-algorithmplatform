@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media.Media3D;
 
 using M2M.Position.Interface;
 using Real = System.Double;
@@ -11,34 +12,51 @@ namespace M2M.Position.Implement
     [Serializable]
     public class Position3D : IPosition3D  
     {
+        public static implicit operator Point3D(Position3D position3D)
+        {
+            return new Point3D(position3D.GetX(), position3D.GetY(), position3D.GetZ());
+        }
+
+        public static implicit operator Vector3D(Position3D position3D)
+        {
+            return new Vector3D(position3D.GetX(), position3D.GetY(), position3D.GetZ());
+        }
+
+        public static implicit operator Position3D(Point3D point3D)
+        {
+            return new Position3D(point3D.X, point3D.Y, point3D.Z);
+        }
+
         public Position3D()
         { }
 
         public Position3D(Real x, Real y, Real z)
         {
-            dim_value[0] = x;
-            dim_value[1] = y;
-            dim_value[2] = z;
+            this.x = x;
+            this.y = y;
+            this.z = z;
         }
 
         protected static int dimension = 3;
-        protected Real[] dim_value = new Real[3];
+        protected Real x;
+        protected Real y;
+        protected Real z;
 
         #region IPosition3D Members
 
         public double GetX()
         {
-            return dim_value[0];
+            return x;
         }
 
         public double GetY()
         {
-            return dim_value[1];
+            return y;
         }
 
         public double GetZ()
         {
-            return dim_value[2];
+            return z;
         }
 
         #endregion
@@ -53,7 +71,14 @@ namespace M2M.Position.Implement
         public double GetValue(int dimensionIndex)
         {
             //checkBound(dimensionIndex);
-            return dim_value[dimensionIndex];
+
+            switch (dimensionIndex)
+            {
+                case 0: return x;
+                case 1: return y;
+                case 2: return z;
+                default: throw new Exception("dimension error !");
+            }
         }
 
         #endregion
@@ -66,23 +91,19 @@ namespace M2M.Position.Implement
 
         public void SetX(Real value)
         {
-            dim_value[0] = value;
+            x = value;
         }
 
         public void SetY(Real value)
         {
-            dim_value[1] = value;
+            y = value;
         }
 
         public void SetZ(Real value)
         {
-            dim_value[2] = value;
+            z = value;
         }
 
-        public void SetValue(int dimensionIndex, Real value)
-        {
-            //checkBound(dimensionIndex);
-            dim_value[dimensionIndex] = value;
-        }
+       
     }
 }
