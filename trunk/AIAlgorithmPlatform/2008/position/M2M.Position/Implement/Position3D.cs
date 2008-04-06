@@ -102,8 +102,6 @@ namespace M2M.Position.Implement
         public void SetZ(Real value)
         {
             z = value;
-        }
-
-       
+        }       
     }
 }
