@@ -49,6 +49,7 @@
     <Compile Include="Implement\AStar_Dijkstra_DataStructure\DijkstraTagComparer.cs" />
     <Compile Include="Implement\AStar_Dijkstra_DataStructure\ITag.cs" />
     <Compile Include="Implement\AStar_Dijkstra_DataStructure\Tag.cs" />
+    <Compile Include="Implement\AStar_Dijkstra_DataStructure\TagComparer.cs" />
     <Compile Include="Implement\Dijkstra.cs" />
     <Compile Include="Interface\ISearchPathEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

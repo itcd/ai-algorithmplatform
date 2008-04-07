@@ -12,7 +12,7 @@ namespace M2M.Position.Implement
     public class Position3D_Connected : Position3D, IPosition_Connected
     {
         protected List<IAdjacency> list = new List<IAdjacency>();
-        protected int index;
+        protected int index = -1;
 
         #region IPosition_Connected Members
 
