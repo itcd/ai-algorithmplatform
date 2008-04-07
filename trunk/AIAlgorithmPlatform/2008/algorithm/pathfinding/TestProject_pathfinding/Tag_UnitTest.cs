@@ -95,33 +95,33 @@ namespace TestProject_pathfinding
 
                 Console.WriteLine();
 
-                //sum = 0;
-                t1 = DateTime.Now.Ticks;
-                for (int i = 0; i < n; i++)
-                {
-                    ((Tag) tc.it).closed = !((Tag) tc.it).closed;
-                    //sum += ((Tag)tc.it).f;
-                }
-                t2 = DateTime.Now.Ticks;
-                //Console.WriteLine(sum);
-                Console.WriteLine(t1);
-                Console.WriteLine(t2);
-                Console.WriteLine(t2 - t1);
+                ////sum = 0;
+                //t1 = DateTime.Now.Ticks;
+                //for (int i = 0; i < n; i++)
+                //{
+                //    ((Tag) tc.it).closed = !((Tag) tc.it).closed;
+                //    //sum += ((Tag)tc.it).f;
+                //}
+                //t2 = DateTime.Now.Ticks;
+                ////Console.WriteLine(sum);
+                //Console.WriteLine(t1);
+                //Console.WriteLine(t2);
+                //Console.WriteLine(t2 - t1);
 
-                Console.WriteLine();
+                //Console.WriteLine();
 
-                //sum = 0;
-                t1 = DateTime.Now.Ticks;
-                for (int i = 0; i < n; i++)
-                {
-                    ((Tag)tc.o).closed = !((Tag)tc.o).closed;
-                    //sum += ((Tag)tc.o).f;
-                }
-                t2 = DateTime.Now.Ticks;
-                //Console.WriteLine(sum);
-                Console.WriteLine(t1);
-                Console.WriteLine(t2);
-                Console.WriteLine(t2 - t1);
+                ////sum = 0;
+                //t1 = DateTime.Now.Ticks;
+                //for (int i = 0; i < n; i++)
+                //{
+                //    ((Tag)tc.o).closed = !((Tag)tc.o).closed;
+                //    //sum += ((Tag)tc.o).f;
+                //}
+                //t2 = DateTime.Now.Ticks;
+                ////Console.WriteLine(sum);
+                //Console.WriteLine(t1);
+                //Console.WriteLine(t2);
+                //Console.WriteLine(t2 - t1);
             }
         }
 
