@@ -67,6 +67,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGenerator\RandomMaze.cs" />
     <Compile Include="RandomGenerator\RandomMaze_Config.cs" />
+    <Compile Include="RandomGenerator\RandomMaze_IPosition_Connected.cs" />
+    <Compile Include="RandomGenerator\RandomMaze_IPosition_Connected_Config.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,43 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+
+using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
 
 namespace M2M.Position.RandomGenerator
 {
-    public enum MazeStyle
-    {
-        RandomMaze,
-        RandomMaze3D
-    }
-
-    public class RandomMaze_Config
+    public class RandomMaze_IPosition_Connected_Config
     {
         int width = 30, height = 20, depth = 10, branch_max = 2;
-        int[,] map;
-        int[,,] map3D;
         MazeStyle style = RandomGenerator.MazeStyle.RandomMaze;
 
-        public void Produce()
+        public IPosition_ConnectedSet Produce()
         {
+            IPosition_ConnectedSet set;
             if (style == RandomGenerator.MazeStyle.RandomMaze)
             {
-                map = RandomMaze.generateMaze(width, height, branch_max);
+                int[,] map = RandomMaze.generateMaze(width, height, branch_max);
+                set = RandomMaze_IPosition_Connected.GenerateMap_from_Array(map, width, height);
             }
             else
             {
-                map3D = RandomMaze.generateMaze3D(width, height, depth, branch_max);
+                int[, ,] map = RandomMaze.generateMaze3D(width, height, depth, branch_max);
+                set = RandomMaze_IPosition_Connected.GenerateMap3D_from_Array(map, width, height, depth);
             }
-        }
-
-        public int[,] Map
-        {
-            get { return map; }
-        }
-
-        public int[,,] Map3D
-        {
-            get { return map3D; }
+            return set;
         }
 
         [CategoryAttribute("Appearance")]
@@ -68,7 +57,7 @@ namespace M2M.Position.RandomGenerator
             set { depth = value; }
         }
 
-        [CategoryAttribute("Appearance")]
+        [Category("Appearance")]
         public int Branch_max
         {
             get { return branch_max; }

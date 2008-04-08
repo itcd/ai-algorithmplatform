@@ -8,9 +8,9 @@ namespace M2M.Position.Interface
     using Real = System.Double;
 
     using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition>;
-    using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
-
     using PositionSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition>;
+
+    using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
     using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
 
     using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;

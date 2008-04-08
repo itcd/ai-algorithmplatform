@@ -9,10 +9,10 @@ using Real = System.Double;
 namespace M2M.Position.Implement
 {
     [Serializable]
-    public class Adjacency : IAdjacency
+    public struct Adjacency : IAdjacency
     {
-        protected IPosition_Connected p;
-        protected Real d;
+        private IPosition_Connected p;
+        private Real d;
 
         public Adjacency(IPosition_Connected pisition, Real distance)
         {
