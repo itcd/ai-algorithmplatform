@@ -167,13 +167,21 @@ namespace Wpf_RandomMap_Demo
             RandomMaze_Config config = new RandomMaze_Config();
             new ConfiguratedByForm(config);
             config.Produce();
-            if(config.MazeStyle == mazeStyle.RandomMaze)
+            if (config.MazeStyle == MazeStyle.RandomMaze)
                 MapModel.generateMap(group, config.Map, config.Width, config.Height);
             else
                 MapModel.generateMap3D(group, config.Map3D, config.Width, config.Height, config.Depth);
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            //产生随机迷宫(IPosition_Connected版本)：
+            RandomMaze_IPosition_Connected_Config config = new RandomMaze_IPosition_Connected_Config();
+            new ConfiguratedByForm(config);
+            MapModel.generateMap_from_Position_ConnectedSet(group, config.Produce());
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
         {
             group.Children.Clear();
         }

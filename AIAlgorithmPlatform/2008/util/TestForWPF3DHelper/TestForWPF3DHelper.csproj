@@ -35,11 +35,11 @@
   <ItemGroup>
     <Reference Include="3DTools, Version=1.0.3017.729, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\3DTools\3DTools\obj\Debug\3DTools.dll</HintPath>
+      <HintPath>..\..\lib\3DTools\3DTools\bin\Release\3DTools.dll</HintPath>
     </Reference>
     <Reference Include="Petzold.Media3D, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Petzold.Media3D\Petzold.Media3D\obj\Debug\Petzold.Media3D.dll</HintPath>
+      <HintPath>..\..\lib\Petzold.Media3D\Petzold.Media3D\bin\Release\Petzold.Media3D.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -58,7 +58,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="WPF3DHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\WPF3DHelper\obj\Debug\WPF3DHelper.dll</HintPath>
+      <HintPath>..\WPF3DHelper\bin\Release\WPF3DHelper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

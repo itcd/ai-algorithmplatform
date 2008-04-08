@@ -12,9 +12,7 @@ namespace Position_Connected_Implement
         RandomFloatPositions,
         RandomIntPositions_InFixedDistribution,
         RandomIntegerPositions,
-        RandomMaze,
-        RandomMaze_duplex,
-        RandomMaze3D
+        RandomMaze_duplex
     }
 
     public class RandomPositionSet_Connected_Config

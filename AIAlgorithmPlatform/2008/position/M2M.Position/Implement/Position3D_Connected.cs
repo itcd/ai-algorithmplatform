@@ -14,9 +14,17 @@ namespace M2M.Position.Implement
         protected List<IAdjacency> list = new List<IAdjacency>();
         protected int index = -1;
 
+        public Position3D_Connected(Real x, Real y) : base(x, y)
+        {
+        }
+
+        public Position3D_Connected(Real x, Real y, Real z) : base(x, y, z)
+        {
+        }
+
         #region IPosition_Connected Members
 
-        public IEnumerable<IAdjacency> GetAdjacency()
+        public ICollection<IAdjacency> GetAdjacency()
         {
             return list;
         }

@@ -27,8 +27,17 @@ namespace M2M.Position.Implement
             return new Position3D(point3D.X, point3D.Y, point3D.Z);
         }
 
-        public Position3D()
-        { }
+        protected static int dimension = 3;
+        protected Real x;
+        protected Real y;
+        protected Real z;
+
+        public Position3D(Real x, Real y)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = 0;           
+        }
 
         public Position3D(Real x, Real y, Real z)
         {
@@ -36,11 +45,6 @@ namespace M2M.Position.Implement
             this.y = y;
             this.z = z;
         }
-
-        protected static int dimension = 3;
-        protected Real x;
-        protected Real y;
-        protected Real z;
 
         #region IPosition3D Members
 
