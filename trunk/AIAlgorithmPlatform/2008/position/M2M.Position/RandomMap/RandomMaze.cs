@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace M2M.Position.RandomGenerator
+namespace M2M.Position.RandomMap
 {
     public struct Point_int
     {

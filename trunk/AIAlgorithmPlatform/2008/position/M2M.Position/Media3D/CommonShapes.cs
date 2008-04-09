@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media.Media3D;
 
-namespace Wpf_RandomMap_Demo
+namespace M2M.Position.Media3D
 {
     public class CommonShapes
     {

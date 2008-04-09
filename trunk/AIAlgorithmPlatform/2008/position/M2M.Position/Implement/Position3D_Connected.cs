@@ -11,7 +11,8 @@ namespace M2M.Position.Implement
     [Serializable]
     public class Position3D_Connected : Position3D, IPosition_Connected
     {
-        protected List<IAdjacency> list = new List<IAdjacency>();
+        protected List<IAdjacency> list_out = new List<IAdjacency>();
+        protected List<IAdjacency> list_in = new List<IAdjacency>();
         protected int index = -1;
 
         public Position3D_Connected(Real x, Real y) : base(x, y)
@@ -24,17 +25,22 @@ namespace M2M.Position.Implement
 
         #region IPosition_Connected Members
 
-        public ICollection<IAdjacency> GetAdjacency()
+        public ICollection<IAdjacency> GetAdjacencyOut()
         {
-            return list;
+            return list_out;
         }
 
-        public int GetIndex()
+        public ICollection<IAdjacency> GetAdjacencyIn()
+        {
+            return list_in;
+        }
+
+        public int GetTagIndex()
         {
             return index;
         }
 
-        public void SetIndex(int i)
+        public void SetTagIndex(int i)
         {
             index = i;
         }

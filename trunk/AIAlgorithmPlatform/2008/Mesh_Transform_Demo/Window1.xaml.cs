@@ -12,8 +12,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Media3D;
-using _3DTools;
-using Petzold.Media3D;
 using MeshGeometry3DTransform;
 
 namespace Mesh_Transform_Demo

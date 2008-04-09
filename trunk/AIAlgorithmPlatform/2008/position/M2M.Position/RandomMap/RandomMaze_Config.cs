@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 
-namespace M2M.Position.RandomGenerator
+namespace M2M.Position.RandomMap
 {
     public enum MazeStyle
     {
@@ -16,11 +16,11 @@ namespace M2M.Position.RandomGenerator
         int width = 30, height = 20, depth = 10, branch_max = 2;
         int[,] map;
         int[,,] map3D;
-        MazeStyle style = RandomGenerator.MazeStyle.RandomMaze;
+        MazeStyle style = MazeStyle.RandomMaze;
 
         public void Produce()
         {
-            if (style == RandomGenerator.MazeStyle.RandomMaze)
+            if (style == MazeStyle.RandomMaze)
             {
                 map = RandomMaze.generateMaze(width, height, branch_max);
             }
