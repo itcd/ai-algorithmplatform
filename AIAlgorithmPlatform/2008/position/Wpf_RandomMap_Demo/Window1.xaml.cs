@@ -3,9 +3,10 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
-using Configuration;
 
-using M2M.Position.RandomGenerator;
+using Configuration;
+using M2M.Position.Media3D;
+using M2M.Position.RandomMap;
 
 namespace Wpf_RandomMap_Demo
 {
@@ -178,7 +179,7 @@ namespace Wpf_RandomMap_Demo
             //产生随机迷宫(IPosition_Connected版本)：
             RandomMaze_IPosition_Connected_Config config = new RandomMaze_IPosition_Connected_Config();
             new ConfiguratedByForm(config);
-            MapModel.generateMap_from_Position_ConnectedSet(group, config.Produce());
+            MapModel.generateMap_from_IPosition_ConnectedSet(group, config.Produce());
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)

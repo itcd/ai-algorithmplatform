@@ -6,17 +6,17 @@ using System.Text;
 
 using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
 
-namespace M2M.Position.RandomGenerator
+namespace M2M.Position.RandomMap
 {
     public class RandomMaze_IPosition_Connected_Config
     {
         int width = 30, height = 20, depth = 10, branch_max = 2;
-        MazeStyle style = RandomGenerator.MazeStyle.RandomMaze;
+        MazeStyle style = MazeStyle.RandomMaze;
 
         public IPosition_ConnectedSet Produce()
         {
             IPosition_ConnectedSet set;
-            if (style == RandomGenerator.MazeStyle.RandomMaze)
+            if (style == MazeStyle.RandomMaze)
             {
                 int[,] map = RandomMaze.generateMaze(width, height, branch_max);
                 set = RandomMaze_IPosition_Connected.GenerateMap_from_Array(map, width, height);

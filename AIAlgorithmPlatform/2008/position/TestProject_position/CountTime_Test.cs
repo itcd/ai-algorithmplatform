@@ -10,12 +10,12 @@ using M2M.Position;
 namespace TestProject_position
 {
     /// <summary>
-    /// Summary description for UnitTest1
+    /// Summary description for CountTime_Test
     /// </summary>
     [TestClass]
-    public class UnitTest1
+    public class CountTime_Test
     {
-        public UnitTest1()
+        public CountTime_Test()
         {
             //
             // TODO: Add constructor logic here

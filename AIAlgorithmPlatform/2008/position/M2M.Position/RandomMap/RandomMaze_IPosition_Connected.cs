@@ -8,26 +8,32 @@ using Real = System.Double;
 using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
 using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
 
-namespace M2M.Position.RandomGenerator
+namespace M2M.Position.RandomMap
 {
     public class RandomMaze_IPosition_Connected
     {
         protected static void addDoubleConnection(int x1, int y1, int x2, int y2, Real d, Position3D_Connected[,] map)
         {
             IAdjacency a1 = new Adjacency(map[x1, y1], d);
-            map[x2, y2].GetAdjacency().Add(a1);
+            map[x2, y2].GetAdjacencyOut().Add(a1);
 
             IAdjacency a2 = new Adjacency(map[x2, y2], d);
-            map[x1, y1].GetAdjacency().Add(a2);
+            map[x1, y1].GetAdjacencyOut().Add(a2);
+
+            map[x2, y2].GetAdjacencyIn().Add(a1);
+            map[x1, y1].GetAdjacencyIn().Add(a2);
         }
 
         protected static void addDoubleConnection3D(int x1, int y1, int z1, int x2, int y2, int z2, Real d, Position3D_Connected[, ,] map)
         {
             IAdjacency a1 = new Adjacency(map[x1, y1, z1], d);
-            map[x2, y2, z2].GetAdjacency().Add(a1);
+            map[x2, y2, z2].GetAdjacencyOut().Add(a1);
 
             IAdjacency a2 = new Adjacency(map[x2, y2, z2], d);
-            map[x1, y1, z1].GetAdjacency().Add(a2);
+            map[x1, y1, z1].GetAdjacencyOut().Add(a2);
+
+            map[x2, y2, z2].GetAdjacencyIn().Add(a1);
+            map[x1, y1, z1].GetAdjacencyIn().Add(a2);
         }
 
         public static IPosition_ConnectedSet GenerateMap_from_Array(int[,] maze, int width, int height)

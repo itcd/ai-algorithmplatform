@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using M2M.Position.RandomGenerator;
+using M2M.Position.RandomMap;
 using Configuration;
 
 namespace TestProject_position

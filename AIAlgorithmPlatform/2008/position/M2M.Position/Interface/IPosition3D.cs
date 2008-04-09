@@ -6,10 +6,8 @@ using Real = System.Double;
 
 namespace M2M.Position.Interface
 {
-    public interface IPosition3D : IPosition
+    public interface IPosition3D : IPosition2D
     {
-        Real GetX();
-        Real GetY();
         Real GetZ();
     }
 }

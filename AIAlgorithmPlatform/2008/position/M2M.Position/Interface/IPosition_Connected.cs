@@ -7,8 +7,9 @@ namespace M2M.Position.Interface
 {
     public interface IPosition_Connected : IPosition
     {
-        ICollection<IAdjacency> GetAdjacency();
-        int GetIndex();
-        void SetIndex(int index);
+        ICollection<IAdjacency> GetAdjacencyOut();
+        ICollection<IAdjacency> GetAdjacencyIn();
+        int GetTagIndex();
+        void SetTagIndex(int index);
     }
 }
