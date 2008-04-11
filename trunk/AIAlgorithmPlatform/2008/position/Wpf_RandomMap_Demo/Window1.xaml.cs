@@ -168,7 +168,7 @@ namespace Wpf_RandomMap_Demo
             RandomMaze_Config config = new RandomMaze_Config();
             new ConfiguratedByForm(config);
             config.Produce();
-            if (config.MazeStyle == MazeStyle.RandomMaze)
+            if (config.RandomMapStyle == RandomMapStyle.RandomMaze)
                 MapModel.generateMap(group, config.Map, config.Width, config.Height);
             else
                 MapModel.generateMap3D(group, config.Map3D, config.Width, config.Height, config.Depth);

@@ -6,6 +6,7 @@ using DataStructure;
 using DataStructure.PriorityQueue;
 using M2M.Algorithm.Pathfinding.Implement.AStar_Dijkstra_DataStructure;
 using M2M.Algorithm.Pathfinding.Interface;
+using M2M.Position.Implement;
 using M2M.Position.Interface;
 
 using Real = System.Double;
@@ -13,14 +14,20 @@ using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Positi
 
 namespace M2M.Algorithm.Pathfinding.Implement
 {
-    /// <summary>
-    /// Dijkstra算法
-    /// </summary>
-    public class Dijkstra : SearchPathEngine
+    public class AStar : SearchPathEngine
     {
-        public Dijkstra()
+        protected IEvaluator evaluator;
+
+        public AStar()
         {
-            com = new DijkstraTagComparer(list);
+            com = new AStarTagComparer(list);
+            evaluator = new EuclidDistanceEvaluator();
+        }
+
+        public IEvaluator Evaluator
+        {
+            get { return evaluator; }
+            set { evaluator = value; }
         }
 
         #region ISearchPathEngine Members
@@ -40,10 +47,9 @@ namespace M2M.Algorithm.Pathfinding.Implement
 
             IPosition_Connected p = null, p_adj;
             Tag p_tag, p_adj_tag;
-            Real newG;
+            Real newF, newG;
 
             open.clear();
-
             //将起点加入open表
             open.add(start);
 
@@ -65,13 +71,13 @@ namespace M2M.Algorithm.Pathfinding.Implement
                     p_adj = adjacency.GetPosition_Connected();
                     p_adj_tag = list[p_adj.GetTagIndex()];
 
-                    //如果未被搜索
                     if (p_adj_tag.timeStamp != time_stamp)
                     {
                         newG = p_tag.g + adjacency.GetDistance();
-
+                        newF = newG + evaluator.GetDistance(p_adj, end);
                         p_adj_tag.parent = p;
                         p_adj_tag.g = newG;
+                        p_adj_tag.f = newF;
                         p_adj_tag.closed = false;
                         p_adj_tag.timeStamp = time_stamp;
                         open.add(p_adj);
@@ -81,10 +87,12 @@ namespace M2M.Algorithm.Pathfinding.Implement
                         if (!p_adj_tag.closed)
                         {
                             newG = p_tag.g + adjacency.GetDistance();
-                            if (newG < p_adj_tag.g)
+                            newF = newG + evaluator.GetDistance(p_adj, end);
+                            if (newF < p_adj_tag.f)
                             {
                                 p_adj_tag.parent = p;
                                 p_adj_tag.g = newG;
+                                p_adj_tag.f = newF;
                                 open.update(p_adj);
                             }
                         }

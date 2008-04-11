@@ -71,6 +71,7 @@
     <Compile Include="Media3D\MapModel.cs" />
     <Compile Include="Media3D\Vector3D_IPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomMap\RandomMapStyle.cs" />
     <Compile Include="RandomMap\RandomMaze.cs" />
     <Compile Include="RandomMap\RandomMaze_Config.cs" />
     <Compile Include="RandomMap\RandomMaze_IPosition_Connected.cs" />
