@@ -5,22 +5,16 @@ using System.ComponentModel;
 
 namespace M2M.Position.RandomMap
 {
-    public enum MazeStyle
-    {
-        RandomMaze,
-        RandomMaze3D
-    }
-
     public class RandomMaze_Config
     {
         int width = 30, height = 20, depth = 10, branch_max = 2;
         int[,] map;
         int[,,] map3D;
-        MazeStyle style = MazeStyle.RandomMaze;
+        RandomMapStyle style = RandomMapStyle.RandomMaze;
 
         public void Produce()
         {
-            if (style == MazeStyle.RandomMaze)
+            if (style == RandomMapStyle.RandomMaze)
             {
                 map = RandomMaze.generateMaze(width, height, branch_max);
             }
@@ -41,7 +35,7 @@ namespace M2M.Position.RandomMap
         }
 
         [CategoryAttribute("Appearance")]
-        public MazeStyle MazeStyle
+        public RandomMapStyle RandomMapStyle
         {
             get { return style; }
             set { style = value; }

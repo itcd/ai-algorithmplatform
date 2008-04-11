@@ -5,6 +5,8 @@ using System.Text;
 
 namespace M2M.Position.Interface
 {
+    /// The declarations below are intent on copying to other source file's head as needed.
+
     using Real = System.Double;
 
     using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition>;
