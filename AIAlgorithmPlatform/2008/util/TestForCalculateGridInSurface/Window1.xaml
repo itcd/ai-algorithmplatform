@@ -1,0 +1,8 @@
+﻿<Window x:Class="TestForCalculateGridInSurface.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Window1" Height="233" Width="273">
+    <Grid Height="170" Width="206">
+        <Button Margin="67,0,63,38" Name="button1" Height="22" VerticalAlignment="Bottom" Click="button1_Click">Test</Button>
+    </Grid>
+</Window>
