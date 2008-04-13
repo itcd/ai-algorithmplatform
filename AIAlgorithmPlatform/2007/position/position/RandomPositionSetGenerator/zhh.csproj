@@ -56,25 +56,17 @@
     <Compile Include="RandomPositionSet.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\util\Configuration\Configuration.csproj">
+    <ProjectReference Include="..\..\..\2007\util\Configuration\Configuration.csproj">
       <Project>{36FC5D55-98C6-4EC8-A8CE-8168D42C3BBE}</Project>
       <Name>Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\util\RandomAlgorithm\RandomMakerAlgorithm\RandomMakerAlgorithm.csproj">
-      <Project>{FC8AFA68-4FE1-48CE-B445-EBEFC75D111F}</Project>
-      <Name>RandomMakerAlgorithm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\util\RandomAlgorithm\Troschuetz.Random\Troschuetz.Random.csproj">
+    <ProjectReference Include="..\..\..\2007\util\RandomAlgorithm\Troschuetz.Random\Troschuetz.Random.csproj">
       <Project>{4BF77085-D5EA-4759-A0C6-2B22C7A46712}</Project>
       <Name>Troschuetz.Random</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Position_Implement\Position_Implement.csproj">
-      <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
-      <Name>Position_Implement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Position_Interface\Position_Interface.csproj">
-      <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
-      <Name>Position_Interface</Name>
+    <ProjectReference Include="..\..\position\M2M.Position\M2M.Position.csproj">
+      <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
+      <Name>M2M.Position</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

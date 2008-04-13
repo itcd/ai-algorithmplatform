@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using Troschuetz.Random;
 using Troschuetz;
-using RandomMakerAlgorithm;
-using Position_Interface;
+//using M2M.Position.RandomGenerator;
+using M2M.Position.Interface;
 using Configuration;
 using Position_Implement;
+using PositionSet3D = System.Collections.Generic.List<M2M.Position.Implement.Position3D>;
 
 namespace RandomPositionSetGenerator
 {
-    class ClusterLaplaceGen:IRandomGenerator
+    class ClusterLaplaceGen3D:IRandomGenerator3D
     {
         int clusterPointNum = 10;
 
@@ -33,12 +34,20 @@ namespace RandomPositionSetGenerator
             get { return Y_Alpha; }
             set { Y_Alpha = value; }
         }
+        double Z_Alpha = 4;
+
+        public double Z_Alpha1
+        {
+            get { return Z_Alpha; }
+            set { Z_Alpha = value; }
+        }
+
         float minMu;
         float maxMu;
         int pointNum;
-        PositionSetEditSet positionSetEditSet = new PositionSetEditSet();
+        PositionSet3D positionSet3D = new PositionSet3D();
 
-        public ClusterLaplaceGen(float minMu, float maxMu, int pointNum)
+        public ClusterLaplaceGen3D(float minMu, float maxMu, int pointNum)
         {
             this.maxMu = maxMu;
             this.minMu = minMu;
@@ -47,7 +56,7 @@ namespace RandomPositionSetGenerator
 
         #region IRandomGenerator ≥…‘±
 
-        public PositionSetEditSet getRandomPositionSet(int pointNum)
+        public PositionSet3D getRandomPositionSet(int pointNum)
         {
             unchecked
             {
@@ -59,16 +68,22 @@ namespace RandomPositionSetGenerator
                 LaplaceDistribution distributionY = new LaplaceDistribution(new StandardGenerator(seed++));
                 distributionY.Alpha = Y_Alpha;
 
+                LaplaceDistribution distributionZ = new LaplaceDistribution(new StandardGenerator(seed++));
+                distributionZ.Alpha = Z_Alpha;
+
+                Random r = new Random();
+
                 for (int i = 0; i < clusterPointNum; i++)
                 {
-                    distributionX.Mu = RandomMaker.RapidBetween(minMu, maxMu);
-                    distributionY.Mu = RandomMaker.RapidBetween(minMu, maxMu);
-                    RandomPositionSet randomPositionSet =
-                        new RandomPositionSet((int) (pointNum/clusterPointNum), 1000, distributionX, distributionY);
-                    positionSetEditSet.AddPositionSet(randomPositionSet);
+                    distributionX.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
+                    distributionY.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
+                    distributionZ.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
+                    RandomPositionSet3D randomPositionSet3D =
+                        new RandomPositionSet3D((int) (pointNum/clusterPointNum), 1000, distributionX, distributionY, distributionZ);
+                    positionSet3D = randomPositionSet3D;
                 }
             }
-            return positionSetEditSet;
+            return positionSet3D;
         }
 
         #endregion

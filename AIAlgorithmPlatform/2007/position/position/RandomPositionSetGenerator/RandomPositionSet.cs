@@ -3,85 +3,92 @@ using System.Collections.Generic;
 using System.Text;
 using Troschuetz.Random;
 using Troschuetz;
-using RandomMakerAlgorithm;
-using Position_Interface;
+//using M2M.Position.RandomGenerator;
+using M2M.Position.Interface;
+using M2M.Position.Implement;
 using Configuration;
 using RandomPositionSetGenerator;
+using PositionSet3D = System.Collections.Generic.List<M2M.Position.Implement.Position3D>;
+using IPosition3DSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition3D>;
+//using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
 
 namespace Position_Implement
 {
     [Serializable]
-    public class RandomPositionSet : APositionSetEdit_PositionSetEdit, IPositionSetEdit
+    public class RandomPositionSet3D : PositionSet3D//APositionSetEdit_PositionSetEdit, 
     {
         /// <summary>
         /// 利用ConfigurationForm来初始化参数
         /// </summary>
-        public RandomPositionSet()
+        public RandomPositionSet3D()
         {
         }
 
-        public RandomPositionSet(int n, double scale, Distribution xGenerator, Distribution yGenerator)
+        public RandomPositionSet3D(int n, double scale, Distribution xGenerator, Distribution yGenerator, Distribution zGenerator)
         {
-            List<IPosition> aryPositionSet = new List<IPosition>(n);
+            //List<IPosition3D> aryPositionSet = new List<IPosition3D>(n);
             Random r = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < n; i++)
             {
                 float x = (float)(scale * xGenerator.NextDouble());
                 float y = (float)(scale * yGenerator.NextDouble());
-                aryPositionSet.Add(new Position_Point(x, y));
+                float z = (float)(scale * zGenerator.NextDouble());
+                this.Add(new Position3D(x, y, z));
             }
 
-            positionSetEdit = new PositionSetEdit_ImplementByICollectionTemplate(aryPositionSet);
+            //positionSetEdit = new PositionSetEdit_ImplementByICollectionTemplate(aryPositionSet);
         }
     }
 
     [Serializable]
-    public class RandomPositionSet_Square : APositionSetEdit_PositionSetEdit, IPositionSetEdit
+    public class RandomPositionSet_Square3D : PositionSet3D//APositionSetEdit_PositionSetEdit,
     {
         /// <summary>
         /// 利用ConfigurationForm来初始化参数
         /// </summary>
-        public RandomPositionSet_Square()
+        public RandomPositionSet_Square3D()
         {
         }
 
-        public RandomPositionSet_Square(int n, float min, float max)
+        public RandomPositionSet_Square3D(int n, float min, float max)
         {
-            List<IPosition> aryPositionSet = new List<IPosition>(n);
+            //List<IPosition> aryPositionSet = new List<IPosition>(n);
             Random r = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < n; i++)
             {
                 float x = (float)(min + r.NextDouble() * (max - min));
                 float y = (float)(min + r.NextDouble() * (max - min));
-                aryPositionSet.Add(new Position_Point(x, y));
+                float z = (float)(min + r.NextDouble() * (max - min));
+                this.Add(new Position3D(x, y, z));
             }
 
-            positionSetEdit = new PositionSetEdit_ImplementByICollectionTemplate(aryPositionSet);
+            //positionSetEdit = new PositionSetEdit_ImplementByICollectionTemplate(aryPositionSet);
         }
     }
 
     [Serializable]
-    public class RandomPositionSet_Rectangle : APositionSetEdit_PositionSetEdit, IPositionSetEdit
+    public class RandomPositionSet_Rectangle3D : PositionSet3D //: APositionSetEdit_PositionSetEdit,
     {
         /// <summary>
         /// 利用ConfigurationForm来初始化参数
         /// </summary>
-        public RandomPositionSet_Rectangle()
+        public RandomPositionSet_Rectangle3D()
         {
         }
 
-        public RandomPositionSet_Rectangle(int n, float xmin, float xmax, float ymin, float ymax)
+        public RandomPositionSet_Rectangle3D(int n, float xmin, float xmax, float ymin, float ymax, float zmin, float zmax)
         {
-            List<IPosition> aryPositionSet = new List<IPosition>(n);
+            List<IPosition3D> aryPositionSet = new List<IPosition3D>(n);
             Random r = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < n; i++)
             {
                 float x = (float)(xmin + r.NextDouble() * (xmax - xmin));
                 float y = (float)(ymin + r.NextDouble() * (ymax - ymin));
-                aryPositionSet.Add(new Position_Point(x, y));
+                float z = (float)(zmin + r.NextDouble() * (zmax - zmin));
+                this.Add(new Position3D(x, y, z));
             }
 
-            positionSetEdit = new PositionSetEdit_ImplementByICollectionTemplate(aryPositionSet);
+            //positionSetEdit = new PositionSetEdit_ImplementByICollectionTemplate(aryPositionSet);
         }
     }
 
@@ -96,10 +103,10 @@ namespace Position_Implement
 
 
 
-    public class RandomPositionSet_InFixedDistribution : APositionSetEdit_PositionSetEdit, IPositionSetEdit
+    public class RandomPositionSet_InFixedDistribution3D : PositionSet3D  //: APositionSetEdit_PositionSetEdit,
     {
         int pointNum;
-        IRandomGenerator RandomGen;
+        IRandomGenerator3D RandomGen;
 
         public int PointNum
         {
@@ -123,14 +130,14 @@ namespace Position_Implement
 
             else if (dStyle == distributionStyle.LaplaceDistribution)
             {
-                RandomGen = new LaplaceGen(minMu, maxMu, pointNum);
+                RandomGen = new LaplaceGen3D(minMu, maxMu, pointNum);
             }
             else if (dStyle == distributionStyle.ClusterLaplaceDistribution)
-                RandomGen = new ClusterLaplaceGen(minMu, maxMu, pointNum);
+                RandomGen = new ClusterLaplaceGen3D(minMu, maxMu, pointNum);
             else if (dStyle == distributionStyle.GaussianDistribution)
-                RandomGen = new GaussianGen(minMu, maxMu, pointNum);
+                RandomGen = new GaussianGen3D(minMu, maxMu, pointNum);
             else if (dStyle == distributionStyle.ClusterGaussianDistribution)
-                RandomGen = new ClusterGaussianGen(minMu, maxMu, pointNum);
+                RandomGen = new ClusterGaussianGen3D(minMu, maxMu, pointNum);
             else
                 return;
             new ConfiguratedByForm(this.RandomGen);
@@ -139,7 +146,7 @@ namespace Position_Implement
         /// <summary>
         /// 利用ConfigurationForm来初始化参数
         /// </summary>
-        public RandomPositionSet_InFixedDistribution()
+        public RandomPositionSet_InFixedDistribution3D()
         {
         }
               
@@ -152,7 +159,7 @@ namespace Position_Implement
 
    
 
-        public RandomPositionSet_InFixedDistribution(int pointNum, distributionStyle dStyle)
+        public RandomPositionSet_InFixedDistribution3D(int pointNum, distributionStyle dStyle)
         {
             this.pointNum = pointNum;
             this.DistributionStyle = dStyle;
@@ -189,22 +196,22 @@ namespace Position_Implement
             set { maxBound = value; }
         }
 
-        public IPositionSetEdit Produce()
+        public PositionSet3D Produce()
         {
             //int seed = (int)DateTime.Now.Ticks;
 
             //int clusterPointNum = 10;
-            PositionSetEditSet positionSetEditSet = new PositionSetEditSet();
+            PositionSet3D positionSet3D = new PositionSet3D();
 
             if (dStyle == distributionStyle.Uniform)
             {
-                positionSetEditSet.AddPositionSet(new RandomPositionSet_Square(pointNum, minBound, maxBound));
+                positionSet3D = new RandomPositionSet_Square3D(pointNum, minBound, maxBound);
             }
             else //if (dStyle == distributionStyle.LaplaceDistribution || dStyle == distributionStyle.ClusterLaplaceDistribution)
             {
 
 
-                positionSetEditSet = RandomGen.getRandomPositionSet(pointNum);
+                positionSet3D = RandomGen.getRandomPositionSet(pointNum);
                 //LaplaceDistribution distributionX = new LaplaceDistribution(new StandardGenerator(seed++));
                 //distributionX.Alpha = 4;
 
@@ -241,57 +248,72 @@ namespace Position_Implement
             //    //}
             //}
 
-            positionSetEdit = positionSetEditSet;
+            positionSet3D = positionSet3D;
 
             return this;
         }
     }
 
-    public class GetRandomPositionFromPositionSetRectangle
+    public class GetRandomPosition3DFromPositionSetRectangle3D
     {
-        float minX = 0;
-        float minY = 0;
-        float maxX = 0;
-        float maxY = 0;
+        double minX = 0;
+        double minY = 0;
+        double minZ = 0;
+        double maxX = 0;
+        double maxY = 0;
+        double maxZ = 0;
 
-        public GetRandomPositionFromPositionSetRectangle(IPositionSet positionSet)
+        public GetRandomPosition3DFromPositionSetRectangle3D(IPosition3DSet positionSet)
         {
-            positionSet.InitToTraverseSet();
+            IPosition3D[] positionArray = positionSet.ToArray();
 
-            if (positionSet.NextPosition())
+            if (positionArray.Length!=0)
             {
-                minX = positionSet.GetPosition().GetX();
-                minY = positionSet.GetPosition().GetY();
-                maxX = positionSet.GetPosition().GetX();
-                maxY = positionSet.GetPosition().GetY();
+                minX = positionArray[0].GetX();
+                minY = positionArray[0].GetY();
+                minZ = positionArray[0].GetZ();
+                maxX = positionArray[0].GetX();
+                maxY = positionArray[0].GetY();
+                maxZ = positionArray[0].GetZ();
             }
+            int i = 1;
 
-            while (positionSet.NextPosition())
+            while (i < positionArray.Length)
             {
-                if (minX > positionSet.GetPosition().GetX())
+                if (minX > positionArray[i].GetX())
                 {
-                    minX = positionSet.GetPosition().GetX();
+                    minX = positionArray[i].GetX();
                 }
-                else if (maxX < positionSet.GetPosition().GetX())
+                else if (maxX < positionArray[i].GetX())
                 {
-                    maxX = positionSet.GetPosition().GetX();
+                    maxX = positionArray[i].GetX();
                 }
 
-                if (minY > positionSet.GetPosition().GetY())
+                if (minY > positionArray[i].GetY())
                 {
-                    minY = positionSet.GetPosition().GetY();
+                    minY = positionArray[i].GetY();
                 }
-                else if (maxY < positionSet.GetPosition().GetY())
+                else if (maxY < positionArray[i].GetY())
                 {
-                    maxY = positionSet.GetPosition().GetY();
+                    maxY = positionArray[i].GetY();
                 }
+                if (minZ > positionArray[i].GetZ())
+                {
+                    minZ = positionArray[i].GetZ();
+                }
+                else if (maxZ < positionArray[i].GetZ())
+                {
+                    maxZ = positionArray[i].GetZ();
+                }
+                i++;
             }
         }
 
-        public IPosition Get()
+        public IPosition3D Get()
         {
-            return new Position_Point(RandomMaker.RapidBetween(minX, maxX),
-                RandomMaker.RapidBetween(minY, maxY));
+            Random ra = new Random();
+            return new Position3D(minX + (float)(ra.NextDouble() * (maxX - minX)),
+                minY + (float)(ra.NextDouble() * (maxY - minY)), minZ + (float)(ra.NextDouble() * (maxZ - minZ)));
         }
     }
 }
