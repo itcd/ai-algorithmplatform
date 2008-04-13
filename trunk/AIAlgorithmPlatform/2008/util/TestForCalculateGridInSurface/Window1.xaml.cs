@@ -35,6 +35,10 @@ namespace TestForCalculateGridInSurface
             mesh.Positions.Add(new Point3D(56, 0, 0));
             mesh.Positions.Add(new Point3D(7, 67, 100));
             mesh.Positions.Add(new Point3D(0, 34, 78));
+
+            mesh.Positions.Add(new Point3D(0, 0, 0));
+            mesh.Positions.Add(new Point3D(0, 100, 0));
+            mesh.Positions.Add(new Point3D(100, 100, 0));
                                 
             mesh.TriangleIndices.Add(2);
             mesh.TriangleIndices.Add(1);
@@ -44,15 +48,33 @@ namespace TestForCalculateGridInSurface
             mesh.TriangleIndices.Add(1);
             mesh.TriangleIndices.Add(2);
 
+            mesh.TriangleIndices.Add(5);
+            mesh.TriangleIndices.Add(4);
+            mesh.TriangleIndices.Add(3);
+            
+            mesh.TriangleIndices.Add(3);
+            mesh.TriangleIndices.Add(4);
+            mesh.TriangleIndices.Add(5);
+
+
+
             IList<Point3D> vertexs = new List<Point3D>();  
             vertexs.Add(new Point3D(56, 0, 0));
             vertexs.Add(new Point3D(7, 67, 100));
             vertexs.Add(new Point3D(0, 34, 78));
 
+            vertexs.Add(new Point3D(0, 0, 0));
+            vertexs.Add(new Point3D(0, 100, 0));
+            vertexs.Add(new Point3D(100, 100, 0)); 
+
             IList<int> triangleIndices = new List<int>();
             triangleIndices.Add(2);
             triangleIndices.Add(1);
             triangleIndices.Add(0);
+
+            triangleIndices.Add(3);
+            triangleIndices.Add(4);
+            triangleIndices.Add(5);
 
             var mGeometry = new GeometryModel3D(mesh, new DiffuseMaterial(Brushes.YellowGreen));
 
@@ -67,12 +89,12 @@ namespace TestForCalculateGridInSurface
             Scene scene = new Scene();
 
 
-            List<IPosition3D> point3DList = new List<IPosition3D>();
-            calculateGridInSurfaceEngine.CalculateGridInSurface(vertexs, 5, point3DList);
-            //point3DList.Add(new Position3D(0, 0, 0));
-
+            List<IPosition3D> point3DList;
+            point3DList=calculateGridInSurfaceEngine.CalculateGridInSurface(vertexs, triangleIndices,new Point3D(0,0,0), 5);
             scene.AddElement(new GridSetElement(point3DList));
             scene.ElementGroup.Add(modelVisual3D);
+            
+            
             scene.ShowScene();
         }
     }

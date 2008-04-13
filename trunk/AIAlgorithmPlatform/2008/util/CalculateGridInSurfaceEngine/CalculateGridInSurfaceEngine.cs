@@ -13,10 +13,23 @@ namespace M2M.Util
 {
     public class CalculateGridInSurfaceEngine
     {
+        
+        /// <summary>
+        /// 三角面网格化实现
+        /// 
+        /// 1.对于三角面经过其中的所有与方块对齐的相邻的xy平面(距离为一个方块的边长)，切割这两个平面，找出其中所有点和切割点，记作点集p
+        /// 2.算出p所构成的多边形的xy平面的投影所经过和所包含的分块，并赋予其z坐标添加到结果点集中
+        /// </summary>
+        /// <param name="vertexs">各面上各顶点的坐标</param>
+        /// <param name="triangleIndices">顶点的序号，每连续三个顶点代表一个面</param>
+        /// <param name="RelativePoint">正方体网格的原点相对于坐标原点的位置</param>
+        /// <param name="gridLength">每个正方体网格的边长</param>
+        /// <returns>返回一个点集，每个点的x，y，z方向的坐标对应着每个 经过该面的网格的x，y，z方向的序号</returns>
+        
         public List<IPosition3D> CalculateGridInSurface(IList<Point3D> vertexs, IList<int> triangleIndices, Point3D RelativePoint, double gridLength)
         {
             List<IPosition3D> point3DList = new List<IPosition3D>();
-            for (int i = 0; i < triangleIndices.Count / 3; i+=3)
+            for (int i = 0; i < triangleIndices.Count; i+=3)
             {
                 IList<Point3D> triangle=new List<Point3D>();
                 triangle.Add(new Point3D(vertexs[triangleIndices[i]].X - RelativePoint.X, vertexs[triangleIndices[i]].Y - RelativePoint.Y, vertexs[triangleIndices[i]].Z - RelativePoint.Z));
@@ -28,8 +41,13 @@ namespace M2M.Util
             return point3DList;
         }
 
-
-        public void CalculateGridInSurface(IList<Point3D> vertexs, double gridLength, List<IPosition3D> point3DList)
+        /// <summary>
+        /// Called by the upper method.
+        /// </summary>
+        /// <param name="vertexs">三角面的顶点集</param>
+        /// <param name="gridLength">每个正方体网格的边长</param>
+        /// <param name="point3DList">返回值</param>
+        private void CalculateGridInSurface(IList<Point3D> vertexs, double gridLength, List<IPosition3D> point3DList)
         {
             double maxz = double.MinValue;
             double minz = double.MaxValue;
@@ -59,7 +77,13 @@ namespace M2M.Util
             CalculateGridInSurface(vertexs1, vertexs2, gridLength, point3DList);
         }
 
-
+        /// <summary>
+        /// Called by the upper method.
+        /// </summary>
+        /// <param name="vertexs1">从最小值到最大值的一条路径</param>
+        /// <param name="vertexs2">从最小值到最大值的另一条路径</param>
+        /// <param name="gridLength">每个正方体网格的边长</param>
+        /// <param name="point3DList"></param>
         private void CalculateGridInSurface(IList<Point3D> vertexs1, IList<Point3D> vertexs2, double gridLength, List<IPosition3D> point3DList)
         {
             
@@ -168,7 +192,14 @@ namespace M2M.Util
 
         }
 
-        
+
+        /// <summary>
+        /// Called by the upper method.
+        /// </summary>
+        /// <param name="vertexs">三角面的顶点集</param>
+        /// <param name="gridLength">每个正方体网格的边长</param>
+        /// <param name="z">切割的z坐标</param>
+        /// <param name="point3DList">返回值</param>
         private void CalculateGridInSurface2D(IList<Point3D> vertexs, double gridLength, double z, IList<IPosition3D> point3DList)
         {
             
@@ -200,16 +231,22 @@ namespace M2M.Util
         }
 
 
+        /// <summary>
+        /// Called by the upper method.
+        /// </summary>
+        /// <param name="vertexs1">从最小值到最大值的一条路径</param>
+        /// <param name="vertexs2">从最小值到最大值的另一条路径</param>
+        /// <param name="gridLength">每个正方体网格的边长</param>
+        /// <param name="z">切割的z坐标</param>
+        /// <param name="point3DList">返回值</param>
         private void CalculateGridInSurface2D(IList<Point3D> vertexs1, IList<Point3D> vertexs2, double gridLength, double z, IList<IPosition3D> point3DList)
         {
-            double gridLength2 = 1;
             
-            //归一化处理
-            double startx = vertexs1[0].X / gridLength2;
-            double endx = vertexs1[vertexs1.Count - 1].X / gridLength2;
+            double startx = vertexs1[0].X;
+            double endx = vertexs1[vertexs1.Count - 1].X;
 
-            double starty = vertexs1[0].Y / gridLength2;
-            double endy = vertexs1[vertexs1.Count - 1].Y / gridLength2;
+            double starty = vertexs1[0].Y;
+            double endy = vertexs1[vertexs1.Count - 1].Y;
             
             double oldx1 = startx;
             double oldy1 = starty;
@@ -224,12 +261,12 @@ namespace M2M.Util
             double tempx;
 
             int p1 = 1;
-            x1 = vertexs1[p1].X / gridLength2;
-            y1 = vertexs1[p1].Y / gridLength2;
+            x1 = vertexs1[p1].X;
+            y1 = vertexs1[p1].Y;
 
             int p2 = 1;
-            x2 = vertexs2[p2].X / gridLength2;
-            y2 = vertexs2[p2].Y / gridLength2;
+            x2 = vertexs2[p2].X;
+            y2 = vertexs2[p2].Y;
 
             
             //迭代所有边界值
@@ -246,8 +283,8 @@ namespace M2M.Util
                     if (oldy1 < miny) miny = oldy1;////更新上一点的最值
 
                     if (++p1==vertexs1.Count) goto q1;//遇到终点                    
-                    x1 = vertexs1[p1].X / gridLength2;
-                    y1 = vertexs1[p1].Y / gridLength2;//遍历下一点
+                    x1 = vertexs1[p1].X;
+                    y1 = vertexs1[p1].Y;//遍历下一点
                 }
                 
                 tempx = (int)oldx1 + 1;
@@ -272,8 +309,8 @@ namespace M2M.Util
                     if (oldy2 < miny) miny = oldy2;////更新上一点的最值
 
                     if (++p2 == vertexs2.Count) goto q2;//遇到终点                    
-                    x2 = vertexs2[p2].X / gridLength2;
-                    y2 = vertexs2[p2].Y / gridLength2;//遍历下一点
+                    x2 = vertexs2[p2].X;
+                    y2 = vertexs2[p2].Y;//遍历下一点
                 }
 
                 tempx = (int)oldx2 + 1;
