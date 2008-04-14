@@ -8,7 +8,7 @@
     <ProjectGuid>{0E219C80-80EF-434C-B9E3-79C1B8B4AC33}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPF3DHelper</RootNamespace>
+    <RootNamespace>M2M.Util</RootNamespace>
     <AssemblyName>WPF3DHelper</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

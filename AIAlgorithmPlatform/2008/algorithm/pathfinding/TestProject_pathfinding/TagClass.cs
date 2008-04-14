@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-using M2M.Algorithm.Pathfinding.Implement.AStar_Dijkstra_DataStructure;
-using M2M.Position.Interface;
+using M2M.Algorithm.Pathfinding.NodeTag;
 
 namespace TestProject_pathfinding
 {

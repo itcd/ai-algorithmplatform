@@ -83,19 +83,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\position\positionSetViewerAndTest\PositionSetDrawer\PositionSetDrawer.csproj">
+    <ProjectReference Include="..\..\position\positionSetViewerAndTest\PositionSetDrawer\PositionSetDrawer.csproj">
       <Project>{473F925A-CDAB-4860-BAFB-380E7216F6D2}</Project>
       <Name>PositionSetDrawer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
+    <ProjectReference Include="..\..\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
       <Project>{AFE94F13-C09F-475D-9D67-4A31CCF48042}</Project>
       <Name>PositionSetViewer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position\Position_Implement\Position_Implement.csproj">
+    <ProjectReference Include="..\..\position\position\Position_Implement\Position_Implement.csproj">
       <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
       <Name>Position_Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position\Position_Interface\Position_Interface.csproj">
+    <ProjectReference Include="..\..\position\position\Position_Interface\Position_Interface.csproj">
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>

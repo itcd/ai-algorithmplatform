@@ -109,7 +109,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\algorithm\nearestNeighbor\NearestNeighbor\NearestNeighbor.csproj">
       <Project>{31E2BBD4-4E51-4790-B81F-B71BA5246B3E}</Project>
-      <Name>NearestNeighbor %282007\algorithm\nearestNeighbor\NearestNeighbor%29</Name>
+      <Name>NearestNeighbor %28algorithm\nearestNeighbor\NearestNeighbor%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\util\DataStructure\DataStructure.csproj">
       <Project>{4AF5D061-3389-4305-ADF2-6633B7B3F6D4}</Project>
@@ -123,7 +123,7 @@
       <Project>{0F64832F-C49B-4323-BF32-D46F5CA1DCB3}</Project>
       <Name>AlgorithmDemo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj">
       <Project>{BA7885E1-0246-4F08-9BB1-859ED96AD589}</Project>
       <Name>Position_Connected_Implement</Name>
     </ProjectReference>
@@ -135,31 +135,31 @@
       <Project>{36FC5D55-98C6-4EC8-A8CE-8168D42C3BBE}</Project>
       <Name>Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\positionSetViewerAndTest\PositionSetDrawer\PositionSetDrawer.csproj">
+    <ProjectReference Include="..\..\algorithm\position\positionSetViewerAndTest\PositionSetDrawer\PositionSetDrawer.csproj">
       <Project>{473F925A-CDAB-4860-BAFB-380E7216F6D2}</Project>
       <Name>PositionSetDrawer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
+    <ProjectReference Include="..\..\algorithm\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
       <Project>{AFE94F13-C09F-475D-9D67-4A31CCF48042}</Project>
       <Name>PositionSetViewer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\positionSetEditerAndTest\PositionSetEditer\PositionSetEditer.csproj">
+    <ProjectReference Include="..\..\algorithm\position\positionSetEditerAndTest\PositionSetEditer\PositionSetEditer.csproj">
       <Project>{3BE84660-352A-4A37-A703-2A80F5881554}</Project>
       <Name>PositionSetEditer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
       <Project>{A2A4DF30-D88D-4767-88A9-B57665F49740}</Project>
       <Name>Position_Connected_Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position\Position_Implement\Position_Implement.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position\Position_Implement\Position_Implement.csproj">
       <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
       <Name>Position_Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position\Position_Interface\Position_Interface.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position\Position_Interface\Position_Interface.csproj">
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position\RandomPositionSetGenerator\RandomPositionSetGenerator.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position\RandomPositionSetGenerator\RandomPositionSetGenerator.csproj">
       <Project>{E65A302C-D957-401D-B540-130989AC798B}</Project>
       <Name>RandomPositionSetGenerator</Name>
     </ProjectReference>

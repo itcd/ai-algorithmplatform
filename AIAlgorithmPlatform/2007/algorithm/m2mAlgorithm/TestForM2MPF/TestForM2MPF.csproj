@@ -87,27 +87,27 @@
       <Project>{6692443A-2630-4701-AE88-1665F2FB8768}</Project>
       <Name>M2M</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\positionSetEditerAndTest\PositionSetEditer\PositionSetEditer.csproj">
+    <ProjectReference Include="..\..\position\positionSetEditerAndTest\PositionSetEditer\PositionSetEditer.csproj">
       <Project>{3BE84660-352A-4A37-A703-2A80F5881554}</Project>
       <Name>PositionSetEditer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
+    <ProjectReference Include="..\..\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
       <Project>{AFE94F13-C09F-475D-9D67-4A31CCF48042}</Project>
       <Name>PositionSetViewer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj">
+    <ProjectReference Include="..\..\position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj">
       <Project>{BA7885E1-0246-4F08-9BB1-859ED96AD589}</Project>
       <Name>Position_Connected_Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
+    <ProjectReference Include="..\..\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
       <Project>{A2A4DF30-D88D-4767-88A9-B57665F49740}</Project>
       <Name>Position_Connected_Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position\Position_Implement\Position_Implement.csproj">
+    <ProjectReference Include="..\..\position\position\Position_Implement\Position_Implement.csproj">
       <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
       <Name>Position_Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position\Position_Interface\Position_Interface.csproj">
+    <ProjectReference Include="..\..\position\position\Position_Interface\Position_Interface.csproj">
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>

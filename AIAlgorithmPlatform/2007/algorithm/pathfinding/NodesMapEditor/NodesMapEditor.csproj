@@ -123,15 +123,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj">
+    <ProjectReference Include="..\..\position\position_Connected\Position_Connected_Implement\Position_Connected_Implement.csproj">
       <Project>{BA7885E1-0246-4F08-9BB1-859ED96AD589}</Project>
       <Name>Position_Connected_Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
+    <ProjectReference Include="..\..\position\position_Connected\Position_Connected_Interface\Position_Connected_Interface.csproj">
       <Project>{A2A4DF30-D88D-4767-88A9-B57665F49740}</Project>
       <Name>Position_Connected_Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\position\position\Position_Interface\Position_Interface.csproj">
+    <ProjectReference Include="..\..\position\position\Position_Interface\Position_Interface.csproj">
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>

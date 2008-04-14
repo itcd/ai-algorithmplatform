@@ -48,7 +48,7 @@
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\position\M2M.Position\M2M.Position.csproj">
+    <ProjectReference Include="..\..\position\M2M.Position\M2M.Position.csproj">
       <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
       <Name>M2M.Position</Name>
     </ProjectReference>

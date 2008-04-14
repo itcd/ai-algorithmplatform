@@ -70,17 +70,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\2007\util\Configuration\Configuration.csproj">
-      <Project>{36FC5D55-98C6-4EC8-A8CE-8168D42C3BBE}</Project>
-      <Name>Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\lib\Petzold.Media3D\Petzold.Media3D\Petzold.Media3D.csproj">
+    <ProjectReference Include="..\..\reference\Petzold.Media3D\Petzold.Media3D\Petzold.Media3D.csproj">
       <Project>{BEBED159-4DB6-4550-8342-7F3607177B71}</Project>
       <Name>Petzold.Media3D</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\M2M.Position\M2M.Position.csproj">
+    <ProjectReference Include="..\..\algorithm\position\M2M.Position\M2M.Position.csproj">
       <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
       <Name>M2M.Position</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{6C70838F-465B-492A-BB06-E46ECF1AEA29}</Project>
+      <Name>Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\WPF3DHelper\WPF3DHelper.csproj">
       <Project>{0E219C80-80EF-434C-B9E3-79C1B8B4AC33}</Project>

@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Windows;
 using System.Windows.Media.Media3D;
-using M2M.Position.Interface;
-using M2M.Position.Implement;
-
+using M2M.Position;
 
 namespace M2M.Util
 {
@@ -156,7 +153,7 @@ namespace M2M.Util
 
                 cutVertexs1.Add(new Point3D(oldx1, oldy1, oldz1));//插入点
             
-            q1:
+                q1:
 
                 cutVertexs2.Add(new Point3D(oldx2, oldy2, oldz2));
 
@@ -182,7 +179,7 @@ namespace M2M.Util
 
                 cutVertexs2.Add(new Point3D(oldx2, oldy2, oldz2));//插入点
             
-            q2:
+                q2:
 
                 for (int j = cutVertexs2.Count - 1; j >= 0; j--) 
                     cutVertexs1.Add(cutVertexs2[j]);
@@ -295,7 +292,7 @@ namespace M2M.Util
                 if (oldy1 > maxy) maxy = oldy1;
                 if (oldy1 < miny) miny = oldy1;
                 //更新上一点的最值
-            q1:
+                q1:
 
                 
                 if (oldy2 > maxy) maxy = oldy2;
@@ -320,8 +317,8 @@ namespace M2M.Util
 
                 if (oldy2 > maxy) maxy = oldy2;
                 if (oldy2 < miny) miny = oldy2;
-            //更新上一点的最值
-            q2:
+                //更新上一点的最值
+                q2:
                 
                 for (int j = (int)miny; j <= (int)maxy; j++)
                     point3DList.Add(new Position3D(((int)startx + i + 0.5) * gridLength, (j + 0.5) * gridLength, (z + 0.5) * gridLength));
