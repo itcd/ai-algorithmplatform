@@ -2,10 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using M2M.Algorithm.Pathfinding.Implement.AStar_Dijkstra_DataStructure;
-using M2M.Algorithm.Pathfinding.Interface;
 using M2M.Position.Implement;
-using M2M.Position.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using M2M.Algorithm.Pathfinding;

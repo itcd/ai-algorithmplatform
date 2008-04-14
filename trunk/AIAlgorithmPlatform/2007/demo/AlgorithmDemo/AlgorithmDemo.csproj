@@ -92,25 +92,25 @@
     </ProjectReference>
     <ProjectReference Include="..\..\algorithm\nearestNeighbor\NearestNeighbor\NearestNeighbor.csproj">
       <Project>{31E2BBD4-4E51-4790-B81F-B71BA5246B3E}</Project>
-      <Name>NearestNeighbor %282007\algorithm\nearestNeighbor\NearestNeighbor%29</Name>
+      <Name>NearestNeighbor %28algorithm\nearestNeighbor\NearestNeighbor%29</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\positionSetViewerAndTest\PositionSetDrawer\PositionSetDrawer.csproj">
+    <ProjectReference Include="..\..\algorithm\position\positionSetViewerAndTest\PositionSetDrawer\PositionSetDrawer.csproj">
       <Project>{473F925A-CDAB-4860-BAFB-380E7216F6D2}</Project>
       <Name>PositionSetDrawer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\positionSetEditerAndTest\PositionSetEditer\PositionSetEditer.csproj">
+    <ProjectReference Include="..\..\algorithm\position\positionSetEditerAndTest\PositionSetEditer\PositionSetEditer.csproj">
       <Project>{3BE84660-352A-4A37-A703-2A80F5881554}</Project>
       <Name>PositionSetEditer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
+    <ProjectReference Include="..\..\algorithm\position\positionSetViewerAndTest\PositionSetViewer\PositionSetViewer.csproj">
       <Project>{AFE94F13-C09F-475D-9D67-4A31CCF48042}</Project>
       <Name>PositionSetViewer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position\Position_Implement\Position_Implement.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position\Position_Implement\Position_Implement.csproj">
       <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
       <Name>Position_Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position\Position_Interface\Position_Interface.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position\Position_Interface\Position_Interface.csproj">
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>

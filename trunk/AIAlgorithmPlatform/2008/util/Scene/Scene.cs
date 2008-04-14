@@ -175,9 +175,12 @@ namespace M2M.Util
                 }
                 else if (value == EMaterialStyle.SpecularMaterial)
                 {
-                    material = new SpecularMaterial(new SolidColorBrush(materialColor), 1);
+                    MaterialGroup materialGroup = new MaterialGroup();
+                    materialGroup.Children.Add(new DiffuseMaterial(new SolidColorBrush(materialColor)));
+                    materialGroup.Children.Add(new SpecularMaterial(new SolidColorBrush(Colors.White), 64));                    
+                    material = materialGroup;
                 }
-                
+
                 foreach (GeometryModel3D model in modelGroup.Children)
                 {
                     model.Material = material;
@@ -305,14 +308,6 @@ namespace M2M.Util
         Material material = null;
         Model3DGroup modelGroup = new Model3DGroup();
 
-        //PointDrawer pointDrawer = new PointDrawer();
-        //[CategoryAttribute("Drawer")]
-        //public PointDrawer PointDrawer
-        //{
-        //    get { return pointDrawer; }
-        //    set { pointDrawer = value; }
-        //}
-
         Color materialColor = Colors.AliceBlue;
         [CategoryAttribute("Appearance")]
         public Color MaterialColor
@@ -350,7 +345,10 @@ namespace M2M.Util
                 }
                 else if (value == EMaterialStyle.SpecularMaterial)
                 {
-                    material = new SpecularMaterial(new SolidColorBrush(materialColor), 1);
+                    MaterialGroup materialGroup = new MaterialGroup();
+                    materialGroup.Children.Add(new DiffuseMaterial(new SolidColorBrush(materialColor)));
+                    materialGroup.Children.Add(new SpecularMaterial(new SolidColorBrush(materialColor), 64));
+                    material = materialGroup;
                 }
 
                 foreach (GeometryModel3D model in modelGroup.Children)
@@ -445,13 +443,12 @@ namespace M2M.Util
 
                 GeometryModel3D geometryModel3D = new GeometryModel3D(shape, material);
                 Transform3DGroup transform3DGroup = new Transform3DGroup();
-                transform3DGroup.Children.Add(new ScaleTransform3D(2.5, 2.5, 2.5));
+                transform3DGroup.Children.Add(new ScaleTransform3D(0.5, 0.5, 0.5));
                 transform3DGroup.Children.Add(new TranslateTransform3D(
                     position.GetX(), position.GetY(), position.GetZ()));
                 transform3DGroup.Children.Add(new ScaleTransform3D(1,1,1));
                 geometryModel3D.Transform = transform3DGroup;
                 modelGroup.Children.Add(geometryModel3D);
-                
             }
 
             var modelVisual3D = new ModelVisual3D();

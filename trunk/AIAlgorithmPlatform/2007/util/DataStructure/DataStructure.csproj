@@ -50,18 +50,11 @@
   <ItemGroup>
     <Compile Include="EuclideanDistance.cs" />
     <Compile Include="ManhattanDistance.cs" />
-    <Compile Include="PriorityQueue\IntervalHeap_C5.cs" />
     <Compile Include="PriorityQueue\PriorityQueue_List.cs" />
     <Compile Include="PriorityQueue\IPriorityQueue.cs" />
     <Compile Include="PriorityQueue\PriorityQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeStamp.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\lib\C5\C5\C5.csproj">
-      <Project>{D70489CD-ABDA-48FF-BD1E-BE3F7495BE71}</Project>
-      <Name>C5</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

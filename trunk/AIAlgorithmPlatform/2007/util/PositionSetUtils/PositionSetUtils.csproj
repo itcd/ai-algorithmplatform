@@ -55,11 +55,11 @@
       <Project>{0F2944D7-29B8-4083-BD60-7010BA5436C1}</Project>
       <Name>QuickHullAlgorithm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position\Position_Implement\Position_Implement.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position\Position_Implement\Position_Implement.csproj">
       <Project>{CC440EEB-10B5-4485-8C8C-1ADD3939E9C7}</Project>
       <Name>Position_Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\position\position\Position_Interface\Position_Interface.csproj">
+    <ProjectReference Include="..\..\algorithm\position\position\Position_Interface\Position_Interface.csproj">
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>

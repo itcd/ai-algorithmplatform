@@ -53,13 +53,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\position\position\Position_Interface\Position_Interface.csproj">
+    <ProjectReference Include="..\..\position\position\Position_Interface\Position_Interface.csproj">
       <Project>{19FF4D00-F213-4283-A345-1C812ABE5850}</Project>
       <Name>Position_Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\NearestNeighbor\NearestNeighbor.csproj">
       <Project>{31E2BBD4-4E51-4790-B81F-B71BA5246B3E}</Project>
-      <Name>NearestNeighbor %282007\algorithm\nearestNeighbor\NearestNeighbor%29</Name>
+      <Name>NearestNeighbor %28algorithm\nearestNeighbor\NearestNeighbor%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
