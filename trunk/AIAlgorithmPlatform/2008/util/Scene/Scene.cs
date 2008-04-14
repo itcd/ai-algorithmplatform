@@ -4,20 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Media3D;
+using M2M.Position;
 using Petzold.Media3D;
 using System.ComponentModel;
 using Configuration;
 
-using M2M.Position.Interface;
-
 using Real = System.Double;
-using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition>;
-using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition_Connected>;
-using PositionSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition>;
-using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition_Connected>;
-
-using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
-using Position3DSet = System.Collections.Generic.List<M2M.Position.Interface.IPosition3D>;
+using IPositionSet = System.Collections.Generic.ICollection<M2M.Position.IPosition>;
+using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.IPosition_Connected>;
+using PositionSet = System.Collections.Generic.List<M2M.Position.IPosition>;
+using Position_ConnectedSet = System.Collections.Generic.List<M2M.Position.IPosition_Connected>;
+using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.IPosition3D>;
+using Position3DSet = System.Collections.Generic.List<M2M.Position.IPosition3D>;
 
 namespace M2M.Util
 {
@@ -276,11 +274,11 @@ namespace M2M.Util
                 modelGroup.Children.Add(geometryModel3D);
             }
 
-            var modelVisual3D = new ModelVisual3D();
+            ModelVisual3D modelVisual3D = new ModelVisual3D();
             modelVisual3D.Content = modelGroup;
             elementGroup.Add(modelVisual3D);
 
-            //var positionSetMesh = new MeshGeometry3D();
+            //MeshGeometry3D positionSetMesh = new MeshGeometry3D();
             //MeshGeometry3D sphereMesh = new Sphere().Geometry;
 
             //foreach (IPosition3D position in position3DSet)
@@ -293,7 +291,7 @@ namespace M2M.Util
 
             //GeometryModel3D positionSetModel = new GeometryModel3D(positionSetMesh, material);
 
-            //var modelVisual3D = new ModelVisual3D();
+            //ModelVisual3D modelVisual3D = new ModelVisual3D();
             //modelVisual3D.Content = positionSetModel;
             //elementGroup.Add(modelVisual3D);
         }
@@ -451,11 +449,11 @@ namespace M2M.Util
                 modelGroup.Children.Add(geometryModel3D);
             }
 
-            var modelVisual3D = new ModelVisual3D();
+            ModelVisual3D modelVisual3D = new ModelVisual3D();
             modelVisual3D.Content = modelGroup;
             elementGroup.Add(modelVisual3D);
 
-            //var positionSetMesh = new MeshGeometry3D();
+            //MeshGeometry3D positionSetMesh = new MeshGeometry3D();
             //MeshGeometry3D sphereMesh = new Sphere().Geometry;
 
             //foreach (IPosition3D position in position3DSet)
@@ -468,7 +466,7 @@ namespace M2M.Util
 
             //GeometryModel3D positionSetModel = new GeometryModel3D(positionSetMesh, material);
 
-            //var modelVisual3D = new ModelVisual3D();
+            //ModelVisual3D modelVisual3D = new ModelVisual3D();
             //modelVisual3D.Content = positionSetModel;
             //elementGroup.Add(modelVisual3D);
         }
@@ -537,11 +535,11 @@ namespace M2M.Util
             //    modelGroup.Children.Add(geometryModel3D);
             //}
 
-            //var modelVisual3D = new ModelVisual3D();
+            //ModelVisual3D modelVisual3D = new ModelVisual3D();
             //modelVisual3D.Content = modelGroup;
             //elementGroup.Add(modelVisual3D);
 
-            var positionSetMesh = new MeshGeometry3D();
+            MeshGeometry3D positionSetMesh = new MeshGeometry3D();
             MeshGeometry3D sphereMesh = new Sphere().Geometry;
 
             foreach (IPosition3D position in position3DSet)
@@ -554,7 +552,7 @@ namespace M2M.Util
 
             GeometryModel3D positionSetModel = new GeometryModel3D(positionSetMesh, material);
 
-            var modelVisual3D = new ModelVisual3D();
+            ModelVisual3D modelVisual3D = new ModelVisual3D();
             modelVisual3D.Content = positionSetModel;
             elementGroup.Add(modelVisual3D);
         }
