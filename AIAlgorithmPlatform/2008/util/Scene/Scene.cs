@@ -34,6 +34,12 @@ namespace M2M.Util
 
         Visual3DCollection elementGroup = null;
 
+        public Visual3DCollection ElementGroup
+        {
+            get { return elementGroup; }
+            set { elementGroup = value; }
+        }
+
         public Scene()
         {
             sceneWindows = new SceneWindows();
@@ -439,12 +445,13 @@ namespace M2M.Util
 
                 GeometryModel3D geometryModel3D = new GeometryModel3D(shape, material);
                 Transform3DGroup transform3DGroup = new Transform3DGroup();
-                transform3DGroup.Children.Add(new ScaleTransform3D(0.5, 0.5, 0.5));
+                transform3DGroup.Children.Add(new ScaleTransform3D(2.5, 2.5, 2.5));
                 transform3DGroup.Children.Add(new TranslateTransform3D(
                     position.GetX(), position.GetY(), position.GetZ()));
                 transform3DGroup.Children.Add(new ScaleTransform3D(1,1,1));
                 geometryModel3D.Transform = transform3DGroup;
                 modelGroup.Children.Add(geometryModel3D);
+                
             }
 
             var modelVisual3D = new ModelVisual3D();
