@@ -39,8 +39,8 @@ namespace TestFor3D
             //StarPoint
             Vector3D v1 = new Vector3D(30, 30, 0);
             GeometryModel3D StartPoint = new GeometryModel3D(sphere, material);
-            var translateTransform3D1 = new TranslateTransform3D(v1);
-            var transform3DGroup1 = new Transform3DGroup();
+            TranslateTransform3D translateTransform3D1 = new TranslateTransform3D(v1);
+            Transform3DGroup transform3DGroup1 = new Transform3DGroup();
             transform3DGroup1.Children.Add(new ScaleTransform3D(2, 2, 2));
             transform3DGroup1.Children.Add(translateTransform3D1);
             StartPoint.Transform = transform3DGroup1;

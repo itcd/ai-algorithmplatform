@@ -74,7 +74,7 @@ namespace MolecularThermalmotion
 
                 //创建每个球体的GeometryModel并添加进显示窗口
                 MaterialGroup materialGroup = new MaterialGroup();
-                var diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255))));
+                DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255))));
                 materialGroup.Children.Add(diffuseMaterial);
                 materialGroup.Children.Add(specularMaterial);
                 molecule.MoleculeGeometryModel = new GeometryModel3D(sphere, materialGroup);

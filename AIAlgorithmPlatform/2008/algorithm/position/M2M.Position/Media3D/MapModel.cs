@@ -39,7 +39,7 @@ namespace M2M.Position.Media3D
             Transform3DGroup tg;
             TranslateTransform3D tt;
 
-            //var position3DSet = new Position3DSet();
+            //Position3DSet position3DSet = new Position3DSet();
 
             // Add model to the model group
             int i, j;
@@ -57,7 +57,7 @@ namespace M2M.Position.Media3D
                         group.Children.Add(mGeometry);
                     }
                 }
-            //var scene = new Scene();
+            //Scene scene = new Scene();
             //scene.AddElement(new PositionSetElement(position3DSet));
             //scene.ShowScene();
         }
