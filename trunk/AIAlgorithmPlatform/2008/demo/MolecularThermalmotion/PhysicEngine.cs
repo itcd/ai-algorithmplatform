@@ -8,8 +8,9 @@ namespace MolecularThermalmotion
 {
     public class PhysicEngine
     {
-        public static void UpdatePositionByVelocity(ref Point3D position, ref Vector3D velocity, double t)
+        public static void UpdatePositionByVelocity(ref Point3D position, ref Point3D oldPosition, ref Vector3D velocity, double t)
         {
+            oldPosition = position;
             position.X += velocity.X * t;
             position.Y += velocity.Y * t;
             position.Z += velocity.Z * t;
