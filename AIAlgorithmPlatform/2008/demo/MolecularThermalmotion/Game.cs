@@ -36,7 +36,7 @@ namespace MolecularThermalmotion
 
         void Initializtion()
         {
-            int MoleculeNum = 300;
+            int MoleculeNum = 30;
             double positionRange = 10;
             double velocityRange = 2;
             double radius = 2;
@@ -44,8 +44,8 @@ namespace MolecularThermalmotion
             //MeshGeometry3D sphere = new SphereMesh().Geometry;
 
             SphereMesh sphereMesh = new SphereMesh();
-            sphereMesh.Slices = 72;
-            sphereMesh.Stacks = 36;
+            sphereMesh.Slices = 18;
+            sphereMesh.Stacks = 9;
             MeshGeometry3D sphere = sphereMesh.Geometry;
 
             //用于保存所有小球的Model
@@ -59,7 +59,8 @@ namespace MolecularThermalmotion
                 //创建并初始化molecule的属性
                 Molecule molecule = new Molecule()
                 {
-                    position = new Point3D(GetRandomInRange(positionRange), GetRandomInRange(positionRange), GetRandomInRange(positionRange)),
+                    position = new Point3D(50+0*GetRandomInRange(positionRange), 50+0*GetRandomInRange(positionRange), 50+0*GetRandomInRange(positionRange)),
+                    
                     currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
                     radius = radius
                 };
@@ -68,7 +69,7 @@ namespace MolecularThermalmotion
                 MaterialGroup materialGroup = new MaterialGroup();
                 DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255))));
                 materialGroup.Children.Add(diffuseMaterial);
-                materialGroup.Children.Add(specularMaterial);
+                //materialGroup.Children.Add(specularMaterial);
                 molecule.MoleculeGeometryModel = new GeometryModel3D(sphere, materialGroup);
                 //molecule.MoleculeGeometryModel.BackMaterial = materialGroup;
 
@@ -88,6 +89,8 @@ namespace MolecularThermalmotion
                 Vector3D v1 = MoleculeSet[index1].currentVelocity;
                 MoleculeSet[index1].currentVelocity = MoleculeSet[index2].currentVelocity;
                 MoleculeSet[index2].currentVelocity = v1;
+
+                
             };
         }
 
@@ -148,7 +151,7 @@ namespace MolecularThermalmotion
                 else
                 {
                     //通过小球的速度来更新小球位置
-                    PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.currentVelocity, t);
+                    PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.oldPosition, ref m.currentVelocity, t);
 
                     CDE.UpdateToGridmap(i);
 
@@ -159,6 +162,7 @@ namespace MolecularThermalmotion
                     temp.OffsetZ = m.position.Z;
                 }
             }
+            
         }
 
         public void StartGame()
@@ -166,7 +170,7 @@ namespace MolecularThermalmotion
             gameWindows.Show();
             Initializtion();
             timerPump = new TimerPump() { InvokedMethod = PerformOneFrame };
-            timerPump.BeginPumpWithTimeInterval(40);
+            timerPump.BeginPumpWithTimeInterval(500);
         }
 
         public void StopGame()

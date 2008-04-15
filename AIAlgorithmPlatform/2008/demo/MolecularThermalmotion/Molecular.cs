@@ -16,7 +16,7 @@ namespace MolecularThermalmotion
 
         public Vector3D currentVelocity;
 
-        public bool isMoved;
+        public bool isMoved=true;
 
         double mass;
 
