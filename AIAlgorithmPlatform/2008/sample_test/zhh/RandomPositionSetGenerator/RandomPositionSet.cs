@@ -247,9 +247,9 @@ namespace Position_Implement
             //    //}
             //}
 
-            positionSet3D = positionSet3D;
+            //this = positionSet3D;
 
-            return this;
+            return positionSet3D;
         }
     }
 
