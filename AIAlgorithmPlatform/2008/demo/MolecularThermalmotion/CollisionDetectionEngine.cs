@@ -13,9 +13,9 @@ namespace MolecularThermalmotion
         static int length, width, height, gridLength;
 
         public delegate void dCollisionResponse(int index1, int index2);
-        public static event dCollisionResponse CollisionResponse;
+        public event dCollisionResponse CollisionResponse;
 
-        public static void InitCollisionDetectionEngine(List<Molecule> mset, int l, int w, int h, int gl)
+        public void InitCollisionDetectionEngine(List<Molecule> mset, int l, int w, int h, int gl)
         {
             length = l;
             width = w;
@@ -37,7 +37,7 @@ namespace MolecularThermalmotion
             }
         }
 
-        public static void UpdateToGridmap(int moleculeIndex)
+        public void UpdateToGridmap(int moleculeIndex)
         {
             Molecule m = MoleculeSet[moleculeIndex];
 
@@ -62,41 +62,44 @@ namespace MolecularThermalmotion
 
         }
 
-        public static void CollisionDetection()
+        public void CollisionDetection()
         {
-            for (int index = 0; index < MoleculeSet.Count; index++)
+            if (CollisionResponse != null)
             {
-                Molecule m = MoleculeSet[index];
-                
-                if (!m.isMoved) continue; //只对运动物体碰撞检测
+                for (int index = 0; index < MoleculeSet.Count; index++)
+                {
+                    Molecule m = MoleculeSet[index];
 
-                int x = (int)m.position.X / gridLength;
-                int y = (int)m.position.Y / gridLength;
-                int z = (int)m.position.Z / gridLength;
+                    if (!m.isMoved) continue; //只对运动物体碰撞检测
 
-                List<int> grid = gridMap[x, y, z];
+                    int x = (int)m.position.X / gridLength;
+                    int y = (int)m.position.Y / gridLength;
+                    int z = (int)m.position.Z / gridLength;
 
-                for (int i = (x - 1) > 0 ? (x - 1) : 0; i <= ((x + 1) < (length - 1) ? (x + 1) : (length - 1)); i++)
-                    for (int j = (y - 1) > 0 ? (y - 1) : 0; i <= ((y + 1) < (width - 1) ? (y + 1) : (width - 1)); j++)
-                        for (int k = (z - 1) > 0 ? (z - 1) : 0; i <= ((z + 1) < (height - 1) ? (z + 1) : (height - 1)); k++)
-                        {
-                            List<int> neighborGrid = gridMap[i, j, k];
-                            if (neighborGrid != null)
+                    List<int> grid = gridMap[x, y, z];
+
+                    for (int i = (x - 1) > 0 ? (x - 1) : 0; i <= ((x + 1) < (length - 1) ? (x + 1) : (length - 1)); i++)
+                        for (int j = (y - 1) > 0 ? (y - 1) : 0; i <= ((y + 1) < (width - 1) ? (y + 1) : (width - 1)); j++)
+                            for (int k = (z - 1) > 0 ? (z - 1) : 0; i <= ((z + 1) < (height - 1) ? (z + 1) : (height - 1)); k++)
                             {
-                                for (int l = 0; l < neighborGrid.Count; l++)
+                                List<int> neighborGrid = gridMap[i, j, k];
+                                if (neighborGrid != null)
                                 {
-                                    int neighborIndex = neighborGrid[l];
-                                    if (MoleculeSet[neighborIndex].isMoved && neighborIndex <= index) continue; //避免两个运动物体重复碰撞检测
-                                    if (Collide(index, neighborIndex)) ;
-                                        CollisionResponse(index, neighborIndex);
-                                    
+                                    for (int l = 0; l < neighborGrid.Count; l++)
+                                    {
+                                        int neighborIndex = neighborGrid[l];
+                                        if (MoleculeSet[neighborIndex].isMoved && neighborIndex <= index) continue; //避免两个运动物体重复碰撞检测
+                                        if (Collide(index, neighborIndex))
+                                            CollisionResponse(index, neighborIndex);
+
+                                    }
                                 }
                             }
-                        }
+                }
             }
         }
 
-        static bool Collide(int index1, int index2)
+        bool Collide(int index1, int index2)
         {
 
             Point3D p1 = MoleculeSet[index1].position;
