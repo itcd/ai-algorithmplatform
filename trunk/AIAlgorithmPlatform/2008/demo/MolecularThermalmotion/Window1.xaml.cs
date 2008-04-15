@@ -253,11 +253,14 @@ namespace MolecularThermalmotion
                         for (int k = (z - 1) > 0 ? (z - 1) : 0; i <= ((z + 1) < (height - 1) ? (z + 1) : (height - 1)); k++)
                         {
                             Dictionary<int, int> neighborGrid = gridMap[i, j, k];
-                            for (int l = 0; l < neighborGrid.Count; l++)
+                            if (neighborGrid != null)
                             {
-                                int neighborIndex = neighborGrid.ElementAt(l).Key;
-                                if (neighborIndex <= index) continue;
-                                //Collide(index,neighborIndex);
+                                for (int l = 0; l < neighborGrid.Count; l++)
+                                {
+                                    int neighborIndex = neighborGrid.ElementAt(l).Key;
+                                    if (neighborIndex <= index) continue;
+                                    //Collide(index,neighborIndex);
+                                }
                             }
 
                         }
