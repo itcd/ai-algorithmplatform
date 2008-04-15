@@ -26,6 +26,8 @@ namespace MolecularThermalmotion
 
         List<Molecule> MoleculeSet = new List<Molecule>();
 
+        CollisionDetectionEngine CDE = new CollisionDetectionEngine();
+
         Random random = new Random();
         private double GetRandomInRange(double range)
         {
@@ -34,7 +36,7 @@ namespace MolecularThermalmotion
 
         void Initializtion()
         {
-            int MoleculeNum = 100;
+            int MoleculeNum = 300;
             double positionRange = 10;
             double velocityRange = 2;
             double radius = 2;
@@ -80,6 +82,13 @@ namespace MolecularThermalmotion
             ModelVisual3D moleculeSetModel = new ModelVisual3D();
             moleculeSetModel.Content = moleculeModel3DGroup;
             gameWindows.model.Children.Add(moleculeSetModel);
+
+            CDE.InitCollisionDetectionEngine(MoleculeSet, 500, 500, 500, 10);
+            CDE.CollisionResponse += delegate(int index1, int index2) {
+                Vector3D v1 = MoleculeSet[index1].currentVelocity;
+                MoleculeSet[index1].currentVelocity = MoleculeSet[index2].currentVelocity;
+                MoleculeSet[index2].currentVelocity = v1;
+            };
         }
 
         void PerformOneFrame(double timeInterval)
@@ -88,6 +97,7 @@ namespace MolecularThermalmotion
             double t = timeInterval / 1000;
 
             //碰撞检测（如果检测到碰撞在这里改变碰撞后小球的速度矢量）
+            CDE.CollisionDetection();
 
             //通过小球的受力来更新小球的速度（重力，摩擦力，碰撞后瞬间的冲力等）
             UpdateMoleculeSetVelocityByForce(t);
@@ -102,28 +112,28 @@ namespace MolecularThermalmotion
         /// <param name="t"></param>
         private void UpdateMoleculeSetVelocityByForce(double t)
         {
-            for (int i = 0; i < MoleculeSet.Count; i++)
-            {
-                Molecule m = MoleculeSet[i];
+            //for (int i = 0; i < MoleculeSet.Count; i++)
+            //{
+            //    Molecule m = MoleculeSet[i];
 
-                m.currentVelocity.Y -= 0.1;
+            //    m.currentVelocity.Y -= 0.1;
 
-                //if (m.currentVelocity.X == 0 && m.currentVelocity.Y == 0 && m.currentVelocity.Z == 0)
-                //{
-                //    continue;
-                //}
-                //else
-                //{
-                //    //通过小球的速度来更新小球位置
-                //    PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.currentVelocity, t);
+            //    //if (m.currentVelocity.X == 0 && m.currentVelocity.Y == 0 && m.currentVelocity.Z == 0)
+            //    //{
+            //    //    continue;
+            //    //}
+            //    //else
+            //    //{
+            //    //    //通过小球的速度来更新小球位置
+            //    //    PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.currentVelocity, t);
 
-                //    //更新小球显示的位置
-                //    TranslateTransform3D temp = (TranslateTransform3D)(m.MoleculeGeometryModel.Transform);
-                //    temp.OffsetX = m.position.X;
-                //    temp.OffsetY = m.position.Y;
-                //    temp.OffsetZ = m.position.Z;
-                //}
-            }
+            //    //    //更新小球显示的位置
+            //    //    TranslateTransform3D temp = (TranslateTransform3D)(m.MoleculeGeometryModel.Transform);
+            //    //    temp.OffsetX = m.position.X;
+            //    //    temp.OffsetY = m.position.Y;
+            //    //    temp.OffsetZ = m.position.Z;
+            //    //}
+            //}
         }
 
         private void UpdateMoleculeSetPositionByVelocity(double t)
@@ -139,6 +149,8 @@ namespace MolecularThermalmotion
                 {
                     //通过小球的速度来更新小球位置
                     PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.currentVelocity, t);
+
+                    CDE.UpdateToGridmap(i);
 
                     //更新小球显示的位置
                     TranslateTransform3D temp = (TranslateTransform3D)(m.MoleculeGeometryModel.Transform);
