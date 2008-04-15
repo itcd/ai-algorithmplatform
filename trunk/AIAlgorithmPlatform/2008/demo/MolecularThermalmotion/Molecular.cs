@@ -16,7 +16,11 @@ namespace MolecularThermalmotion
 
         public Vector3D currentVelocity;
 
+        public bool isMoved;
+
         double mass;
+
+        
 
         GeometryModel3D moleculeGeometryModel;
         public GeometryModel3D MoleculeGeometryModel
