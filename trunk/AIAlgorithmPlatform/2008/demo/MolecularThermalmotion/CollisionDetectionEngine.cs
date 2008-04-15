@@ -8,9 +8,9 @@ namespace MolecularThermalmotion
 {
     public class CollisionDetectionEngine
     {
-        static List<int>[, ,] gridMap;
-        static List<Molecule> MoleculeSet;
-        static int length, width, height, gridLength;
+        List<int>[, ,] gridMap;
+        List<Molecule> MoleculeSet;
+        int length, width, height, gridLength;
 
         public delegate void dCollisionResponse(int index1, int index2);
         public event dCollisionResponse CollisionResponse;
