@@ -28,9 +28,9 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int MoleculeNum = 7;
+        int MoleculeNum = 50;
         double positionRange = 50;
-        double velocityRange = 60;
+        double velocityRange = 20;
         double radius = 6;
 
         double length = 100;
