@@ -91,10 +91,15 @@ namespace MolecularThermalmotion
             {
                 foreach (int index in movingList)
                 {
+                    moleculeSet[index].isNeedDetected = true;
+                }
+
+                foreach (int index in movingList)
+                {
                     
                     Molecule m = moleculeSet[index];
 
-                    if (!m.isMoved) continue; //只对运动物体碰撞检测
+                    if (!m.isNeedDetected) continue; //只对运动物体碰撞检测
 
                     int x = (int)(m.position.X / gridLength);
                     int y = (int)(m.position.Y / gridLength);
@@ -116,9 +121,16 @@ namespace MolecularThermalmotion
                                     {
                                         
                                         int neighborIndex = neighborGrid[l];
-                                        if (moleculeSet[neighborIndex].isMoved && neighborIndex <= index) continue; //避免两个运动物体重复碰撞检测
+
+                                        //if (moleculeSet[neighborIndex].isNeedDetected) continue; //避免两个运动物体重复碰撞检测
+
                                         if (Collide(index, neighborIndex))
+                                        {
+                                            moleculeSet[neighborIndex].isNeedDetected = false;
+                                            moleculeSet[index].isNeedDetected = false;
+
                                             CollisionResponse(index, neighborIndex);
+                                        }
 
                                     }
                                 }
