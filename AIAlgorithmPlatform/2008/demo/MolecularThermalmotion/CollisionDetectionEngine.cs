@@ -145,9 +145,13 @@ namespace MolecularThermalmotion
 
             Point3D p1 = moleculeSet[index1].position;
             Point3D p2 = moleculeSet[index2].position;
-            if ((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y) + (p1.Z - p2.Z) * (p1.Z - p2.Z)
-                < (moleculeSet[index1].radius + moleculeSet[index2].radius) * (moleculeSet[index1].radius + moleculeSet[index2].radius))
+            if ((p1 - p2).Length <= moleculeSet[index1].radius + moleculeSet[index2].radius)
+            {
                 return true;
+            }
+            //if ((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y) + (p1.Z - p2.Z) * (p1.Z - p2.Z)
+            //    < (moleculeSet[index1].radius + moleculeSet[index2].radius) * (moleculeSet[index1].radius + moleculeSet[index2].radius))
+            //    return true;
             return false;
         }
     }
