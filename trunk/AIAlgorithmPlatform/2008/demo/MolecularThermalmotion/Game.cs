@@ -28,25 +28,51 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
+        int MoleculeNum = 50;
+        double positionRange = 50;
+        double velocityRange = 20;
+        double radius = 6;
+
+        double length = 100;
+        double width = 100;
+        double height = 100;
+
         Random random = new Random();
         private double GetRandomInRange(double range)
         {
             return ((random.NextDouble() - 0.5) * 2 * range);
         }
 
+        double TransformToRealX(double x)
+        { return x - length / 2; }
+
+        double TransformToRealY(double y)
+        { return y - width / 2; }
+
+        double TransformToRealZ(double z)
+        { return z - height / 2; }
+
+        double TransformToModelX(double x)
+        { return x + length / 2; }
+
+        double TransformToModelY(double y)
+        { return y + width / 2; }
+
+        double TransformToModelZ(double z)
+        { return z + height / 2; }
+
+
         void Initializtion()
         {
-            int MoleculeNum = 30;
-            double positionRange = 10;
-            double velocityRange = 2;
-            double radius = 2;
-
             //MeshGeometry3D sphere = new SphereMesh().Geometry;
 
             SphereMesh sphereMesh = new SphereMesh();
-            sphereMesh.Slices = 18;
-            sphereMesh.Stacks = 9;
+            sphereMesh.Slices = 72;
+            sphereMesh.Stacks = 36;
+            sphereMesh.Radius = radius+1;
             MeshGeometry3D sphere = sphereMesh.Geometry;
+
+
 
             //用于保存所有小球的Model
             Model3DGroup moleculeModel3DGroup = new Model3DGroup();
@@ -59,8 +85,8 @@ namespace MolecularThermalmotion
                 //创建并初始化molecule的属性
                 Molecule molecule = new Molecule()
                 {
-                    position = new Point3D(50+0*GetRandomInRange(positionRange), 50+0*GetRandomInRange(positionRange), 50+0*GetRandomInRange(positionRange)),
-                    
+                    position = new Point3D(TransformToModelX(GetRandomInRange(positionRange)), TransformToModelY(GetRandomInRange(positionRange)), TransformToModelZ(GetRandomInRange(positionRange))),
+
                     currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
                     radius = radius
                 };
@@ -69,11 +95,11 @@ namespace MolecularThermalmotion
                 MaterialGroup materialGroup = new MaterialGroup();
                 DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255))));
                 materialGroup.Children.Add(diffuseMaterial);
-                //materialGroup.Children.Add(specularMaterial);
+                materialGroup.Children.Add(specularMaterial);
                 molecule.MoleculeGeometryModel = new GeometryModel3D(sphere, materialGroup);
                 //molecule.MoleculeGeometryModel.BackMaterial = materialGroup;
 
-                molecule.MoleculeGeometryModel.Transform = new TranslateTransform3D(molecule.position.X, molecule.position.Y, molecule.position.Z);
+                molecule.MoleculeGeometryModel.Transform = new TranslateTransform3D(TransformToRealX(molecule.position.X), TransformToRealY(molecule.position.Y), TransformToRealZ(molecule.position.Z));
 
                 moleculeModel3DGroup.Children.Add(molecule.MoleculeGeometryModel);
 
@@ -84,14 +110,57 @@ namespace MolecularThermalmotion
             moleculeSetModel.Content = moleculeModel3DGroup;
             gameWindows.model.Children.Add(moleculeSetModel);
 
-            CDE.InitCollisionDetectionEngine(MoleculeSet, 500, 500, 500, 10);
-            CDE.CollisionResponse += delegate(int index1, int index2) {
-                Vector3D v1 = MoleculeSet[index1].currentVelocity;
-                MoleculeSet[index1].currentVelocity = MoleculeSet[index2].currentVelocity;
-                MoleculeSet[index2].currentVelocity = v1;
+            //初始化物理引擎
+            CDE.InitCollisionDetectionEngine(MoleculeSet, (int)length, (int)width, (int)height, (int)radius * 2);
 
-                
+            CDE.CollisionResponse += delegate(int index1, int index2)
+            {
+                //Vector3D v1 = MoleculeSet[index1].currentVelocity;
+                //MoleculeSet[index1].currentVelocity = MoleculeSet[index2].currentVelocity;
+                //MoleculeSet[index2].currentVelocity = v1;
+
+                PhysicEngine.UpdateVelocityByCollide(MoleculeSet[index1].position, MoleculeSet[index2].position, ref MoleculeSet[index1].currentVelocity, ref MoleculeSet[index2].currentVelocity,
+                    MoleculeSet[index1].mass, MoleculeSet[index2].mass);
             };
+
+            CDE.CollideWithWall += delegate(int index)
+            {
+                Molecule m = MoleculeSet[index];
+
+                if (m.position.X < m.radius)
+                {
+                    m.position.X = m.radius;
+                    m.currentVelocity.X = -m.currentVelocity.X;
+                }
+                if (m.position.X > length - m.radius)
+                {
+                    m.position.X = length - m.radius;
+                    m.currentVelocity.X = -m.currentVelocity.X;
+                }
+
+                if (m.position.Y < m.radius)
+                {
+                    m.position.Y = m.radius;
+                    m.currentVelocity.Y = -m.currentVelocity.Y;
+                }
+                if (m.position.Y > width - m.radius)
+                {
+                    m.position.Y = width - m.radius;
+                    m.currentVelocity.Y = -m.currentVelocity.Y;
+                }
+
+                if (m.position.Z < m.radius)
+                {
+                    m.position.Z = m.radius;
+                    m.currentVelocity.Z = -m.currentVelocity.Z;
+                }
+                if (m.position.Z > height - m.radius)
+                {
+                    m.position.Z = height - m.radius;
+                    m.currentVelocity.Z = -m.currentVelocity.Z;
+                }
+            };
+
         }
 
         void PerformOneFrame(double timeInterval)
@@ -157,12 +226,12 @@ namespace MolecularThermalmotion
 
                     //更新小球显示的位置
                     TranslateTransform3D temp = (TranslateTransform3D)(m.MoleculeGeometryModel.Transform);
-                    temp.OffsetX = m.position.X;
-                    temp.OffsetY = m.position.Y;
-                    temp.OffsetZ = m.position.Z;
+                    temp.OffsetX = TransformToRealX(m.position.X);
+                    temp.OffsetY = TransformToRealY(m.position.Y);
+                    temp.OffsetZ = TransformToRealZ(m.position.Z);
                 }
             }
-            
+
         }
 
         public void StartGame()
@@ -170,7 +239,7 @@ namespace MolecularThermalmotion
             gameWindows.Show();
             Initializtion();
             timerPump = new TimerPump() { InvokedMethod = PerformOneFrame };
-            timerPump.BeginPumpWithTimeInterval(500);
+            timerPump.BeginPumpWithTimeInterval(40);
         }
 
         public void StopGame()
