@@ -21,11 +21,32 @@ namespace MolecularThermalmotion
 
         }
 
-        public static void UpdateVelocityByCollide(Point3D position1, Point3D position2, ref Vector3D velocity1, ref Vector3D velocity2, double mass1, double mass2)
+        private static Vector3D pr(Vector3D a, Vector3D b)
         {
-            Vector3D v1 = velocity1;
-            velocity1 = velocity2;
-            velocity2 = v1;
+            if (a.Length != 0)
+            {
+                a = a / a.Length;
+                double ba = b.X * a.X + b.Y * a.Y * b.Z * a.Z;
+                return ba * a;
+            }
+            return a;
+
+        }
+
+        public static void UpdateVelocityByCollide(Point3D position1, Point3D position2, ref Vector3D velocity1, ref Vector3D velocity2, double mass1, double mass2, double r1, double r2)
+        {
+            //Vector3D v1 = velocity1;
+            //velocity1 = velocity2;
+            //velocity2 = v1;
+
+            Vector3D normalVector = new Vector3D(position1.X - position2.X, position1.Y - position2.Y, position1.Z - position2.Z);
+            if (normalVector.Length <= (r1 + r2))
+            {
+                Vector3D v1s = velocity1 - pr(normalVector, velocity1) + pr(normalVector, velocity2);
+                Vector3D v2s = velocity2 - pr(normalVector, velocity2) + pr(normalVector, velocity1);
+                velocity1 = v1s;
+                velocity2 = v2s;
+            }
         }
     }   
 }
