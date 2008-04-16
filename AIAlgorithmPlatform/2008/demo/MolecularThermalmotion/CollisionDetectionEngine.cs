@@ -10,7 +10,8 @@ namespace MolecularThermalmotion
     {
         List<int>[, ,] gridMap;
         List<Molecule> moleculeSet;
-        int length, width, height, gridLength;
+        int length, width, height;
+        double gridLength;
         List<int> movingList;
 
         public delegate void dCollisionResponse(int index1, int index2);
@@ -19,11 +20,13 @@ namespace MolecularThermalmotion
         public delegate void dCollideWithWall(int index);
         public event dCollideWithWall CollideWithWall;
 
-        public void InitCollisionDetectionEngine(List<Molecule> mset, int l, int w, int h, int gl)
+        public void InitCollisionDetectionEngine(List<Molecule> mset, double l, double w, double h, double gl)
         {
-            length = l/gl;
-            width = w/gl;
-            height = h/gl;
+            movingList = new List<int>();
+            
+            length = (int)Math.Ceiling(l/gl);
+            width = (int)Math.Ceiling(w/gl);
+            height = (int)Math.Ceiling(h/gl);
             gridLength = gl;
 
             moleculeSet = mset;
@@ -46,34 +49,39 @@ namespace MolecularThermalmotion
 
         public void UpdateToGridmap(int moleculeIndex)
         {
+            if(CollideWithWall!=null)
+                CollideWithWall(moleculeIndex);
+            
             Molecule m = moleculeSet[moleculeIndex];
 
             int x = (int)(m.position.X / gridLength);
             int y = (int)(m.position.Y / gridLength);
             int z = (int)(m.position.Z / gridLength);
 
-            if (x < 0 || x >= length || y < 0 || y >= width || z < 0 || z >= height)
-                CollideWithWall(moleculeIndex);
+            int oldx = (int)(m.oldPosition.X / gridLength);
+            int oldy = (int)(m.oldPosition.Y / gridLength);
+            int oldz = (int)(m.oldPosition.Z / gridLength);
 
-            if ((int)(m.oldPosition.X / gridLength) == (int)(m.position.X / gridLength) &&
-                (int)(m.oldPosition.Y / gridLength) == (int)(m.position.Y / gridLength) &&
-                (int)(m.oldPosition.Z / gridLength) == (int)(m.position.Z / gridLength))
+
+            if (oldx == x &&
+                oldy == y &&
+                oldz == z)
                 return;
 
 
-            List<int> oldGrid = gridMap[(int)(m.oldPosition.X / gridLength), (int)(m.oldPosition.Y / gridLength), (int)(m.oldPosition.Z / gridLength)];
+            List<int> oldGrid = gridMap[oldx, oldy, oldz];
             for(int i=0;i<oldGrid.Count;i++)
                 if (oldGrid[i] == moleculeIndex)
                 {
                     oldGrid.Remove(i);
                     break;
                 }
-
-
-            
+     
             
             if (gridMap[x, y, z] == null) gridMap[x, y, z] = new List<int>();
             gridMap[x, y, z].Add(moleculeIndex);
+
+            movingList.Add(moleculeIndex);
 
         }
 
@@ -81,8 +89,9 @@ namespace MolecularThermalmotion
         {
             if (CollisionResponse != null)
             {
-                for (int index = 0; index < moleculeSet.Count; index++)
+                foreach (int index in movingList)
                 {
+                    
                     Molecule m = moleculeSet[index];
 
                     if (!m.isMoved) continue; //只对运动物体碰撞检测
@@ -116,6 +125,7 @@ namespace MolecularThermalmotion
                             }
                 }
             }
+            movingList.Clear();
         }
 
         bool Collide(int index1, int index2)

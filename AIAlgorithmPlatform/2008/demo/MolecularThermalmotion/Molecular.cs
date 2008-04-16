@@ -18,7 +18,7 @@ namespace MolecularThermalmotion
 
         public bool isMoved=true;
 
-        double mass;
+        public double mass;
 
         
 

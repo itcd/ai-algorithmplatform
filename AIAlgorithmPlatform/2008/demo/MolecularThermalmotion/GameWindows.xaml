@@ -91,7 +91,7 @@
             <Viewport3D.Camera>
                 <PerspectiveCamera x:Name="camera" FarPlaneDistance="1000" LookDirection="0,0,-10"
 					UpDirection="0,1,0" NearPlaneDistance="1" Position="0,0,200"
-					FieldOfView="45" />
+					FieldOfView="90" />
             </Viewport3D.Camera>
 
             <ModelVisual3D x:Name="model">

@@ -20,5 +20,12 @@ namespace MolecularThermalmotion
         {
 
         }
+
+        public static void UpdateVelocityByCollide(Point3D position1, Point3D position2, ref Vector3D velocity1, ref Vector3D velocity2, double mass1, double mass2)
+        {
+            Vector3D v1 = velocity1;
+            velocity1 = velocity2;
+            velocity2 = v1;
+        }
     }   
 }
