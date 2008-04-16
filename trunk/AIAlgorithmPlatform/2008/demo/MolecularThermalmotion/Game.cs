@@ -120,7 +120,7 @@ namespace MolecularThermalmotion
                 //MoleculeSet[index2].currentVelocity = v1;
 
                 PhysicEngine.UpdateVelocityByCollide(MoleculeSet[index1].position, MoleculeSet[index2].position, ref MoleculeSet[index1].currentVelocity, ref MoleculeSet[index2].currentVelocity,
-                    MoleculeSet[index1].mass, MoleculeSet[index2].mass);
+                    MoleculeSet[index1].mass, MoleculeSet[index2].mass, MoleculeSet[index1].radius, MoleculeSet[index2].radius);
             };
 
             CDE.CollideWithWall += delegate(int index)
