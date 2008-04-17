@@ -33,9 +33,11 @@ namespace MolecularThermalmotion
         double velocityRange = 100;
         double radius = 3;
 
+        
         double length = 100;
         double width = 100;
         double height = 100;
+        Point3D gridMapOrigin;
 
         Random random = new Random();
         private double GetRandomInRange(double range)
@@ -43,32 +45,35 @@ namespace MolecularThermalmotion
             return ((random.NextDouble() - 0.5) * 2 * range);
         }
 
-        double TransformToRealX(double x)
-        { return x - length / 2; }
+        //double TransformToRealX(double x)
+        //{ return x - length / 2; }
 
-        double TransformToRealY(double y)
-        { return y - width / 2; }
+        //double TransformToRealY(double y)
+        //{ return y - width / 2; }
 
-        double TransformToRealZ(double z)
-        { return z - height / 2; }
+        //double TransformToRealZ(double z)
+        //{ return z - height / 2; }
 
-        double TransformToModelX(double x)
-        { return x + length / 2; }
+        //double TransformToModelX(double x)
+        //{ return x + length / 2; }
 
-        double TransformToModelY(double y)
-        { return y + width / 2; }
+        //double TransformToModelY(double y)
+        //{ return y + width / 2; }
 
-        double TransformToModelZ(double z)
-        { return z + height / 2; }
+        //double TransformToModelZ(double z)
+        //{ return z + height / 2; }
+
 
 
         void Initializtion()
         {
+            gridMapOrigin = new Point3D(-0.5 * length, -0.5 * width, -0.5 * height);
+            
             //MeshGeometry3D sphere = new SphereMesh().Geometry;
 
             SphereMesh sphereMesh = new SphereMesh();
-            sphereMesh.Slices = 72;
-            sphereMesh.Stacks = 36;
+            sphereMesh.Slices = 72/4;
+            sphereMesh.Stacks = 36/4;
             sphereMesh.Radius = radius+1;
             MeshGeometry3D sphere = sphereMesh.Geometry;
 
@@ -85,7 +90,7 @@ namespace MolecularThermalmotion
                 //创建并初始化molecule的属性
                 Molecule molecule = new Molecule()
                 {
-                    position = new Point3D(TransformToModelX(GetRandomInRange(positionRange)), TransformToModelY(GetRandomInRange(positionRange)), TransformToModelZ(GetRandomInRange(positionRange))),
+                    position = new Point3D(GetRandomInRange(positionRange), GetRandomInRange(positionRange), GetRandomInRange(positionRange)),
 
                     currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
                     radius = radius
@@ -99,7 +104,7 @@ namespace MolecularThermalmotion
                 molecule.MoleculeGeometryModel = new GeometryModel3D(sphere, materialGroup);
                 //molecule.MoleculeGeometryModel.BackMaterial = materialGroup;
 
-                molecule.MoleculeGeometryModel.Transform = new TranslateTransform3D(TransformToRealX(molecule.position.X), TransformToRealY(molecule.position.Y), TransformToRealZ(molecule.position.Z));
+                molecule.MoleculeGeometryModel.Transform = new TranslateTransform3D(molecule.position.X, molecule.position.Y, molecule.position.Z);
 
                 moleculeModel3DGroup.Children.Add(molecule.MoleculeGeometryModel);
 
@@ -111,7 +116,7 @@ namespace MolecularThermalmotion
             gameWindows.model.Children.Add(moleculeSetModel);
 
             //初始化物理引擎
-            CDE.InitCollisionDetectionEngine(MoleculeSet, (int)length, (int)width, (int)height, (int)radius * 2);
+            CDE.InitCollisionDetectionEngine(MoleculeSet, gridMapOrigin, (int)length, (int)width, (int)height, (int)radius * 2);
 
             CDE.CollisionResponse += delegate(int index1, int index2)
             {
@@ -127,36 +132,36 @@ namespace MolecularThermalmotion
             {
                 Molecule m = MoleculeSet[index];
 
-                if (m.position.X < m.radius)
+                if (m.position.X < gridMapOrigin.X + m.radius)
                 {
-                    m.position.X = m.radius;
+                    m.position.X = gridMapOrigin.X + m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
                 }
-                if (m.position.X > length - m.radius)
+                if (m.position.X > gridMapOrigin.X + length - m.radius)
                 {
-                    m.position.X = length - m.radius;
+                    m.position.X = gridMapOrigin.X + length - m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
                 }
 
-                if (m.position.Y < m.radius)
+                if (m.position.Y < gridMapOrigin.Y + m.radius)
                 {
-                    m.position.Y = m.radius;
+                    m.position.Y = gridMapOrigin.Y + m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
                 }
-                if (m.position.Y > width - m.radius)
+                if (m.position.Y > gridMapOrigin.Y + width - m.radius)
                 {
-                    m.position.Y = width - m.radius;
+                    m.position.Y = gridMapOrigin.Y + width - m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
                 }
 
-                if (m.position.Z < m.radius)
+                if (m.position.Z < gridMapOrigin.Z + m.radius)
                 {
-                    m.position.Z = m.radius;
+                    m.position.Z = gridMapOrigin.Z + m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
                 }
-                if (m.position.Z > height - m.radius)
+                if (m.position.Z > gridMapOrigin.Z + height - m.radius)
                 {
-                    m.position.Z = height - m.radius;
+                    m.position.Z = gridMapOrigin.Z + height - m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
                 }
             };
@@ -226,9 +231,9 @@ namespace MolecularThermalmotion
 
                     //更新小球显示的位置
                     TranslateTransform3D temp = (TranslateTransform3D)(m.MoleculeGeometryModel.Transform);
-                    temp.OffsetX = TransformToRealX(m.position.X);
-                    temp.OffsetY = TransformToRealY(m.position.Y);
-                    temp.OffsetZ = TransformToRealZ(m.position.Z);
+                    temp.OffsetX = m.position.X;
+                    temp.OffsetY = m.position.Y;
+                    temp.OffsetZ = m.position.Z;
                 }
             }
 
