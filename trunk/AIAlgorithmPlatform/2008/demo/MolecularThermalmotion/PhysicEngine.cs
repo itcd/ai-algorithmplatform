@@ -44,10 +44,12 @@ namespace MolecularThermalmotion
             //velocity2 = v1;
             //Debug.WriteLine(velocity1.Length.ToString() + "  " + velocity2.Length.ToString(), "Before:");
             Vector3D normalVector = new Vector3D(position1.X - position2.X, position1.Y - position2.Y, position1.Z - position2.Z);
-            if (normalVector.Length <= (r1 + r2) && (normalVector.Length > 0.00000001 || normalVector.Length < -0.0000001))
+            Vector3D pr1 = pr(normalVector, velocity1);
+            Vector3D pr2 = pr(normalVector, velocity2);
+            if (normalVector.Length <= (r1 + r2) && (normalVector.Length > 0.00000001 || normalVector.Length < -0.0000001) && (Math.Abs((pr1 + pr2).Length)) > 0.00001)
             {
-                Vector3D v1s = velocity1 - pr(normalVector, velocity1) + pr(normalVector, velocity2);
-                Vector3D v2s = velocity2 - pr(normalVector, velocity2) + pr(normalVector, velocity1);
+                Vector3D v1s = velocity1 - pr1 + pr2;
+                Vector3D v2s = velocity2 - pr2 + pr1;
                 velocity1 = v1s;
                 velocity2 = v2s;
             }
