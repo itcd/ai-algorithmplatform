@@ -28,10 +28,10 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int MoleculeNum = 50;
+        int MoleculeNum = 100;
         double positionRange = 50;
-        double velocityRange = 20;
-        double radius = 6;
+        double velocityRange = 100;
+        double radius = 3;
 
         double length = 100;
         double width = 100;
@@ -239,7 +239,7 @@ namespace MolecularThermalmotion
             gameWindows.Show();
             Initializtion();
             timerPump = new TimerPump() { InvokedMethod = PerformOneFrame };
-            timerPump.BeginPumpWithTimeInterval(40);
+            timerPump.BeginPumpWithTimeInterval(4);
         }
 
         public void StopGame()

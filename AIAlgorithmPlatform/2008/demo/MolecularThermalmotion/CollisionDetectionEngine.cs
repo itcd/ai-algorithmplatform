@@ -58,6 +58,7 @@ namespace MolecularThermalmotion
             int y = (int)(m.position.Y / gridLength);
             int z = (int)(m.position.Z / gridLength);
 
+            //oldPosition没赋值
             int oldx = (int)(m.oldPosition.X / gridLength);
             int oldy = (int)(m.oldPosition.Y / gridLength);
             int oldz = (int)(m.oldPosition.Z / gridLength);
@@ -68,17 +69,20 @@ namespace MolecularThermalmotion
                 oldz == z)
                 return;
 
+            //要注意remove和removeAt的用法
+            gridMap[oldx, oldy, oldz].Remove(moleculeIndex);
 
-            List<int> oldGrid = gridMap[oldx, oldy, oldz];
-            for(int i=0;i<oldGrid.Count;i++)
-                if (oldGrid[i] == moleculeIndex)
-                {
-                    oldGrid.Remove(i);
-                    break;
-                }
+            //List<int> oldGrid = gridMap[oldx, oldy, oldz];
+            //for(int i=0;i<oldGrid.Count;i++)
+            //    if (oldGrid[i] == moleculeIndex)
+            //    {
+            //        oldGrid.RemoveAt(i);
+            //        break;
+            //    }
      
             
             if (gridMap[x, y, z] == null) gridMap[x, y, z] = new List<int>();
+
             gridMap[x, y, z].Add(moleculeIndex);
 
             movingList.Add(moleculeIndex);
@@ -89,11 +93,6 @@ namespace MolecularThermalmotion
         {
             if (CollisionResponse != null)
             {
-                foreach (int index in movingList)
-                {
-                    moleculeSet[index].isNeedDetected = true;
-                }
-
                 foreach (int index in movingList)
                 {
                     
@@ -107,34 +106,50 @@ namespace MolecularThermalmotion
 
                     List<int> grid = gridMap[x, y, z];
                     //if (grid == null) continue;
-                    for (int i = ((x - 1) > 0 ? (x - 1) : 0); i <= ((x + 1) < (length - 1) ? (x + 1) : (length - 1)); i++)
-                        for (int j = ((y - 1) > 0 ? (y - 1) : 0); j <= ((y + 1) < (width - 1) ? (y + 1) : (width - 1)); j++)
-                            for (int k = ((z - 1) > 0 ? (z - 1) : 0); k <= ((z + 1) < (height - 1) ? (z + 1) : (height - 1)); k++)
-                            {
-
-                                List<int> neighborGrid = gridMap[i, j, k];
-                                
-                                if (neighborGrid != null)
+                
+                        for (int i = ((x - 1) > 0 ? (x - 1) : 0); i <= ((x + 1) < (length - 1) ? (x + 1) : (length - 1)); i++)
+                            for (int j = ((y - 1) > 0 ? (y - 1) : 0); j <= ((y + 1) < (width - 1) ? (y + 1) : (width - 1)); j++)
+                                for (int k = ((z - 1) > 0 ? (z - 1) : 0); k <= ((z + 1) < (height - 1) ? (z + 1) : (height - 1)); k++)
                                 {
-                                    
-                                    for (int l = 0; l < neighborGrid.Count; l++)
-                                    {
-                                        
-                                        int neighborIndex = neighborGrid[l];
 
-                                        //if (moleculeSet[neighborIndex].isNeedDetected) continue; //避免两个运动物体重复碰撞检测
+                                    List<int> neighborGrid = gridMap[i, j, k];
 
-                                        if (Collide(index, neighborIndex))
+                                        if (neighborGrid != null)
                                         {
-                                            moleculeSet[neighborIndex].isNeedDetected = false;
-                                            moleculeSet[index].isNeedDetected = false;
+                                        for (int l = 0; l < neighborGrid.Count; l++)
+                                        {
+                                            int neighborIndex = neighborGrid[l];
 
-                                            CollisionResponse(index, neighborIndex);
+                                            //if (!moleculeSet[neighborIndex].isNeedDetected) continue; //避免两个运动物体重复碰撞检测
+
+                                            if (Collide(index, neighborIndex))
+                                            {
+                                                moleculeSet[neighborIndex].isNeedDetected = false;
+                                                moleculeSet[index].isNeedDetected = false;
+
+                                                CollisionResponse(index, neighborIndex);
+
+                                                //每一帧对于每个球只跟另外的一个球进行碰撞
+                                                goto jumpOut;
+                                            }
                                         }
-
                                     }
                                 }
-                            }
+                    jumpOut:
+                        {
+                    }
+
+                
+                }
+
+                //foreach (int index in movingList)
+                //{
+                //    moleculeSet[movingList[index]].isNeedDetected = true;
+                //}
+
+                foreach (Molecule m in moleculeSet)
+                {
+                    m.isNeedDetected = true;
                 }
             }
             movingList.Clear();
