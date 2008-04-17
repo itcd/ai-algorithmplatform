@@ -17,9 +17,12 @@ namespace MolecularThermalmotion
             position.Z += velocity.Z * t;
         }
 
+        
         public static void UpdateVelocityByForce(ref Vector3D velocity, ref Vector3D force, double mass, double t)
         {
-
+            velocity.X -= (force.X / mass) * t;
+            velocity.Y -= (force.Y / mass) * t;
+            velocity.Z -= (force.Z / mass) * t;
         }
 
         private static Vector3D pr(Vector3D a, Vector3D b)
