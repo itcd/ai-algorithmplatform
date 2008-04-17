@@ -45,25 +45,6 @@ namespace MolecularThermalmotion
             return ((random.NextDouble() - 0.5) * 2 * range);
         }
 
-        //double TransformToRealX(double x)
-        //{ return x - length / 2; }
-
-        //double TransformToRealY(double y)
-        //{ return y - width / 2; }
-
-        //double TransformToRealZ(double z)
-        //{ return z - height / 2; }
-
-        //double TransformToModelX(double x)
-        //{ return x + length / 2; }
-
-        //double TransformToModelY(double y)
-        //{ return y + width / 2; }
-
-        //double TransformToModelZ(double z)
-        //{ return z + height / 2; }
-
-
 
         void Initializtion()
         {
@@ -225,7 +206,8 @@ namespace MolecularThermalmotion
                 else
                 {
                     //通过小球的速度来更新小球位置
-                    PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.oldPosition, ref m.currentVelocity, t);
+                    if (m.position != m.oldPosition)
+                        PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.oldPosition, ref m.currentVelocity, t);
 
                     CDE.UpdateToGridmap(i);
 
