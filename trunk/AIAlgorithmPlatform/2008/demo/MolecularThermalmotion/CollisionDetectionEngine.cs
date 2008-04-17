@@ -14,15 +14,36 @@ namespace MolecularThermalmotion
         double gridLength;
         List<int> movingList;
 
+        Point3D gridMapOrigin;
+
+        int TransferToGridX(double x)
+        {
+            return (int)((x - gridMapOrigin.X) / gridLength);
+        }
+
+        int TransferToGridY(double y)
+        {
+            return (int)((y - gridMapOrigin.Y) / gridLength);
+        }
+
+        int TransferToGridZ(double z)
+        {
+            return (int)((z - gridMapOrigin.Z) / gridLength);
+        }
+
         public delegate void dCollisionResponse(int index1, int index2);
         public event dCollisionResponse CollisionResponse;
 
         public delegate void dCollideWithWall(int index);
         public event dCollideWithWall CollideWithWall;
 
-        public void InitCollisionDetectionEngine(List<Molecule> mset, double l, double w, double h, double gl)
+        
+
+        public void InitCollisionDetectionEngine(List<Molecule> mset, Point3D gmorigin, double l, double w, double h, double gl)
         {
             movingList = new List<int>();
+
+            gridMapOrigin = gmorigin;
             
             length = (int)Math.Ceiling(l/gl);
             width = (int)Math.Ceiling(w/gl);
@@ -36,9 +57,9 @@ namespace MolecularThermalmotion
             {
                 Molecule m = moleculeSet[i];
 
-                int x=(int)(m.position.X / gridLength);
-                int y=(int)(m.position.Y / gridLength);
-                int z=(int)(m.position.Z / gridLength);
+                int x = TransferToGridX(m.position.X);
+                int y = TransferToGridY(m.position.Y);
+                int z = TransferToGridZ(m.position.Z);
                 if(gridMap[x,y,z]==null)gridMap[x,y,z]=new List<int>();
 
                 gridMap[x, y, z].Add(i);
@@ -54,14 +75,14 @@ namespace MolecularThermalmotion
             
             Molecule m = moleculeSet[moleculeIndex];
 
-            int x = (int)(m.position.X / gridLength);
-            int y = (int)(m.position.Y / gridLength);
-            int z = (int)(m.position.Z / gridLength);
+            int x = TransferToGridX(m.position.X);
+            int y = TransferToGridY(m.position.Y);
+            int z = TransferToGridZ(m.position.Z);
 
             //oldPosition没赋值
-            int oldx = (int)(m.oldPosition.X / gridLength);
-            int oldy = (int)(m.oldPosition.Y / gridLength);
-            int oldz = (int)(m.oldPosition.Z / gridLength);
+            int oldx = TransferToGridX(m.oldPosition.X);
+            int oldy = TransferToGridY(m.oldPosition.Y);
+            int oldz = TransferToGridZ(m.oldPosition.Z);
 
 
             if (oldx == x &&
@@ -100,9 +121,9 @@ namespace MolecularThermalmotion
 
                     if (!m.isNeedDetected) continue; //只对运动物体碰撞检测
 
-                    int x = (int)(m.position.X / gridLength);
-                    int y = (int)(m.position.Y / gridLength);
-                    int z = (int)(m.position.Z / gridLength);
+                    int x = TransferToGridX(m.position.X);
+                    int y = TransferToGridY(m.position.Y);
+                    int z = TransferToGridZ(m.position.Z);
 
                     List<int> grid = gridMap[x, y, z];
                     //if (grid == null) continue;
