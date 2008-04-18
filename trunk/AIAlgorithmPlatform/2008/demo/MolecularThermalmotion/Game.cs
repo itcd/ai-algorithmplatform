@@ -28,15 +28,56 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int MoleculeNum = 100;
-        double positionRange = 50;
-        double velocityRange = 30;
-        double radius = 5;
+        int moleculeNum = 100;
+        public int MoleculeNum
+        {
+            get { return moleculeNum; }
+            set { moleculeNum = value; }
+        }
 
-        
+        double positionRange = 50;
+        public double PositionRange
+        {
+            get { return positionRange; }
+            set { positionRange = value; }
+        }
+
+        double velocityRange = 30;
+        public double VelocityRange
+        {
+            get { return velocityRange; }
+            set { velocityRange = value; }
+        }
+
+        double radius = 5;
+        public double Radius
+        {
+            get { return radius; }
+            set { radius = value; }
+        }
+
+
         double length = 100;
+        public double Length
+        {
+            get { return length; }
+            set { length = value; }
+        }
+
         double width = 100;
+        public double Width
+        {
+            get { return width; }
+            set { width = value; }
+        }
+
         double height = 100;
+        public double Height
+        {
+            get { return height; }
+            set { height = value; }
+        }
+
         Point3D gridMapOrigin;
 
         Random random = new Random();
@@ -66,7 +107,7 @@ namespace MolecularThermalmotion
             Material material = (Material)gameWindows.viewport.Resources["ER_Vector___Glossy_Yellow___MediumMR2"];
             Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
 
-            for (int i = 0; i < MoleculeNum; i++)
+            for (int i = 0; i < moleculeNum; i++)
             {
                 //创建并初始化molecule的属性
                 Molecule molecule = new Molecule()
