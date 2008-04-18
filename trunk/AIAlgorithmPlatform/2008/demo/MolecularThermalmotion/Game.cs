@@ -20,7 +20,7 @@ namespace MolecularThermalmotion
 {
     class Game
     {
-        GameWindows gameWindows = new GameWindows();
+        GameWindows gameWindows = null; //new GameWindows();
 
         TimerPump timerPump;
 
@@ -264,6 +264,7 @@ namespace MolecularThermalmotion
 
         public void StartGame()
         {
+            gameWindows = new GameWindows(this);
             gameWindows.Show();
             Initializtion();
             timerPump = new TimerPump() { InvokedMethod = PerformOneFrame };

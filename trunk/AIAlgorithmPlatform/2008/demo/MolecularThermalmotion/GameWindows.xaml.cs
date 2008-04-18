@@ -19,10 +19,26 @@ namespace MolecularThermalmotion
     /// </summary>
     public partial class GameWindows : Window
     {
+        private Game game;
+        internal Game CurrentGame
+        {
+            get { return game; }
+            set { game = value; }
+        }
+
+        internal GameWindows(Game game)
+        {
+            InitializeComponent();
+
+            this.game = game;
+
+            model.Transform = new Transform3DGroup();
+        }
+
         private bool mDown;
         private Point mLastPos;
 
-        public GameWindows()
+        private GameWindows()
         {
             InitializeComponent();
 
