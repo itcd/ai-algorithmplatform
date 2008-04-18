@@ -39,10 +39,14 @@ namespace MolecularThermalmotion
 
         public static void UpdateVelocityByCollide(Point3D position1, Point3D position2, ref Vector3D velocity1, ref Vector3D velocity2, double mass1, double mass2, double r1, double r2)
         {
+            //velocity1 = new Vector3D(0, 0, 0);
+            //velocity2 = new Vector3D(0, 0, 0);
+
             //Vector3D v1 = velocity1;
             //velocity1 = velocity2;
             //velocity2 = v1;
             //Debug.WriteLine(velocity1.Length.ToString() + "  " + velocity2.Length.ToString(), "Before:");
+
             Vector3D normalVector = new Vector3D(position1.X - position2.X, position1.Y - position2.Y, position1.Z - position2.Z);
             Vector3D pr1 = pr(normalVector, velocity1);
             Vector3D pr2 = pr(normalVector, velocity2);
@@ -53,6 +57,7 @@ namespace MolecularThermalmotion
                 velocity1 = v1s;
                 velocity2 = v2s;
             }
+
             //Debug.WriteLine(velocity1.Length.ToString() + "  " + velocity2.Length.ToString(), "After:");
         }
     }   

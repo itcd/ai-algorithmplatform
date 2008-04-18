@@ -13,7 +13,7 @@ namespace MolecularThermalmotion
     /// </summary>
     public partial class Window1 : Window
     {
-        Game game = new Game();
+        Game game = null;
 
         public Window1()
         {
@@ -24,6 +24,7 @@ namespace MolecularThermalmotion
 
         private void StartBotton_Click(object sender, RoutedEventArgs e)
         {
+            game = new Game();
             game.StartGame();
         }
 
