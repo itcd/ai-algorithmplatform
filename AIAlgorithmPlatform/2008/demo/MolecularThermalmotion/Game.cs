@@ -30,8 +30,8 @@ namespace MolecularThermalmotion
 
         int MoleculeNum = 100;
         double positionRange = 50;
-        double velocityRange = 100;
-        double radius = 3;
+        double velocityRange = 30;
+        double radius = 5;
 
         
         double length = 100;
@@ -53,9 +53,9 @@ namespace MolecularThermalmotion
             //MeshGeometry3D sphere = new SphereMesh().Geometry;
 
             SphereMesh sphereMesh = new SphereMesh();
-            sphereMesh.Slices = 72/4;
-            sphereMesh.Stacks = 36/4;
-            sphereMesh.Radius = radius+1;
+            sphereMesh.Slices = 72 / 1;
+            sphereMesh.Stacks = 36 / 1;
+            sphereMesh.Radius = radius;
             MeshGeometry3D sphere = sphereMesh.Geometry;
 
 
@@ -226,7 +226,7 @@ namespace MolecularThermalmotion
             gameWindows.Show();
             Initializtion();
             timerPump = new TimerPump() { InvokedMethod = PerformOneFrame };
-            timerPump.BeginPumpWithTimeInterval(4);
+            timerPump.BeginPumpWithTimeInterval(40);
         }
 
         public void StopGame()

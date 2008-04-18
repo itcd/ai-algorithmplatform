@@ -70,6 +70,8 @@ namespace MolecularThermalmotion
 
         public void UpdateToGridmap(int moleculeIndex)
         {
+            movingList.Add(moleculeIndex);
+
             if(CollideWithWall!=null)
                 CollideWithWall(moleculeIndex);
             
@@ -92,7 +94,7 @@ namespace MolecularThermalmotion
 
             //要注意remove和removeAt的用法
             gridMap[oldx, oldy, oldz].Remove(moleculeIndex);
-
+            
             //List<int> oldGrid = gridMap[oldx, oldy, oldz];
             //for(int i=0;i<oldGrid.Count;i++)
             //    if (oldGrid[i] == moleculeIndex)
@@ -105,9 +107,6 @@ namespace MolecularThermalmotion
             if (gridMap[x, y, z] == null) gridMap[x, y, z] = new List<int>();
 
             gridMap[x, y, z].Add(moleculeIndex);
-
-            movingList.Add(moleculeIndex);
-
         }
 
         public void CollisionDetection()
@@ -135,23 +134,25 @@ namespace MolecularThermalmotion
 
                                     List<int> neighborGrid = gridMap[i, j, k];
 
-                                        if (neighborGrid != null)
-                                        {
+                                    if (neighborGrid != null)
+                                    {
                                         for (int l = 0; l < neighborGrid.Count; l++)
                                         {
                                             int neighborIndex = neighborGrid[l];
+
+                                            if (neighborIndex == index) continue;
 
                                             //if (!moleculeSet[neighborIndex].isNeedDetected) continue; //避免两个运动物体重复碰撞检测
 
                                             if (Collide(index, neighborIndex))
                                             {
-                                                moleculeSet[neighborIndex].isNeedDetected = false;
-                                                moleculeSet[index].isNeedDetected = false;
+                                                //moleculeSet[neighborIndex].isNeedDetected = false;
+                                                //moleculeSet[index].isNeedDetected = false;
 
                                                 CollisionResponse(index, neighborIndex);
 
                                                 //每一帧对于每个球只跟另外的一个球进行碰撞
-                                                goto jumpOut;
+                                                //goto jumpOut;
                                             }
                                         }
                                     }
