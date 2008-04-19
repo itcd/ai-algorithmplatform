@@ -57,7 +57,7 @@ namespace MolecularThermalmotion
         }
 
 
-        double length = 100;
+        double length = 200;
         public double Length
         {
             get { return length; }
@@ -89,8 +89,49 @@ namespace MolecularThermalmotion
 
         void Initializtion()
         {
+            //画球台
+            {
+                BoxMesh boardMeshBase = new BoxMesh();
+
+                boardMeshBase.Width = Length;
+                boardMeshBase.Height = Height;
+                boardMeshBase.Depth = Width;
+
+                Geometry3D boardMesh = boardMeshBase.Geometry;
+                GeometryModel3D boardGeometryModel = new GeometryModel3D(boardMesh, null);
+
+                boardGeometryModel.Material = null;
+
+                //VisualBrush visualBrush = new VisualBrush();
+                //visualBrush.TileMode = TileMode.Tile;
+                //visualBrush.Viewbox = new Rect(0, 0, 100, 100);
+                //visualBrush.Viewport = new Rect(0,0,0.1,0.1);
+                //visualBrush.rend
+
+                ImageBrush imageBrush = new ImageBrush();
+                imageBrush.ImageSource = new BitmapImage(new Uri("green.jpg", UriKind.Relative));
+                //imageBrush.Stretch = Stretch.Fill;
+                //imageBrush.Viewbox = new Rect(0, 0, imageBrush.ImageSource.Width, imageBrush.ImageSource.Height);
+                imageBrush.Viewbox = new Rect(0, 0, 100, 100);
+                //imageBrush.TileMode = TileMode.FlipXY;
+                imageBrush.TileMode = TileMode.Tile;
+                imageBrush.ViewboxUnits = BrushMappingMode.Absolute;
+                imageBrush.Viewport = new Rect(0, 0, 0.1, 0.1);
+                
+                MaterialGroup materialGroup = new MaterialGroup();
+                //materialGroup.Children.Add(new SpecularMaterial(new SolidColorBrush(Colors.Gray), 1024));
+                //materialGroup.Children.Add(new DiffuseMaterial(new SolidColorBrush(Colors.GreenYellow)));
+                materialGroup.Children.Add(new DiffuseMaterial(imageBrush));
+
+                boardGeometryModel.BackMaterial = materialGroup;
+                
+                ModelVisual3D moleculeSetModel = new ModelVisual3D();
+                moleculeSetModel.Content = boardGeometryModel;
+                gameWindows.model.Children.Add(moleculeSetModel);
+            }
+
             gridMapOrigin = new Point3D(-0.5 * length, -0.5 * width, -0.5 * height);
-            
+
             //MeshGeometry3D sphere = new SphereMesh().Geometry;
 
             SphereMesh sphereMesh = new SphereMesh();
@@ -133,9 +174,11 @@ namespace MolecularThermalmotion
                 MoleculeSet.Add(molecule);
             }
 
-            ModelVisual3D moleculeSetModel = new ModelVisual3D();
-            moleculeSetModel.Content = moleculeModel3DGroup;
-            gameWindows.model.Children.Add(moleculeSetModel);
+            {
+                ModelVisual3D moleculeSetModel = new ModelVisual3D();
+                moleculeSetModel.Content = moleculeModel3DGroup;
+                gameWindows.model.Children.Add(moleculeSetModel);
+            }
 
             //初始化物理引擎
             CDE.InitCollisionDetectionEngine(MoleculeSet, gridMapOrigin, (int)length, (int)width, (int)height, (int)radius * 2);
@@ -259,7 +302,6 @@ namespace MolecularThermalmotion
                     temp.OffsetZ = m.position.Z;
                 }
             }
-
         }
 
         public void StartGame()
