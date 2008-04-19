@@ -10,6 +10,8 @@ namespace MolecularThermalmotion
     {
         List<int>[, ,] gridMap;
         List<Molecule> moleculeSet;
+
+
         int length, width, height;
         double gridLength;
         List<int> movingList;
@@ -51,6 +53,8 @@ namespace MolecularThermalmotion
             gridLength = gl;
 
             moleculeSet = mset;
+
+
             gridMap = new List<int>[length, width, height];
 
             for (int i = 0; i < moleculeSet.Count; i++)
@@ -100,7 +104,7 @@ namespace MolecularThermalmotion
             //    if (oldGrid[i] == moleculeIndex)
             //    {
             //        oldGrid.RemoveAt(i);
-            //        break;
+            ;            //        break;
             //    }
      
             
@@ -150,6 +154,7 @@ namespace MolecularThermalmotion
                                                 //moleculeSet[index].isNeedDetected = false;
 
                                                 CollisionResponse(index, neighborIndex);
+
 
                                                 //每一帧对于每个球只跟另外的一个球进行碰撞
                                                 //goto jumpOut;
