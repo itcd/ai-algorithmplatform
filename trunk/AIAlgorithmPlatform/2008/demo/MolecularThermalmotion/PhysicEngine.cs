@@ -29,7 +29,7 @@ namespace MolecularThermalmotion
         {
             if (a.Length != 0)
             {
-                a = a / a.Length;
+                a.Normalize();
                 double ba = b.X * a.X + b.Y * a.Y + b.Z * a.Z;
                 return ba * a;
             }
@@ -50,7 +50,13 @@ namespace MolecularThermalmotion
             Vector3D normalVector = new Vector3D(position1.X - position2.X, position1.Y - position2.Y, position1.Z - position2.Z);
             Vector3D pr1 = pr(normalVector, velocity1);
             Vector3D pr2 = pr(normalVector, velocity2);
-            if (normalVector.Length <= (r1 + r2) && (normalVector.Length > 0.00000001 || normalVector.Length < -0.0000001) && (Math.Abs((pr1 + pr2).Length)) > 0.00001)
+            Vector3D n0 = normalVector, n1 = pr1, n2 = pr2;
+            n0.Normalize();
+            n1.Normalize();
+            n2.Normalize();
+            if (((n0 != n1 && n2 == n0) ||
+                (n0 != n1 && pr1.Length > pr2.Length) ||
+                (n2 == n0 && pr2.Length > pr1.Length)))
             {
                 Vector3D v1s = velocity1 - pr1 + pr2;
                 Vector3D v2s = velocity2 - pr2 + pr1;
