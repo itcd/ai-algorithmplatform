@@ -42,7 +42,7 @@ namespace MolecularThermalmotion
             set { positionRange = value; }
         }
 
-        double velocityRange = 30;
+        double velocityRange = 50;
         public double VelocityRange
         {
             get { return velocityRange; }

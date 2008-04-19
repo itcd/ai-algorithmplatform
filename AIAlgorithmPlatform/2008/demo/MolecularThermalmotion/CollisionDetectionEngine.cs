@@ -122,7 +122,7 @@ namespace MolecularThermalmotion
                     
                     Molecule m = moleculeSet[index];
 
-                    if (!m.isNeedDetected) continue; //只对运动物体碰撞检测
+                    //if (!m.isNeedDetected) continue; //只对运动物体碰撞检测
 
                     int x = TransferToGridX(m.position.X);
                     int y = TransferToGridY(m.position.Y);
@@ -174,10 +174,10 @@ namespace MolecularThermalmotion
                 //    moleculeSet[movingList[index]].isNeedDetected = true;
                 //}
 
-                foreach (Molecule m in moleculeSet)
-                {
-                    m.isNeedDetected = true;
-                }
+                //foreach (Molecule m in moleculeSet)
+                //{
+                //    m.isNeedDetected = true;
+                //}
             }
             movingList.Clear();
         }
