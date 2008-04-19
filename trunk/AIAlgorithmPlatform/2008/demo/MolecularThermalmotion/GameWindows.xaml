@@ -101,6 +101,9 @@
                             <AmbientLight Color= "#FF333333"/>
                             <DirectionalLight Color="White" Direction="-0,-1,-1" />
                             <DirectionalLight Color="White" Direction="-0,-0,-1" />
+                            <PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,0,0" QuadraticAttenuation="0" Range="1000"/>
+                           
+                            
                             <!--<PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,0,15" QuadraticAttenuation="0" Range="64"/>
                             <PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,10,15" QuadraticAttenuation="0" Range="64"/>
                             <PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,-10,15" QuadraticAttenuation="0" Range="64"/>
@@ -123,10 +126,7 @@
                         </Model3DGroup>
                     </ModelVisual3D.Content>
                 </ModelVisual3D>
-
-
-
-
+                
             </ModelVisual3D>
         </Viewport3D>
     </Grid>
