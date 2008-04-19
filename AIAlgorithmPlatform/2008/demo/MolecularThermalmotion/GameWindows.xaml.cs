@@ -105,16 +105,13 @@ namespace MolecularThermalmotion
         private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            //this.textBox1.Text = game.Height.ToString(); 
-            //game.Height = Convert.ToDouble(Console.ReadLine());
-           
-
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             game.Height = Convert.ToDouble(this.textBox1.Text);
         }
-        
+
+
     }
 }
