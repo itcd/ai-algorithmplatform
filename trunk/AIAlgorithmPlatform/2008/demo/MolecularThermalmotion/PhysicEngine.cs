@@ -48,15 +48,24 @@ namespace MolecularThermalmotion
             //Debug.WriteLine(velocity1.Length.ToString() + "  " + velocity2.Length.ToString(), "Before:");
 
             Vector3D normalVector = new Vector3D(position1.X - position2.X, position1.Y - position2.Y, position1.Z - position2.Z);
-            Vector3D pr1 = pr(normalVector, velocity1);
-            Vector3D pr2 = pr(normalVector, velocity2);
-            Vector3D n0 = normalVector, n1 = pr1, n2 = pr2;
+
+            Vector3D n0 = normalVector;
             n0.Normalize();
-            n1.Normalize();
-            n2.Normalize();
-            if (((n0 != n1 && n2 == n0) ||
-                (n0 != n1 && pr1.Length > pr2.Length) ||
-                (n2 == n0 && pr2.Length > pr1.Length)))
+
+            double ba1 = Ba(ref velocity1, ref n0);
+            double ba2 = Ba(ref velocity2, ref n0);
+
+            Vector3D pr1 = ba1 * n0;
+            Vector3D pr2 = ba2 * n0;
+
+            //Vector3D n0 = normalVector, n1 = pr1, n2 = pr2;
+            //n0.Normalize();
+            //n1.Normalize();
+            //n2.Normalize();
+
+            if (((ba1 < 0 && ba2 > 0) ||
+                (ba1 < 0 && pr1.Length > pr2.Length) ||
+                (ba2 > 0 && pr2.Length > pr1.Length)))
             {
                 Vector3D v1s = velocity1 - pr1 + pr2;
                 Vector3D v2s = velocity2 - pr2 + pr1;
@@ -65,6 +74,12 @@ namespace MolecularThermalmotion
             }
 
             //Debug.WriteLine(velocity1.Length.ToString() + "  " + velocity2.Length.ToString(), "After:");
+        }
+
+        private static double Ba(ref Vector3D velocity1, ref Vector3D n0)
+        {
+            double ba = velocity1.X * n0.X + velocity1.Y * n0.Y + velocity1.Z * n0.Z;
+            return ba;
         }
     }   
 }
