@@ -99,9 +99,15 @@
                     <ModelVisual3D.Content>
                         <Model3DGroup>
                             <AmbientLight Color= "#FF333333"/>
-                            <DirectionalLight Color="White" Direction="-0,-1,-1" />
-                            <DirectionalLight Color="White" Direction="-0,-0,-1" />
-                            <PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,0,0" QuadraticAttenuation="0" Range="1000"/>
+                            <!--<DirectionalLight Color="White" Direction="10,10,10" />
+                            <DirectionalLight Color="White" Direction="-10,-10,-10" />
+                            <DirectionalLight Color="White" Direction="0,-10,-10" />
+                            <DirectionalLight Color="White" Direction="-10,0,0" />-->
+                            <DirectionalLight Color="White" Direction="-1,-1,-1" />
+                            <DirectionalLight Color="White" Direction="1,-1,1" />
+                            <!--<DirectionalLight Color="White" Direction="-1,-1,1" />-->
+                            <!--<DirectionalLight Color="White" Direction="-0,-0,-1" />-->
+                            <!--<PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,0,0" QuadraticAttenuation="0" Range="1000"/>-->
                            
                             
                             <!--<PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,0,15" QuadraticAttenuation="0" Range="64"/>
