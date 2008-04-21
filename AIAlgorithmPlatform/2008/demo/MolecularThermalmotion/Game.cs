@@ -18,9 +18,11 @@ using Petzold.Media3D;
 
 namespace MolecularThermalmotion
 {
-    class Game
+    public class Game
     {
         GameWindows gameWindows = null; //new GameWindows();
+
+      //  UserControl1 userControl1 = null;
 
         TimerPump timerPump;
 
