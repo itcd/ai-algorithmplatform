@@ -49,7 +49,7 @@ namespace MolecularThermalmotion
             set { velocityRange = value; }
         }
 
-        double radius = 5;
+        double radius = 4;
         public double Radius
         {
             get { return radius; }
@@ -105,6 +105,8 @@ namespace MolecularThermalmotion
         double e = 0.5;
 
         Stick stick = new Stick();
+
+        Model3DGroup moleculeModel3DGroup;
 
         Point3D gridMapOrigin;
 
@@ -163,7 +165,7 @@ namespace MolecularThermalmotion
 
 
             //用于保存所有小球的Model
-            Model3DGroup moleculeModel3DGroup = new Model3DGroup();
+            moleculeModel3DGroup = new Model3DGroup();
 
             Material material = (Material)gameWindows.viewport.Resources["ER_Vector___Glossy_Yellow___MediumMR2"];
             Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
@@ -227,36 +229,88 @@ namespace MolecularThermalmotion
                 {
                     m.position.X = gridMapOrigin.X + m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
+
+                    if (BallInHole(m)){ BallInHoleList.Add(m);}
                 }
                 if (m.position.X > gridMapOrigin.X + length - m.radius)
                 {
                     m.position.X = gridMapOrigin.X + length - m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
+
+                    if (BallInHole(m)) { BallInHoleList.Add(m); }
                 }
 
                 if (m.position.Y < gridMapOrigin.Y + m.radius)
                 {
                     m.position.Y = gridMapOrigin.Y + m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
+
+                    if (BallInHole(m)) { BallInHoleList.Add(m); }
                 }
                 if (m.position.Y > gridMapOrigin.Y + width - m.radius)
                 {
                     m.position.Y = gridMapOrigin.Y + width - m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
+
+                    if (BallInHole(m)) { BallInHoleList.Add(m); }
                 }
 
                 if (m.position.Z < gridMapOrigin.Z + m.radius)
                 {
                     m.position.Z = gridMapOrigin.Z + m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
+
+                    if (BallInHole(m)) { BallInHoleList.Add(m); }
                 }
                 if (m.position.Z > gridMapOrigin.Z + height - m.radius)
                 {
                     m.position.Z = gridMapOrigin.Z + height - m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
+
+                    if (BallInHole(m)) { BallInHoleList.Add(m); }
                 }
             };
+        }
 
+        double holeRadius = 20;
+        List<Molecule> BallInHoleList = new List<Molecule>();
+        bool BallInHole(Molecule m)
+        {
+            int count = 0;
+
+            if (m.position.X < gridMapOrigin.X + holeRadius)
+            {
+                count++;
+            }
+            if (m.position.X > gridMapOrigin.X + length - holeRadius)
+            {
+                count++;
+            }
+
+            if (m.position.Y < gridMapOrigin.Y + holeRadius)
+            {
+                count++;
+            }
+            if (m.position.Y > gridMapOrigin.Y + width - holeRadius)
+            {
+                count++;
+            }
+
+            if (m.position.Z < gridMapOrigin.Z + holeRadius)
+            {
+                count++;
+            }
+            if (m.position.Z > gridMapOrigin.Z + height - holeRadius)
+            {
+                count++;
+            }
+
+            if (count >= 3)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         void PerformOneFrame(double timeInterval)
@@ -267,11 +321,23 @@ namespace MolecularThermalmotion
             //碰撞检测（如果检测到碰撞在这里改变碰撞后小球的速度矢量）
             CDE.CollisionDetection();
 
+            foreach (Molecule m in BallInHoleList)
+            {
+                if (m != whiteBall)
+                {
+                    m.position = new Point3D(0,0,0);
+                    m.currentVelocity = new Vector3D(-1,-1,-1);
+                    moleculeModel3DGroup.Children.Remove(m.MoleculeGeometryModel);
+                    //MoleculeSet.Remove(m);
+                }
+            }
+            BallInHoleList.Clear();
+          
             //通过小球的受力来更新小球的速度（重力，摩擦力，碰撞后瞬间的冲力等）
             UpdateMoleculeSetVelocityByForce(t);
 
             //用速度来update小球的位置
-            UpdateMoleculeSetPositionByVelocity(t);
+            UpdateMoleculeSetPositionByVelocity(t);            
         }
 
         /// <summary>
