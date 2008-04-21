@@ -1,15 +1,16 @@
 ﻿<Window x:Class="MolecularThermalmotion.GameWindows"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="GameWindows" Height="300" Width="300" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    Title="GameWindows" Height="407" Width="626">
     <Grid Background="Black" MouseWheel="Grid_MouseWheel"
 		MouseDown="Grid_MouseDown" MouseUp="Grid_MouseUp"
 		MouseMove="Grid_MouseMove">
         <Grid.RowDefinitions>
-            <RowDefinition Height="265" />
+            <RowDefinition Height="Auto" MinHeight="23" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Viewport3D x:Name="viewport" Margin="0,23,0,0">
+        <Viewport3D x:Name="viewport" Grid.Row="1">
             <Viewport3D.Resources>
                 <ResourceDictionary>
                     <MaterialGroup x:Key="ER_Vector___Glossy_Yellow___MediumMR2" >
@@ -90,7 +91,7 @@
             <Viewport3D.Camera>
                 <PerspectiveCamera x:Name="camera" FarPlaneDistance="1000" LookDirection="0,0,-10"
 					UpDirection="0,1,0" NearPlaneDistance="1" Position="0,0,200"
-					FieldOfView="90" />
+					FieldOfView="45" />
             </Viewport3D.Camera>
 
             <ModelVisual3D x:Name="model">
@@ -98,14 +99,8 @@
                     <ModelVisual3D.Content>
                         <Model3DGroup>
                             <AmbientLight Color= "#FF333333"/>
-                            <!--<DirectionalLight Color="White" Direction="10,10,10" />
-                            <DirectionalLight Color="White" Direction="-10,-10,-10" />
-                            <DirectionalLight Color="White" Direction="0,-10,-10" />
-                            <DirectionalLight Color="White" Direction="-10,0,0" />-->
                             <DirectionalLight Color="White" Direction="-1,-1,-1" />
                             <DirectionalLight Color="White" Direction="1,-1,1" />
-                            <!--<DirectionalLight Color="White" Direction="-1,-1,1" />-->
-                            <!--<DirectionalLight Color="White" Direction="-0,-0,-1" />-->
                             <!--<PointLight Color="#FFFFFFFF" ConstantAttenuation="1" LinearAttenuation="0" Position="0,0,0" QuadraticAttenuation="0" Range="1000"/>-->
                            
                             
@@ -134,14 +129,10 @@
                 
             </ModelVisual3D>
         </Viewport3D>
-        <Button HorizontalAlignment="Left" Margin="8,0,0,20" VerticalAlignment="Bottom" Width="65" Height="23" Content="Button" Click="Button_Click">
-        	<Button.Background>
-        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-        			<GradientStop Color="#FF000000" Offset="0"/>
-        			<GradientStop Color="#FFFFFFFF" Offset="1"/>
-        		</LinearGradientBrush>
-        	</Button.Background>
-        </Button>
+        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,68" Name="sliderShootDIrectionX" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionX_ValueChanged" Minimum="-10" />
+        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,40" Name="sliderShootDIrectionY" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionY_ValueChanged" Minimum="-10" />
+        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,13" Name="sliderShootDIrectionZ" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionZ_ValueChanged" Minimum="-10" />
+        <Slider Grid.Row="1" Height="21" HorizontalAlignment="Right" Margin="0,0,25,13" Name="sliderShootForeceFactor" VerticalAlignment="Bottom" Width="100" Maximum="400" ValueChanged="sliderShootForeceFactor_ValueChanged" />
+        <Button Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,0,25,51" Name="ShootButton" VerticalAlignment="Bottom" Width="75" Click="ShootButton_Click">Shoot</Button>
     </Grid>
 </Window>
-
