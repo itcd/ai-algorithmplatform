@@ -35,6 +35,11 @@ namespace MolecularThermalmotion
             model.Transform = new Transform3DGroup();
         }
 
+        public void SetShootDirectionAndForceFactor()
+        {
+            //这时候使到那些control有效
+        }
+
         private bool mDown;
         private Point mLastPos;
 
@@ -73,7 +78,7 @@ namespace MolecularThermalmotion
 
                 Vector3D axis = new Vector3D(Math.Cos(axisAngle) * 4, Math.Sin(axisAngle) * 4, 0);
 
-                double rotation = 0.01 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
+                double rotation = 0.002 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
 
                 //QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
 
@@ -102,14 +107,45 @@ namespace MolecularThermalmotion
             mDown = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Window2 window2 = new Window2();
-            window2.game2 = game;
-            window2.Show();
-            game = window2.game2;
 
         }
 
+        //private void button1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    game.Height = Convert.ToDouble(this.textBox1.Text);
+        //}
+
+        private void sliderShootDIrectionX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            game.ShotDirection = new Vector3D(sliderShootDIrectionX.Value,
+                sliderShootDIrectionY.Value,
+                sliderShootDIrectionZ.Value);
+        }
+
+        private void sliderShootDIrectionY_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            game.ShotDirection = new Vector3D(sliderShootDIrectionX.Value,
+                sliderShootDIrectionY.Value,
+                sliderShootDIrectionZ.Value);
+        }
+
+        private void sliderShootDIrectionZ_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            game.ShotDirection = new Vector3D(sliderShootDIrectionX.Value,
+                sliderShootDIrectionY.Value,
+                sliderShootDIrectionZ.Value);
+        }
+
+        private void sliderShootForeceFactor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            game.ShootForceFactor = sliderShootForeceFactor.Value;
+        }
+
+        private void ShootButton_Click(object sender, RoutedEventArgs e)
+        {
+            game.ShootWhiteBallAndContinueGameLoop();
+        }
     }
 }

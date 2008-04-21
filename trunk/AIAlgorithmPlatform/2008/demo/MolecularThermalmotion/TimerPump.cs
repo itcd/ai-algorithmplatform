@@ -57,8 +57,6 @@ namespace MolecularThermalmotion
             if (thread != null && thread.IsAlive)
             {
                 thread.Abort();
-                while (thread.IsAlive)
-                { }
             }
 
             this.timeInterval = intervalTime;
@@ -72,6 +70,14 @@ namespace MolecularThermalmotion
             if (thread != null && thread.IsAlive)
             {
                 thread.Suspend();
+            }
+        }
+
+        public void Continue()
+        {
+            if (thread != null && thread.IsAlive)
+            {
+                thread.Resume();
             }
         }
 

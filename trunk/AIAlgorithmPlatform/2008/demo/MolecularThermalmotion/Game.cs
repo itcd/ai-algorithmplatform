@@ -18,11 +18,9 @@ using Petzold.Media3D;
 
 namespace MolecularThermalmotion
 {
-    public class Game
+    class Game
     {
         GameWindows gameWindows = null; //new GameWindows();
-
-      //  UserControl1 userControl1 = null;
 
         TimerPump timerPump;
 
@@ -30,7 +28,7 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int moleculeNum = 100;
+        int moleculeNum = 30;
         public int MoleculeNum
         {
             get { return moleculeNum; }
@@ -58,7 +56,6 @@ namespace MolecularThermalmotion
             set { radius = value; }
         }
 
-
         double length = 200;
         public double Length
         {
@@ -79,6 +76,35 @@ namespace MolecularThermalmotion
             get { return height; }
             set { height = value; }
         }
+
+        Molecule whiteBall = null;
+        public Molecule WhiteBall
+        {
+            get { return whiteBall; }
+        }
+
+        Vector3D shotDirection = new Vector3D(1, 1, 1);
+        public Vector3D ShotDirection
+        {
+            get { return shotDirection; }
+            set {
+
+                stick.UpdateStickPosition(new Vector3D(whiteBall.position.X, whiteBall.position.Y, whiteBall.position.Z), shotDirection);
+
+                shotDirection = value; 
+            }
+        }
+
+        double shootForceFactor = 100;
+        public double ShootForceFactor
+        {
+            get { return shootForceFactor; }
+            set { shootForceFactor = value; }
+        }
+
+        double e = 0.5;
+
+        Stick stick = new Stick();
 
         Point3D gridMapOrigin;
 
@@ -104,33 +130,26 @@ namespace MolecularThermalmotion
 
                 boardGeometryModel.Material = null;
 
-                //VisualBrush visualBrush = new VisualBrush();
-                //visualBrush.TileMode = TileMode.Tile;
-                //visualBrush.Viewbox = new Rect(0, 0, 100, 100);
-                //visualBrush.Viewport = new Rect(0,0,0.1,0.1);
-                //visualBrush.rend
-
                 ImageBrush imageBrush = new ImageBrush();
                 imageBrush.ImageSource = new BitmapImage(new Uri("green.jpg", UriKind.Relative));
-                //imageBrush.Stretch = Stretch.Fill;
                 //imageBrush.Viewbox = new Rect(0, 0, imageBrush.ImageSource.Width, imageBrush.ImageSource.Height);
                 imageBrush.Viewbox = new Rect(0, 0, 100, 100);
                 //imageBrush.TileMode = TileMode.FlipXY;
                 imageBrush.TileMode = TileMode.Tile;
                 imageBrush.ViewboxUnits = BrushMappingMode.Absolute;
                 imageBrush.Viewport = new Rect(0, 0, 0.1, 0.1);
-                
+
                 MaterialGroup materialGroup = new MaterialGroup();
                 //materialGroup.Children.Add(new SpecularMaterial(new SolidColorBrush(Colors.Gray), 1024));
                 //materialGroup.Children.Add(new DiffuseMaterial(new SolidColorBrush(Colors.GreenYellow)));
                 materialGroup.Children.Add(new DiffuseMaterial(imageBrush));
 
                 boardGeometryModel.BackMaterial = materialGroup;
-                
+
                 ModelVisual3D moleculeSetModel = new ModelVisual3D();
                 moleculeSetModel.Content = boardGeometryModel;
                 gameWindows.model.Children.Add(moleculeSetModel);
-            }
+            }            
 
             gridMapOrigin = new Point3D(-0.5 * length, -0.5 * width, -0.5 * height);
 
@@ -141,7 +160,6 @@ namespace MolecularThermalmotion
             sphereMesh.Stacks = 36 / 1;
             sphereMesh.Radius = radius;
             MeshGeometry3D sphere = sphereMesh.Geometry;
-
 
 
             //用于保存所有小球的Model
@@ -157,7 +175,8 @@ namespace MolecularThermalmotion
                 {
                     position = new Point3D(GetRandomInRange(positionRange), GetRandomInRange(positionRange), GetRandomInRange(positionRange)),
 
-                    currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
+                    //currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
+                    mass = 1,
                     radius = radius
                 };
 
@@ -182,15 +201,20 @@ namespace MolecularThermalmotion
                 gameWindows.model.Children.Add(moleculeSetModel);
             }
 
-            //初始化物理引擎
-            CDE.InitCollisionDetectionEngine(MoleculeSet, gridMapOrigin, (int)length, (int)width, (int)height, (int)radius * 2);
+            //设置白球
+            whiteBall = MoleculeSet[0];
+            //whiteBall.currentVelocity = new Vector3D(5, 5, 5);
+
+            //画球棍
+            stick.Length = 120;
+            stick.Init(gameWindows.model, new Vector3D(whiteBall.position.X, whiteBall.position.Y, whiteBall.position.Z), shotDirection);
+            stick.Visible = false;
+
+            //初始化碰撞检测引擎
+            CDE.InitCollisionDetectionEngine(MoleculeSet, gridMapOrigin, length, width, height, radius * 2);
 
             CDE.CollisionResponse += delegate(int index1, int index2)
             {
-                //Vector3D v1 = MoleculeSet[index1].currentVelocity;
-                //MoleculeSet[index1].currentVelocity = MoleculeSet[index2].currentVelocity;
-                //MoleculeSet[index2].currentVelocity = v1;
-
                 PhysicEngine.UpdateVelocityByCollide(MoleculeSet[index1].position, MoleculeSet[index2].position, ref MoleculeSet[index1].currentVelocity, ref MoleculeSet[index2].currentVelocity,
                     MoleculeSet[index1].mass, MoleculeSet[index2].mass, MoleculeSet[index1].radius, MoleculeSet[index2].radius);
             };
@@ -256,41 +280,77 @@ namespace MolecularThermalmotion
         /// <param name="t"></param>
         private void UpdateMoleculeSetVelocityByForce(double t)
         {
-            //for (int i = 0; i < MoleculeSet.Count; i++)
-            //{
-            //    Molecule m = MoleculeSet[i];
+            Vector3D force = new Vector3D();
+            double k = 0.5;
+            for (int i = 0; i < MoleculeSet.Count; i++)
+            {
+                Molecule m = MoleculeSet[i];
+                //force.X = -k * (m.currentVelocity.X * Math.Abs(m.currentVelocity.X));
+                //force.Y = -k * (m.currentVelocity.Y * Math.Abs(m.currentVelocity.Y));
+                //force.Z = -k * (m.currentVelocity.Z * Math.Abs(m.currentVelocity.Z));
 
-            //    m.currentVelocity.Y -= 0.1;
+                force.X = -k * (m.currentVelocity.X);
+                force.Y = -k * (m.currentVelocity.Y);
+                force.Z = -k * (m.currentVelocity.Z);
 
-            //    //if (m.currentVelocity.X == 0 && m.currentVelocity.Y == 0 && m.currentVelocity.Z == 0)
-            //    //{
-            //    //    continue;
-            //    //}
-            //    //else
-            //    //{
-            //    //    //通过小球的速度来更新小球位置
-            //    //    PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.currentVelocity, t);
+                var tempVector = (force / m.mass) * t;
 
-            //    //    //更新小球显示的位置
-            //    //    TranslateTransform3D temp = (TranslateTransform3D)(m.MoleculeGeometryModel.Transform);
-            //    //    temp.OffsetX = m.position.X;
-            //    //    temp.OffsetY = m.position.Y;
-            //    //    temp.OffsetZ = m.position.Z;
-            //    //}
-            //}
+                if (Math.Abs(tempVector.X) > Math.Abs(m.currentVelocity.X))
+                {
+                    m.currentVelocity.X = 0;
+                }
+                else
+                {
+                    m.currentVelocity.X += tempVector.X;
+                    if (Math.Abs(m.currentVelocity.X) < e)
+                    { m.currentVelocity.X = 0; }
+                }
+
+                if (Math.Abs(tempVector.Y) > Math.Abs(m.currentVelocity.Y))
+                {
+                    m.currentVelocity.Y = 0;
+                }
+                else
+                {
+                    m.currentVelocity.Y += tempVector.Y;
+                    if (Math.Abs(m.currentVelocity.Y) < e)
+                    { m.currentVelocity.Y = 0; }
+                }
+
+                if (Math.Abs(tempVector.Z) > Math.Abs(m.currentVelocity.Z))
+                {
+                    m.currentVelocity.Z = 0;
+                }
+                else
+                {
+                    m.currentVelocity.Z += tempVector.Z;
+                    if (Math.Abs(m.currentVelocity.Z) < e)
+                    { m.currentVelocity.Z = 0; }
+                }
+            }
         }
 
         private void UpdateMoleculeSetPositionByVelocity(double t)
         {
+            bool isStop = true;
+
             for (int i = 0; i < MoleculeSet.Count; i++)
             {
                 Molecule m = MoleculeSet[i];
-                if (m.currentVelocity.X == 0 && m.currentVelocity.Y == 0 && m.currentVelocity.Z == 0)
+
+                bool ballIsStop = true;
+                if (Math.Abs(m.currentVelocity.X) < e) { m.currentVelocity.X = 0; } else { ballIsStop = false; }
+                if (Math.Abs(m.currentVelocity.Y) < e) { m.currentVelocity.Y = 0; } else { ballIsStop = false; }
+                if (Math.Abs(m.currentVelocity.Z) < e) { m.currentVelocity.Z = 0; } else { ballIsStop = false; }
+
+                if (ballIsStop)
                 {
                     continue;
                 }
                 else
                 {
+                    isStop = false;
+
                     //通过小球的速度来更新小球位置
                     if (m.position != m.oldPosition)
                         PhysicEngine.UpdatePositionByVelocity(ref m.position, ref m.oldPosition, ref m.currentVelocity, t);
@@ -304,20 +364,150 @@ namespace MolecularThermalmotion
                     temp.OffsetZ = m.position.Z;
                 }
             }
+
+            if (isStop)
+            {
+                StopGameLoop();
+
+                stick.UpdateStickPosition(new Vector3D(whiteBall.position.X, whiteBall.position.Y, whiteBall.position.Z), shotDirection);
+
+                stick.Visible = true;
+
+                gameWindows.SetShootDirectionAndForceFactor();
+            }
         }
 
-        public void StartGame()
+        public void InitGame()
         {
             gameWindows = new GameWindows(this);
             gameWindows.Show();
             Initializtion();
             timerPump = new TimerPump() { InvokedMethod = PerformOneFrame };
+        }
+
+        public void StartGame()
+        {            
             timerPump.BeginPumpWithTimeInterval(40);
         }
 
-        public void StopGame()
+        public void StopGameLoop()
         {
             timerPump.StopPump();
+        }
+
+        public void ContinueGameLoop()
+        {
+            timerPump.Continue();
+        }
+
+        public void ShootWhiteBallAndContinueGameLoop()
+        {
+            stick.Visible = false;
+
+            shotDirection.Normalize();
+
+            whiteBall.currentVelocity = shootForceFactor * shotDirection;
+
+            ContinueGameLoop();
+        }
+    }
+
+    class Stick
+    {
+        ModelVisual3D model = null;
+        ModelVisual3D stickVisualModel;
+        Cylinder cylinder;
+        Cylinder cylinder2;
+        GeometryModel3D EndPoint;
+
+        double length = 120;
+        public double Length
+        {
+            get { return length; }
+            set { length = value; }
+        }
+
+        bool visible = true;
+        public bool Visible
+        {
+            get { return visible; }
+            set {
+                if (value != visible)
+                {
+                    if (value == true)
+                    {
+                        model.Children.Add(stickVisualModel);
+                    }
+                    else
+                    {
+                        model.Children.Remove(stickVisualModel);
+                    }
+
+                    visible = value; 
+                }                
+            }
+        }
+
+        public void Init(ModelVisual3D model, Vector3D v1, Vector3D shotDirection)
+        {
+            this.model = model;
+
+            shotDirection.Normalize();
+            Vector3D v2 = v1 - shotDirection * length;
+            Vector3D v3 = v1 + shotDirection * 1000;
+
+            Material material = new DiffuseMaterial(Brushes.AliceBlue);
+            SphereMesh MeshGeneratorBase = new Petzold.Media3D.SphereMesh();
+            MeshGeneratorBase.Radius = 2;
+            MeshGeometry3D sphere = MeshGeneratorBase.Geometry;
+
+            //EndPoint
+            //Vector3D v2 = new Vector3D(-30, -30, 0);
+            EndPoint = new GeometryModel3D(sphere, new DiffuseMaterial(Brushes.BurlyWood));
+            EndPoint.Transform = new TranslateTransform3D(v2);
+                        
+            cylinder = new Cylinder();
+            cylinder.Fold1 = 0.25;
+            cylinder.Fold2 = 0.75;
+            cylinder.Radius1 = 0.5;
+            cylinder.Radius2 = 2;
+            cylinder.Material = material;
+            cylinder.Point1 = new Point3D(v1.X, v1.Y, v1.Z);
+            cylinder.Point2 = new Point3D(v2.X, v2.Y, v2.Z);
+
+            cylinder2 = new Cylinder();
+            cylinder2.Fold1 = 0.25;
+            cylinder2.Fold2 = 0.75;
+            cylinder2.Radius1 = 0.1;
+            cylinder2.Radius2 = 0.1;
+            cylinder2.Material = new DiffuseMaterial(Brushes.Green);
+            cylinder2.Point1 = new Point3D(v1.X, v1.Y, v1.Z);
+            cylinder2.Point2 = new Point3D(v3.X, v3.Y, v3.Z);
+
+            stickVisualModel = new ModelVisual3D();
+            stickVisualModel.Content = EndPoint;
+            stickVisualModel.Children.Add(cylinder);
+
+            stickVisualModel.Children.Add(cylinder2);
+
+            model.Children.Add(stickVisualModel);
+
+            cylinder.Material = new DiffuseMaterial(Brushes.BurlyWood);
+        }
+
+        public void UpdateStickPosition(Vector3D v1, Vector3D shotDirection)
+        {
+            shotDirection.Normalize();
+            Vector3D v2 = v1 - shotDirection * length;
+            Vector3D v3 = v1 + shotDirection * 1000;
+
+            cylinder.Point1 = new Point3D(v1.X, v1.Y, v1.Z);
+            cylinder.Point2 = new Point3D(v2.X, v2.Y, v2.Z);
+
+            cylinder2.Point1 = new Point3D(v1.X, v1.Y, v1.Z);
+            cylinder2.Point2 = new Point3D(v3.X, v3.Y, v3.Z);
+
+            EndPoint.Transform = new TranslateTransform3D(v2);
         }
     }
 }

@@ -24,12 +24,18 @@ namespace MolecularThermalmotion
         private void StartBotton_Click(object sender, RoutedEventArgs e)
         {
             game = new Game();
+            game.InitGame();
             game.StartGame();
         }
 
         private void StopBotton_Click(object sender, RoutedEventArgs e)
         {
-            game.StopGame();
+            game.StopGameLoop();
+        }
+
+        private void ContinueBotton_Click(object sender, RoutedEventArgs e)
+        {
+            game.ContinueGameLoop();
         }
     }
 }
