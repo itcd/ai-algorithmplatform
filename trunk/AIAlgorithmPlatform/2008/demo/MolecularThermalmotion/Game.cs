@@ -28,7 +28,7 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int moleculeNum = 30;
+        int moleculeNum = 4;
         public int MoleculeNum
         {
             get { return moleculeNum; }
@@ -170,13 +170,28 @@ namespace MolecularThermalmotion
             Material material = (Material)gameWindows.viewport.Resources["ER_Vector___Glossy_Yellow___MediumMR2"];
             Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
 
-            for (int i = 0; i < moleculeNum; i++)
+            //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
+           double[,] moleculePositionSet = new double[moleculeNum,3];
+           moleculePositionSet[0, 0] = 0;
+           moleculePositionSet[0, 1] = 0;
+           moleculePositionSet[0, 2] = 8;
+           moleculePositionSet[1, 0] = 4.8;
+           moleculePositionSet[1, 1] = 0;
+           moleculePositionSet[1, 2] = 0;
+           moleculePositionSet[2, 0] = -2;
+           moleculePositionSet[2, 1] = 4;
+           moleculePositionSet[2, 2] = 0;
+           moleculePositionSet[3, 0] = -2;
+           moleculePositionSet[3, 1] = -4;
+           moleculePositionSet[3, 2] = 0;
+            
+            for (int i = 0;( i < moleculeNum) ; i++)
             {
                 //创建并初始化molecule的属性
                 Molecule molecule = new Molecule()
                 {
-                    position = new Point3D(GetRandomInRange(positionRange), GetRandomInRange(positionRange), GetRandomInRange(positionRange)),
-
+                    //position = new Point3D(GetRandomInRange(positionRange), GetRandomInRange(positionRange), GetRandomInRange(positionRange)),
+                    position = new Point3D(moleculePositionSet[i,0], moleculePositionSet [i,1], moleculePositionSet[i,2]),
                     //currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
                     mass = 1,
                     radius = radius
@@ -197,11 +212,15 @@ namespace MolecularThermalmotion
                 MoleculeSet.Add(molecule);
             }
 
+
+
             {
                 ModelVisual3D moleculeSetModel = new ModelVisual3D();
                 moleculeSetModel.Content = moleculeModel3DGroup;
                 gameWindows.model.Children.Add(moleculeSetModel);
             }
+
+
 
             //设置白球
             whiteBall = MoleculeSet[0];
