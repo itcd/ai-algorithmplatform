@@ -102,16 +102,14 @@ namespace MolecularThermalmotion
             mDown = false;
         }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Window2 window2 = new Window2();
+            window2.game2 = game;
+            window2.Show();
+            game = window2.game2;
 
         }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            game.Height = Convert.ToDouble(this.textBox1.Text);
-        }
-
 
     }
 }
