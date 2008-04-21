@@ -23,10 +23,10 @@ namespace MolecularThermalmotion
 
         ~TimerPump()
         {
-            if (thread != null && thread.IsAlive)
-            {
-                thread.Abort();
-            }
+            //if (thread != null && thread.IsAlive)
+            //{
+            //    thread.Abort();
+            //}
         }
 
         void Run()

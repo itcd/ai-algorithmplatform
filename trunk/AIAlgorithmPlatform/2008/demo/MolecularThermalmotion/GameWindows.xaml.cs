@@ -48,6 +48,17 @@ namespace MolecularThermalmotion
             InitializeComponent();
 
             model.Transform = new Transform3DGroup();
+
+            this.PreviewKeyDown += new KeyEventHandler(GameWindows_KeyDown);
+
+            this.viewport.PreviewKeyDown += new KeyEventHandler(GameWindows_KeyDown);
+        }
+
+        void GameWindows_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Q) { sliderShootDIrectionX.Value += 0.1; }
+
+            if (e.Key == Key.W) { sliderShootDIrectionX.Value -= 0.1; }
         }
 
         private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
