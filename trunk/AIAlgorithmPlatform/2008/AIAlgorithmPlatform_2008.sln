@@ -74,9 +74,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample_test", "sample_test", "{E1B3D20A-59FA-41AE-B9BE-7F3E2806AAD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C5 Generic Collection Library 1.10", "C5 Generic Collection Library 1.10", "{CD7A45D9-CC27-4B73-87AD-195EA0C662CA}"
-	ProjectSection(SolutionItems) = preProject
-		reference\3DTools\3DTools\Viewport3DDecorator.cs = reference\3DTools\3DTools\Viewport3DDecorator.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C5", "reference\C5\C5\C5.csproj", "{D70489CD-ABDA-48FF-BD1E-BE3F7495BE71}"
 EndProject
