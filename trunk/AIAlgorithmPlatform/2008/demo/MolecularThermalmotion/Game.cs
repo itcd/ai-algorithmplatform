@@ -171,13 +171,51 @@ namespace MolecularThermalmotion
             Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
             
 
+           // //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
+           //double[,] moleculePositionSet = new double[moleculeNum,3];
+           //moleculePositionSet[0, 0] = 50;
+           //moleculePositionSet[0, 1] = 0;
+           //moleculePositionSet[0, 2] = 0;
+           //moleculePositionSet[1, 0] = 0;
+           //moleculePositionSet[1, 1] = 0;
+           //moleculePositionSet[1, 2] = 8;
+           ////layer2
+           //moleculePositionSet[2, 0] = 4.8;
+           //moleculePositionSet[2, 1] = 0;
+           //moleculePositionSet[2, 2] = 0;
+           //moleculePositionSet[3, 0] = -2;
+           //moleculePositionSet[3, 1] = 4;
+           //moleculePositionSet[3, 2] = 0;
+           //moleculePositionSet[4, 0] = -2;
+           //moleculePositionSet[4, 1] = -4;
+           //moleculePositionSet[4, 2] = 0;
+           ////layer3
+           //moleculePositionSet[5, 0] = 9.6;
+           //moleculePositionSet[5, 1] = 0;
+           //moleculePositionSet[5, 2] = -4;
+           //moleculePositionSet[6, 0] = 2.4;
+           //moleculePositionSet[6, 1] = 4;
+           //moleculePositionSet[6, 2] = -4;
+           //moleculePositionSet[7, 0] = 2.4;
+           //moleculePositionSet[7, 1] = -4;
+           //moleculePositionSet[7, 2] = -4;
+           //moleculePositionSet[8, 0] = -4.8;
+           //moleculePositionSet[8, 1] = 8.7;
+           //moleculePositionSet[8, 2] = -4;
+           //moleculePositionSet[9, 0] = -4.8;
+           //moleculePositionSet[9, 1] = 0;
+           //moleculePositionSet[9, 2] = -4;
+           //moleculePositionSet[10, 0] = -4.8;
+           //moleculePositionSet[10, 1] = -8.7;
+           //moleculePositionSet[10, 2] = -4;
+
             //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
            double[,] moleculePositionSet = new double[moleculeNum,3];
            moleculePositionSet[0, 0] = 50;
            moleculePositionSet[0, 1] = 0;
            moleculePositionSet[0, 2] = 0;
            //layer1 begin
-           moleculePositionSet[1, 0] = 0;
+           moleculePositionSet[1, 0] = 0.0000000001;
            moleculePositionSet[1, 1] = 0;
            moleculePositionSet[1, 2] = 0;
            //layer2
@@ -282,7 +320,7 @@ namespace MolecularThermalmotion
 
 
 
-            //设置白球 注意这里
+            //设置白球
             whiteBall = MoleculeSet[0];
             ((MaterialGroup)whiteBall.MoleculeGeometryModel.Material).Children[0] = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255, 255, 255)));
             //Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
@@ -539,7 +577,7 @@ namespace MolecularThermalmotion
 
         public void StartGame()
         {            
-            timerPump.BeginPumpWithTimeInterval(40);
+            timerPump.BeginPumpWithTimeInterval(10);
         }
 
         public void StopGameLoop()
