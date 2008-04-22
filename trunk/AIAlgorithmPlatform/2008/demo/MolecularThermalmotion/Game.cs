@@ -28,7 +28,7 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int moleculeNum = 10;
+        int moleculeNum = 11;
         public int MoleculeNum
         {
             get { return moleculeNum; }
@@ -77,7 +77,7 @@ namespace MolecularThermalmotion
             set { height = value; }
         }
 
-        Molecule whiteBall = null;
+        Molecule whiteBall = null;//白球
         public Molecule WhiteBall
         {
             get { return whiteBall; }
@@ -130,7 +130,7 @@ namespace MolecularThermalmotion
                 Geometry3D boardMesh = boardMeshBase.Geometry;
                 GeometryModel3D boardGeometryModel = new GeometryModel3D(boardMesh, null);
 
-                boardGeometryModel.Material = null;
+                boardGeometryModel.Material = null;//材料
 
                 ImageBrush imageBrush = new ImageBrush();
                 imageBrush.ImageSource = new BitmapImage(new Uri("../../borad.jpg", UriKind.Relative));
@@ -169,41 +169,45 @@ namespace MolecularThermalmotion
 
             Material material = (Material)gameWindows.viewport.Resources["ER_Vector___Glossy_Yellow___MediumMR2"];
             Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
+            
 
             //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
            double[,] moleculePositionSet = new double[moleculeNum,3];
-           moleculePositionSet[0, 0] = 0;
+           moleculePositionSet[0, 0] = 50;
            moleculePositionSet[0, 1] = 0;
-           moleculePositionSet[0, 2] = 8;
-           //layer2
-           moleculePositionSet[1, 0] = 4.8;
+           moleculePositionSet[0, 2] = 0;
+           moleculePositionSet[1, 0] = 0;
            moleculePositionSet[1, 1] = 0;
-           moleculePositionSet[1, 2] = 0;
-           moleculePositionSet[2, 0] = -2;
-           moleculePositionSet[2, 1] = 4;
+           moleculePositionSet[1, 2] = 8;
+           //layer2
+           moleculePositionSet[2, 0] = 4.8;
+           moleculePositionSet[2, 1] = 0;
            moleculePositionSet[2, 2] = 0;
            moleculePositionSet[3, 0] = -2;
-           moleculePositionSet[3, 1] = -4;
+           moleculePositionSet[3, 1] = 4;
            moleculePositionSet[3, 2] = 0;
+           moleculePositionSet[4, 0] = -2;
+           moleculePositionSet[4, 1] = -4;
+           moleculePositionSet[4, 2] = 0;
            //layer3
-           moleculePositionSet[4, 0] = 9.6;
-           moleculePositionSet[4, 1] = 0;
-           moleculePositionSet[4, 2] = -4;
-           moleculePositionSet[5, 0] = 2.4;
-           moleculePositionSet[5, 1] = 4;
+           moleculePositionSet[5, 0] = 9.6;
+           moleculePositionSet[5, 1] = 0;
            moleculePositionSet[5, 2] = -4;
            moleculePositionSet[6, 0] = 2.4;
-           moleculePositionSet[6, 1] = -4;
+           moleculePositionSet[6, 1] = 4;
            moleculePositionSet[6, 2] = -4;
-           moleculePositionSet[7, 0] = -4.8;
-           moleculePositionSet[7, 1] = 8.7;
+           moleculePositionSet[7, 0] = 2.4;
+           moleculePositionSet[7, 1] = -4;
            moleculePositionSet[7, 2] = -4;
            moleculePositionSet[8, 0] = -4.8;
-           moleculePositionSet[8, 1] = 0;
+           moleculePositionSet[8, 1] = 8.7;
            moleculePositionSet[8, 2] = -4;
            moleculePositionSet[9, 0] = -4.8;
-           moleculePositionSet[9, 1] = -8.7;
+           moleculePositionSet[9, 1] = 0;
            moleculePositionSet[9, 2] = -4;
+           moleculePositionSet[10, 0] = -4.8;
+           moleculePositionSet[10, 1] = -8.7;
+           moleculePositionSet[10, 2] = -4;
             
             for (int i = 0;( i < moleculeNum) ; i++)
             {
@@ -216,12 +220,14 @@ namespace MolecularThermalmotion
                     mass = 1,
                     radius = radius
                 };
-
+                
                 //创建每个球体的GeometryModel并添加进显示窗口
                 MaterialGroup materialGroup = new MaterialGroup();
+                
                 DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255))));
                 materialGroup.Children.Add(diffuseMaterial);
                 materialGroup.Children.Add(specularMaterial);
+                
                 molecule.MoleculeGeometryModel = new GeometryModel3D(sphere, materialGroup);
                 //molecule.MoleculeGeometryModel.BackMaterial = materialGroup;
 
@@ -244,6 +250,11 @@ namespace MolecularThermalmotion
 
             //设置白球
             whiteBall = MoleculeSet[0];
+            //Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
+            //DiffuseMaterial white= new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255,255,255)));
+            //whiteBall.Add(white);
+
+            
             //whiteBall.currentVelocity = new Vector3D(5, 5, 5);
 
             //画球棍
