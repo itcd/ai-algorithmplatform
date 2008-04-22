@@ -129,10 +129,55 @@
                 
             </ModelVisual3D>
         </Viewport3D>
-        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,68" Name="sliderShootDIrectionX" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionX_ValueChanged" Minimum="-10" />
-        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,40" Name="sliderShootDIrectionY" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionY_ValueChanged" Minimum="-10" />
-        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,13" Name="sliderShootDIrectionZ" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionZ_ValueChanged" Minimum="-10" />
-        <Slider Grid.Row="1" Height="21" HorizontalAlignment="Right" Margin="0,0,25,13" Name="sliderShootForeceFactor" VerticalAlignment="Bottom" Width="100" Maximum="400" ValueChanged="sliderShootForeceFactor_ValueChanged" />
-        <Button Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,0,25,51" Name="ShootButton" VerticalAlignment="Bottom" Width="75" Click="ShootButton_Click">Shoot</Button>
+		
+        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,68" Name="sliderShootDIrectionX" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionX_ValueChanged" Minimum="-10" Background="#FF000000">
+		<Slider.BitmapEffect>
+		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
+         Opacity="0.4" />
+		</Slider.BitmapEffect>
+		</Slider>
+		
+        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,40" Name="sliderShootDIrectionY" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionY_ValueChanged" Minimum="-10" Background="#FF000000" >
+		<Slider.BitmapEffect>
+		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
+         Opacity="0.4" />
+		</Slider.BitmapEffect>
+		</Slider>
+        <Slider Grid.Row="1" Height="21" Margin="22,0,257.5,13" Name="sliderShootDIrectionZ" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionZ_ValueChanged" Minimum="-10" Background="#FF000000" >
+		<Slider.BitmapEffect>
+		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
+         Opacity="0.4" />
+		</Slider.BitmapEffect>
+		</Slider>
+		
+        <Slider Grid.Row="1" Height="21" HorizontalAlignment="Right" Margin="0,0,25,13" Name="sliderShootForeceFactor" VerticalAlignment="Bottom" Width="100" Maximum="400" ValueChanged="sliderShootForeceFactor_ValueChanged" Background="#FF000000" >
+		<Slider.BitmapEffect>
+		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
+         Opacity="0.4" />
+		</Slider.BitmapEffect>
+		</Slider>
+		
+        <Button Grid.Row="1" Height="23" HorizontalAlignment="Right" Margin="0,0,25,51" Name="ShootButton" VerticalAlignment="Bottom" Width="75" Click="ShootButton_Click">
+        <Button.BitmapEffect>
+		<DropShadowBitmapEffect Color="White" Direction="300" ShadowDepth="5" Softness="1" 
+         Opacity="0.5"/>
+		</Button.BitmapEffect>	
+			<Button.Background>
+        		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+        			<GradientStop Color="#FF000000" Offset="0"/>
+        			<GradientStop Color="#FFFFFFFF" Offset="1"/>
+        		</LinearGradientBrush>
+		
+		        	</Button.Background>Shoot</Button>
+		        <Button HorizontalAlignment="Right" Margin="0,0,220,22" VerticalAlignment="Bottom" Width="0" Height="12" Content="Button" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+        	<Button.RenderTransform>
+        		<TransformGroup>
+        			<ScaleTransform ScaleX="1" ScaleY="1"/>
+        			<SkewTransform AngleX="0" AngleY="0"/>
+        			<RotateTransform Angle="-183.366"/>
+        			<TranslateTransform X="0" Y="0"/>
+        		</TransformGroup>
+        	</Button.RenderTransform>
+        </Button>
     </Grid>
 </Window>
