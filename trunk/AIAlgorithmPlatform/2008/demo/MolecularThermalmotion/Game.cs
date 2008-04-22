@@ -250,6 +250,7 @@ namespace MolecularThermalmotion
 
             //设置白球
             whiteBall = MoleculeSet[0];
+            ((MaterialGroup)whiteBall.MoleculeGeometryModel.Material).Children[0] = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255, 255, 255)));
             //Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
             //DiffuseMaterial white= new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255,255,255)));
             //whiteBall.Add(white);
@@ -377,6 +378,7 @@ namespace MolecularThermalmotion
                 {
                     m.position = new Point3D(0,0,0);
                     m.currentVelocity = new Vector3D(-1,-1,-1);
+                    m.radius = 0.1;
                     moleculeModel3DGroup.Children.Remove(m.MoleculeGeometryModel);
                     //MoleculeSet.Remove(m);
                 }
