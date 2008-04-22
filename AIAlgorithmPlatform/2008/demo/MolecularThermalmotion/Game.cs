@@ -28,7 +28,7 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int moleculeNum = 4;
+        int moleculeNum = 10;
         public int MoleculeNum
         {
             get { return moleculeNum; }
@@ -175,6 +175,7 @@ namespace MolecularThermalmotion
            moleculePositionSet[0, 0] = 0;
            moleculePositionSet[0, 1] = 0;
            moleculePositionSet[0, 2] = 8;
+           //layer2
            moleculePositionSet[1, 0] = 4.8;
            moleculePositionSet[1, 1] = 0;
            moleculePositionSet[1, 2] = 0;
@@ -184,6 +185,25 @@ namespace MolecularThermalmotion
            moleculePositionSet[3, 0] = -2;
            moleculePositionSet[3, 1] = -4;
            moleculePositionSet[3, 2] = 0;
+           //layer3
+           moleculePositionSet[4, 0] = 9.6;
+           moleculePositionSet[4, 1] = 0;
+           moleculePositionSet[4, 2] = -4;
+           moleculePositionSet[5, 0] = 2.4;
+           moleculePositionSet[5, 1] = 4;
+           moleculePositionSet[5, 2] = -4;
+           moleculePositionSet[6, 0] = 2.4;
+           moleculePositionSet[6, 1] = -4;
+           moleculePositionSet[6, 2] = -4;
+           moleculePositionSet[7, 0] = -4.8;
+           moleculePositionSet[7, 1] = 8.7;
+           moleculePositionSet[7, 2] = -4;
+           moleculePositionSet[8, 0] = -4.8;
+           moleculePositionSet[8, 1] = 0;
+           moleculePositionSet[8, 2] = -4;
+           moleculePositionSet[9, 0] = -4.8;
+           moleculePositionSet[9, 1] = -8.7;
+           moleculePositionSet[9, 2] = -4;
             
             for (int i = 0;( i < moleculeNum) ; i++)
             {
