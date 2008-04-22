@@ -28,7 +28,7 @@ namespace MolecularThermalmotion
 
         CollisionDetectionEngine CDE = new CollisionDetectionEngine();
 
-        int moleculeNum = 11;
+        int moleculeNum = 21;
         public int MoleculeNum
         {
             get { return moleculeNum; }
@@ -176,38 +176,72 @@ namespace MolecularThermalmotion
            moleculePositionSet[0, 0] = 50;
            moleculePositionSet[0, 1] = 0;
            moleculePositionSet[0, 2] = 0;
+           //layer1 begin
            moleculePositionSet[1, 0] = 0;
            moleculePositionSet[1, 1] = 0;
-           moleculePositionSet[1, 2] = 8;
+           moleculePositionSet[1, 2] = 0;
            //layer2
-           moleculePositionSet[2, 0] = 4.8;
-           moleculePositionSet[2, 1] = 0;
+           moleculePositionSet[2, 0] = -8;
+           moleculePositionSet[2, 1] = 4.8;
            moleculePositionSet[2, 2] = 0;
-           moleculePositionSet[3, 0] = -2;
-           moleculePositionSet[3, 1] = 4;
-           moleculePositionSet[3, 2] = 0;
-           moleculePositionSet[4, 0] = -2;
-           moleculePositionSet[4, 1] = -4;
-           moleculePositionSet[4, 2] = 0;
+           moleculePositionSet[3, 0] = -8;
+           moleculePositionSet[3, 1] = -2.4;
+           moleculePositionSet[3, 2] = 4;
+           moleculePositionSet[4, 0] = -8;
+           moleculePositionSet[4, 1] = -2.4;
+           moleculePositionSet[4, 2] = -4;
            //layer3
-           moleculePositionSet[5, 0] = 9.6;
-           moleculePositionSet[5, 1] = 0;
-           moleculePositionSet[5, 2] = -4;
-           moleculePositionSet[6, 0] = 2.4;
-           moleculePositionSet[6, 1] = 4;
-           moleculePositionSet[6, 2] = -4;
-           moleculePositionSet[7, 0] = 2.4;
-           moleculePositionSet[7, 1] = -4;
+           moleculePositionSet[5, 0] = -16;
+           moleculePositionSet[5, 1] = 9.6;
+           moleculePositionSet[5, 2] = 0;
+           moleculePositionSet[6, 0] = -16;
+           moleculePositionSet[6, 1] = 2.4;
+           moleculePositionSet[6, 2] = 4;
+           moleculePositionSet[7, 0] = -16;
+           moleculePositionSet[7, 1] = 2.4;
            moleculePositionSet[7, 2] = -4;
-           moleculePositionSet[8, 0] = -4.8;
-           moleculePositionSet[8, 1] = 8.7;
-           moleculePositionSet[8, 2] = -4;
-           moleculePositionSet[9, 0] = -4.8;
-           moleculePositionSet[9, 1] = 0;
-           moleculePositionSet[9, 2] = -4;
-           moleculePositionSet[10, 0] = -4.8;
-           moleculePositionSet[10, 1] = -8.7;
-           moleculePositionSet[10, 2] = -4;
+
+           moleculePositionSet[8, 0] = -16;
+           moleculePositionSet[8, 1] = -4.8;
+           moleculePositionSet[8, 2] = 0;
+           moleculePositionSet[9, 0] = -16;
+           moleculePositionSet[9, 1] = -4.8;
+           moleculePositionSet[9, 2] = 8;
+           moleculePositionSet[10, 0] = -16;
+           moleculePositionSet[10, 1] = -4.8;
+           moleculePositionSet[10, 2] = -8;
+
+           //layer4 begin
+           moleculePositionSet[11, 0] = -24;
+           moleculePositionSet[11, 1] = 14.4;
+           moleculePositionSet[11, 2] = 0;
+           moleculePositionSet[12, 0] = -24;
+           moleculePositionSet[12, 1] = 7.2;
+           moleculePositionSet[12, 2] = 4;
+           moleculePositionSet[13, 0] = -24;
+           moleculePositionSet[13, 1] = 7.2;
+           moleculePositionSet[13, 2] = -4;
+           moleculePositionSet[14, 0] = -24;
+           moleculePositionSet[14, 1] = 0;
+           moleculePositionSet[14, 2] = 0;
+           moleculePositionSet[15, 0] = -24;
+           moleculePositionSet[15, 1] = 0;
+           moleculePositionSet[15, 2] = 8;
+           moleculePositionSet[16, 0] = -24;
+           moleculePositionSet[16, 1] = 0;
+           moleculePositionSet[16, 2] = -8;
+           moleculePositionSet[17, 0] = -24;
+           moleculePositionSet[17, 1] = -7.2;
+           moleculePositionSet[17, 2] = 4;
+           moleculePositionSet[18, 0] = -24;
+           moleculePositionSet[18, 1] = -7.2;
+           moleculePositionSet[18, 2] = -4;
+           moleculePositionSet[19, 0] = -24;
+           moleculePositionSet[19, 1] = -7.2;
+           moleculePositionSet[19, 2] = 12;
+           moleculePositionSet[20, 0] = -24;
+           moleculePositionSet[20, 1] = -7.2;
+           moleculePositionSet[20, 2] = -12;
             
             for (int i = 0;( i < moleculeNum) ; i++)
             {
@@ -248,7 +282,7 @@ namespace MolecularThermalmotion
 
 
 
-            //设置白球
+            //设置白球 注意这里
             whiteBall = MoleculeSet[0];
             ((MaterialGroup)whiteBall.MoleculeGeometryModel.Material).Children[0] = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255, 255, 255)));
             //Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
