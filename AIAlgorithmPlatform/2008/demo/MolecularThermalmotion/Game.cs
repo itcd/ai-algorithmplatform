@@ -89,9 +89,8 @@ namespace MolecularThermalmotion
             get { return shotDirection; }
             set {
 
-                stick.UpdateStickPosition(new Vector3D(whiteBall.position.X, whiteBall.position.Y, whiteBall.position.Z), shotDirection);
-
                 shotDirection = value; 
+                stick.UpdateStickPosition(new Vector3D(whiteBall.position.X, whiteBall.position.Y, whiteBall.position.Z), shotDirection);                
             }
         }
 
@@ -151,7 +150,7 @@ namespace MolecularThermalmotion
                 ModelVisual3D moleculeSetModel = new ModelVisual3D();
                 moleculeSetModel.Content = boardGeometryModel;
                 gameWindows.model.Children.Add(moleculeSetModel);
-            }            
+            }
 
             gridMapOrigin = new Point3D(-0.5 * length, -0.5 * width, -0.5 * height);
 
@@ -576,8 +575,8 @@ namespace MolecularThermalmotion
         }
 
         public void StartGame()
-        {            
-            timerPump.BeginPumpWithTimeInterval(10);
+        {
+            timerPump.BeginPumpWithTimeInterval(1);
         }
 
         public void StopGameLoop()
