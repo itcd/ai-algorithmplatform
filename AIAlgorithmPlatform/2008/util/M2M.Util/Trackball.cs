@@ -29,7 +29,7 @@ namespace M2M.Util
             return z;
         }
 
-        static public Vector3D projectToVector(double x1, double y1, double x2, double y2, out double radius)
+        static public Vector3D projectToVector3D(double x1, double y1, double x2, double y2, out double radius)
         {
             double d1 = Math.Sqrt(x1 * x1 + y1 * y1);
             double d2 = Math.Sqrt(x2 * x2 + y2 * y2);

@@ -31,9 +31,10 @@ namespace MolecularThermalmotion
         {
             InitializeComponent();
 
-            this.game = game;
-
             model.Transform = new Transform3DGroup();
+
+            this.game = game;
+            game.ShootForceFactor = progressBar1.Value;
         }
 
         public void SetShootDirectionAndForceFactor()
@@ -41,6 +42,7 @@ namespace MolecularThermalmotion
             //这时候使到那些control有效
         }
 
+        // variables for mouse controlling
         private bool leftDown = false;
         private Point leftLastPos;
         private bool middleDown = false;
@@ -54,16 +56,7 @@ namespace MolecularThermalmotion
 
             model.Transform = new Transform3DGroup();
 
-            this.PreviewKeyDown += new KeyEventHandler(GameWindows_KeyDown);
-
-            this.viewport.PreviewKeyDown += new KeyEventHandler(GameWindows_KeyDown);
-        }
-
-        void GameWindows_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Q) { sliderShootDIrectionX.Value += 0.1; }
-
-            if (e.Key == Key.W) { sliderShootDIrectionX.Value -= 0.1; }
+            game.ShootForceFactor = progressBar1.Value;
         }
 
         private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -121,7 +114,7 @@ namespace MolecularThermalmotion
                 Point actualPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
 
                 double radius;
-                Vector3D v = Trackball.projectToVector(rightLastPos.X, rightLastPos.Y, actualPos.X, actualPos.Y, out radius);
+                Vector3D v = Trackball.projectToVector3D(rightLastPos.X, rightLastPos.Y, actualPos.X, actualPos.Y, out radius);
                 Vector3D v0 = game.ShotDirection;
                 double rate = radius / v0.Length;
                 v0 = v0 * rate;
@@ -172,16 +165,6 @@ namespace MolecularThermalmotion
                     break;
             }
         }
-
-        //private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-
-        //}
-
-        ////private void button1_Click(object sender, RoutedEventArgs e)
-        ////{
-        ////    game.Height = Convert.ToDouble(this.textBox1.Text);
-        ////}
 
         private void sliderShootDIrectionX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

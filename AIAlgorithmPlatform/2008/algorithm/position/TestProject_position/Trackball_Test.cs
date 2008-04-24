@@ -68,7 +68,7 @@ namespace TestProject_position
             // TODO: Add test logic	here
             //
             double radius;
-            Trackball.projectToVector(1, 1, 2, 2, out radius);
+            Trackball.projectToVector3D(1, 1, 2, 2, out radius);
         }
     }
 }
