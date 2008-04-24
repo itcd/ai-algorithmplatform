@@ -113,7 +113,64 @@ namespace MolecularThermalmotion
                 Point pos = Mouse.GetPosition(viewport);
                 Point actualPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
 
-                game.ShotDirection = Trackball.RotateTheVector3D(game.ShotDirection, rightLastPos.X, rightLastPos.Y, actualPos.X, actualPos.Y);
+                //game.ShotDirection = Trackball.RotateTheVector3D(game.ShotDirection, rightLastPos.X, rightLastPos.Y, actualPos.X, actualPos.Y);
+
+                {
+                    //Vector3D v = game.ShotDirection;
+                    //double x1 = rightLastPos.X;
+                    //double y1 = rightLastPos.Y;
+                    //double x2 = actualPos.X;
+                    //double y2 = actualPos.Y;
+
+                    //double d1 = Math.Sqrt(x1 * x1 + y1 * y1);
+                    //double d2 = Math.Sqrt(x2 * x2 + y2 * y2);
+                    //double radius = d1 > d2 ? d1 : d2;
+                    //double z1 = Trackball.projectToSphere(radius, x1, y1);
+                    //double z2 = Trackball.projectToSphere(radius, x2, y2);
+
+                    //Vector3D v1 = new Vector3D(x1, y1, z1);
+                    //Vector3D v2 = new Vector3D(x2, y2, z2);
+                    //Vector3D n = Vector3D.CrossProduct(v1, v2) / 10;
+                    //double angle = Math.Asin(n.Length / v1.Length / v2.Length);
+
+                    //Quaternion q = new Quaternion(n, angle * 180 / Math.PI);
+                    //Quaternion qv = new Quaternion(v.X, v.Y, v.Z, 1);
+                    //Quaternion result = q * qv;
+                    //q.Conjugate();
+                    //result = result * q;
+
+                    //game.ShotDirection = new Vector3D(result.X, result.Y, result.Z) * model.Transform.Value;
+
+                    double dx = actualPos.X - rightLastPos.X, dy = actualPos.Y - rightLastPos.Y;
+
+                    double mouseAngle = 0;
+                    if (dx != 0 && dy != 0)
+                    {
+                        mouseAngle = Math.Asin(Math.Abs(dy) / Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2)));
+                        if (dx < 0 && dy > 0) mouseAngle += Math.PI / 2;
+                        else if (dx < 0 && dy < 0) mouseAngle += Math.PI;
+                        else if (dx > 0 && dy < 0) mouseAngle += Math.PI * 1.5;
+                    }
+                    else if (dx == 0 && dy != 0) mouseAngle = Math.Sign(dy) > 0 ? Math.PI / 2 : Math.PI * 1.5;
+                    else if (dx != 0 && dy == 0) mouseAngle = Math.Sign(dx) > 0 ? 0 : Math.PI;
+
+                    double axisAngle = mouseAngle + Math.PI / 2;
+                    Vector3D axis = new Vector3D(Math.Cos(axisAngle) * 4, Math.Sin(axisAngle) * 4, 0);
+                    double rotation = 0.002 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
+
+                    var tempMatrix = model.Transform.Value;
+                    tempMatrix.Invert();
+
+                    axis = axis * tempMatrix;
+
+                    //Transform3DGroup tg = model.Transform as Transform3DGroup;
+                    QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
+                    //tg.Children.Add(new RotateTransform3D(r));
+
+                    game.ShotDirection = game.ShotDirection * (new RotateTransform3D(r).Value);
+
+
+                }
 
                 rightLastPos = actualPos;
             }
