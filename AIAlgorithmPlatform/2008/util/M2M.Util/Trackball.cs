@@ -29,14 +29,26 @@ namespace M2M.Util
             return z;
         }
 
-        static public Vector3D projectToVector3D(double x1, double y1, double x2, double y2, out double radius)
+        static public Vector3D RotateTheVector3D(Vector3D v, double x1, double y1, double x2, double y2)
         {
             double d1 = Math.Sqrt(x1 * x1 + y1 * y1);
             double d2 = Math.Sqrt(x2 * x2 + y2 * y2);
-            radius = d1 > d2 ? d1 : d2;
+            double radius = d1 > d2 ? d1 : d2;
             double z1 = projectToSphere(radius, x1, y1);
             double z2 = projectToSphere(radius, x2, y2);
-            return new Vector3D(x2 - x1, y2 - y1, z2 - z1);
+
+            Vector3D v1 = new Vector3D(x1, y1, z1);
+            Vector3D v2 = new Vector3D(x2, y2, z2);
+            Vector3D n = Vector3D.CrossProduct(v1, v2);
+            double angle = Math.Asin(n.Length / v1.Length / v2.Length);
+
+            Quaternion q = new Quaternion(n, angle * 180 / Math.PI);
+            Quaternion qv = new Quaternion(v.X, v.Y, v.Z, 1);    
+            Quaternion result = q * qv;
+            q.Conjugate();
+            result = result * q;
+
+            return new Vector3D(result.X, result.Y, result.Z);
         }
     }
 }

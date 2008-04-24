@@ -67,8 +67,8 @@ namespace TestProject_position
             //
             // TODO: Add test logic	here
             //
-            double radius;
-            Trackball.projectToVector3D(1, 1, 2, 2, out radius);
+            Vector3D v = new Vector3D(1, 1, 1);
+            Trackball.RotateTheVector3D(v, 1, 1, 2, 2);
         }
     }
 }
