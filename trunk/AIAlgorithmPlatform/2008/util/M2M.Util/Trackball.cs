@@ -39,7 +39,7 @@ namespace M2M.Util
 
             Vector3D v1 = new Vector3D(x1, y1, z1);
             Vector3D v2 = new Vector3D(x2, y2, z2);
-            Vector3D n = Vector3D.CrossProduct(v1, v2);
+            Vector3D n = Vector3D.CrossProduct(v1, v2) / 10;
             double angle = Math.Asin(n.Length / v1.Length / v2.Length);
 
             Quaternion q = new Quaternion(n, angle * 180 / Math.PI);

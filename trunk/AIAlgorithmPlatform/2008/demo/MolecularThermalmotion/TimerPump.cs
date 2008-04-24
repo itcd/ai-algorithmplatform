@@ -23,10 +23,10 @@ namespace MolecularThermalmotion
 
         ~TimerPump()
         {
-            //if (thread != null && thread.IsAlive)
-            //{
-            //    thread.Abort();
-            //}
+            if (thread != null && thread.IsAlive)
+            {
+                thread.Abort();
+            }
         }
 
         void Run()
@@ -36,7 +36,10 @@ namespace MolecularThermalmotion
                 TimeSpan sw = new TimeSpan();
 
                 DateTime start = DateTime.Now;
-                Application.Current.Dispatcher.Invoke(DispatcherPriority.Send, invokeByTimerMethod, timeInterval);
+                if (Application.Current != null)
+                {
+                    Application.Current.Dispatcher.Invoke(DispatcherPriority.Send, invokeByTimerMethod, timeInterval);
+                }
                 sw = DateTime.Now - start;
 
                 double elapsedTime = sw.TotalMilliseconds;

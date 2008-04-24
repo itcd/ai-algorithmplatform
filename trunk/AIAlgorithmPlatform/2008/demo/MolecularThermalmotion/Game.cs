@@ -88,8 +88,9 @@ namespace MolecularThermalmotion
         {
             get { return shotDirection; }
             set {
+
                 shotDirection = value; 
-                stick.UpdateStickPosition(new Vector3D(whiteBall.position.X, whiteBall.position.Y, whiteBall.position.Z), shotDirection);
+                stick.UpdateStickPosition(new Vector3D(whiteBall.position.X, whiteBall.position.Y, whiteBall.position.Z), shotDirection);                
             }
         }
 
@@ -131,9 +132,9 @@ namespace MolecularThermalmotion
                 boardGeometryModel.Material = null;//材料
 
                 ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = new BitmapImage(new Uri("../../board.jpg", UriKind.Relative));
+                imageBrush.ImageSource = new BitmapImage(new Uri("borad.jpg", UriKind.Relative));
                 //imageBrush.Viewbox = new Rect(0, 0, imageBrush.ImageSource.Width, imageBrush.ImageSource.Height);
-                imageBrush.Viewbox = new Rect(0, 0, 78, 72);
+                imageBrush.Viewbox = new Rect(0, 0, 100, 100);
                 //imageBrush.TileMode = TileMode.FlipXY;
                 imageBrush.TileMode = TileMode.Tile;
                 imageBrush.ViewboxUnits = BrushMappingMode.Absolute;
@@ -469,7 +470,7 @@ namespace MolecularThermalmotion
         private void UpdateMoleculeSetVelocityByForce(double t)
         {
             Vector3D force = new Vector3D();
-            double k = 0.8;
+            double k = 0.5;
             for (int i = 0; i < MoleculeSet.Count; i++)
             {
                 Molecule m = MoleculeSet[i];
@@ -575,7 +576,7 @@ namespace MolecularThermalmotion
 
         public void StartGame()
         {
-            timerPump.BeginPumpWithTimeInterval(1);
+            timerPump.BeginPumpWithTimeInterval(5);
         }
 
         public void StopGameLoop()
