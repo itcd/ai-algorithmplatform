@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Media3D;
+using M2M.Util;
 
 namespace MolecularThermalmotion
 {
@@ -40,8 +41,12 @@ namespace MolecularThermalmotion
             //这时候使到那些control有效
         }
 
-        private bool mDown;
-        private Point mLastPos;
+        private bool leftDown = false;
+        private Point leftLastPos;
+        private bool middleDown = false;
+        private Point middleStartPos;
+        private bool rightDown = false;
+        private Point rightLastPos;
 
         private GameWindows()
         {
@@ -68,11 +73,11 @@ namespace MolecularThermalmotion
 
         private void Grid_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mDown)
+            if (leftDown)
             {
                 Point pos = Mouse.GetPosition(viewport);
                 Point actualPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
-                double dx = actualPos.X - mLastPos.X, dy = actualPos.Y - mLastPos.Y;
+                double dx = actualPos.X - leftLastPos.X, dy = actualPos.Y - leftLastPos.Y;
 
                 double mouseAngle = 0;
                 if (dx != 0 && dy != 0)
@@ -86,47 +91,97 @@ namespace MolecularThermalmotion
                 else if (dx != 0 && dy == 0) mouseAngle = Math.Sign(dx) > 0 ? 0 : Math.PI;
 
                 double axisAngle = mouseAngle + Math.PI / 2;
-
                 Vector3D axis = new Vector3D(Math.Cos(axisAngle) * 4, Math.Sin(axisAngle) * 4, 0);
-
                 double rotation = 0.002 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
-
-                //QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
-
-                //tg.Children.Add(new RotateTransform3D(r));
 
                 Transform3DGroup tg = model.Transform as Transform3DGroup;
                 QuaternionRotation3D r = new QuaternionRotation3D(new Quaternion(axis, rotation * 180 / Math.PI));
                 tg.Children.Add(new RotateTransform3D(r));
 
-                mLastPos = actualPos;
+                leftLastPos = actualPos;
+            }
+
+            if(middleDown)
+            {
+                double value = progressBar1.Value + middleStartPos.Y - Mouse.GetPosition(viewport).Y;
+                if (value > progressBar1.Maximum)
+                    value = progressBar1.Maximum;
+                if (value < progressBar1.Minimum)
+                    value = progressBar1.Minimum;
+                if (value != progressBar1.Value)
+                {
+                    progressBar1.Value = value;
+                    game.ShootForceFactor = value;
+                }
+            }
+
+            if(rightDown)
+            {
+                Point pos = Mouse.GetPosition(viewport);
+                Point actualPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
+
+                double radius;
+                Vector3D v = Trackball.projectToVector(rightLastPos.X, rightLastPos.Y, actualPos.X, actualPos.Y, out radius);
+                Vector3D v0 = game.ShotDirection;
+                double rate = radius / v0.Length;
+                v0 = v0 * rate;
+                game.ShotDirection = Vector3D.Add(v0, v);
+
+                rightLastPos = actualPos;
             }
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            switch (e.ChangedButton)
             {
-                mDown = true;
-                Point pos = Mouse.GetPosition(viewport);
-                mLastPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
+                case MouseButton.Left:
+                    leftDown = true;
+                    Point pos = Mouse.GetPosition(viewport);
+                    leftLastPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
+                    break;
+
+                case MouseButton.Middle:
+                    middleDown = true;
+                    middleStartPos = Mouse.GetPosition(viewport);
+                    break;
+
+                case MouseButton.Right:
+                    rightDown = true;
+                    Point p = Mouse.GetPosition(viewport);
+                    rightLastPos = new Point(p.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - p.Y);
+                    break;
             }
         }
 
         private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            mDown = false;
+            switch (e.ChangedButton)
+            {
+                case MouseButton.Left:
+                    leftDown = false;
+                    break;
+
+                case MouseButton.Middle:
+                    middleDown = false;
+                    game.ShootWhiteBallAndContinueGameLoop();
+                    break;
+
+                case MouseButton.Right:
+                    rightDown = false;
+                    break;
+            }
         }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        //private void button1_Click(object sender, RoutedEventArgs e)
+        //private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
         //{
-        //    game.Height = Convert.ToDouble(this.textBox1.Text);
+
         //}
+
+        ////private void button1_Click(object sender, RoutedEventArgs e)
+        ////{
+        ////    game.Height = Convert.ToDouble(this.textBox1.Text);
+        ////}
 
         private void sliderShootDIrectionX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
