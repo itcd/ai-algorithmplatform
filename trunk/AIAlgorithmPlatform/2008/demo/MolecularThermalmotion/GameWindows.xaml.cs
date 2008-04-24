@@ -113,12 +113,7 @@ namespace MolecularThermalmotion
                 Point pos = Mouse.GetPosition(viewport);
                 Point actualPos = new Point(pos.X - viewport.ActualWidth / 2, viewport.ActualHeight / 2 - pos.Y);
 
-                double radius;
-                Vector3D v = Trackball.projectToVector3D(rightLastPos.X, rightLastPos.Y, actualPos.X, actualPos.Y, out radius);
-                Vector3D v0 = game.ShotDirection;
-                double rate = radius / v0.Length;
-                v0 = v0 * rate;
-                game.ShotDirection = Vector3D.Add(v0, v);
+                game.ShotDirection = Trackball.RotateTheVector3D(game.ShotDirection, rightLastPos.X, rightLastPos.Y, actualPos.X, actualPos.Y);
 
                 rightLastPos = actualPos;
             }
