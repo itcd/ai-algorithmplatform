@@ -101,7 +101,7 @@ namespace MolecularThermalmotion
             set { shootForceFactor = value; }
         }
 
-        double e = 0.5;
+        double e = 0.8;
 
         Stick stick = new Stick();
 
@@ -118,6 +118,105 @@ namespace MolecularThermalmotion
 
         void Initializtion()
         {
+            //画星空
+            {
+                SphereMesh StarMesh = new SphereMesh();
+                StarMesh.Slices = 8;
+                StarMesh.Stacks = 4;
+                StarMesh.Radius = 0.6;
+                MeshGeometry3D Star = StarMesh.Geometry;
+
+                var Star3DGroup = new Model3DGroup();
+                Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
+
+                for (int i = 0; i < 1500; i++)
+                {
+                    //创建每个球体的GeometryModel并添加进显示窗口
+                    MaterialGroup materialGroup = new MaterialGroup();
+
+                    byte value = (byte)random.Next(150, 255);
+
+                    DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(value, value, value)));
+                    materialGroup.Children.Add(diffuseMaterial);
+                    materialGroup.Children.Add(specularMaterial);
+
+                    var StarGeometryModel = new GeometryModel3D(Star, materialGroup);
+
+                    Vector3D starPosition;
+
+                    while (true)
+                    {
+                        double range = 300;
+                        double x = GetRandomInRange(range);
+                        double y = GetRandomInRange(range);
+                        double z = GetRandomInRange(range);
+
+                        if (Math.Abs(x) < Length && Math.Abs(y) < Width * 2 && Math.Abs(z) < Height * 2)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            starPosition = new Vector3D(x, y, z);
+                            break;
+                        }
+                    }
+
+                    StarGeometryModel.Transform = new TranslateTransform3D(starPosition);
+
+                    Star3DGroup.Children.Add(StarGeometryModel);
+                }
+
+                //StarMesh.Slices = 8;
+                //StarMesh.Stacks = 4;
+                //StarMesh.Radius = 2;
+                //Star = StarMesh.Geometry;
+
+                //for (int i = 0; i < 500; i++)
+                //{
+                //    //创建每个球体的GeometryModel并添加进显示窗口
+                //    MaterialGroup materialGroup = new MaterialGroup();
+
+                //    byte value = (byte)random.Next(150, 255);
+
+                //    DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(value, value, value)));
+                //    materialGroup.Children.Add(diffuseMaterial);
+                //    materialGroup.Children.Add(specularMaterial);
+
+                //    var StarGeometryModel = new GeometryModel3D(Star, materialGroup);
+
+                //    Vector3D starPosition;
+
+                //    while (true)
+                //    {
+                //        double range = 600;
+                //        double x = GetRandomInRange(range);
+                //        double y = GetRandomInRange(range);
+                //        double z = GetRandomInRange(range);
+
+                //        if (Math.Abs(x) < Length && Math.Abs(y) < Width * 1.5 && Math.Abs(z) < Height * 1.5)
+                //        {
+                //            continue;
+                //        }
+                //        else
+                //        {
+                //            starPosition = new Vector3D(x, y, z);
+                //            break;
+                //        }
+                //    }
+
+                //    StarGeometryModel.Transform = new TranslateTransform3D(starPosition);
+
+                //    Star3DGroup.Children.Add(StarGeometryModel);
+                //}
+
+                {
+                    ModelVisual3D starSetModel = new ModelVisual3D();
+                    starSetModel.Content = Star3DGroup;
+                    gameWindows.model.Children.Add(starSetModel);
+                }
+            }
+
             //画球台
             {
                 BoxMesh boardMeshBase = new BoxMesh();
@@ -154,141 +253,153 @@ namespace MolecularThermalmotion
 
             gridMapOrigin = new Point3D(-0.5 * length, -0.5 * width, -0.5 * height);
 
-            //MeshGeometry3D sphere = new SphereMesh().Geometry;
-
-            SphereMesh sphereMesh = new SphereMesh();
-            sphereMesh.Slices = 72 / 1;
-            sphereMesh.Stacks = 36 / 1;
-            sphereMesh.Radius = radius;
-            MeshGeometry3D sphere = sphereMesh.Geometry;
-
-
-            //用于保存所有小球的Model
-            moleculeModel3DGroup = new Model3DGroup();
-
-            Material material = (Material)gameWindows.viewport.Resources["ER_Vector___Glossy_Yellow___MediumMR2"];
-            Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
-            
-            //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
-           double[,] moleculePositionSet = new double[moleculeNum,3];
-           moleculePositionSet[0, 0] = 50;
-           moleculePositionSet[0, 1] = 0;
-           moleculePositionSet[0, 2] = 0;
-           //layer1 begin
-           moleculePositionSet[1, 0] = 0.0000000001;
-           moleculePositionSet[1, 1] = 0;
-           moleculePositionSet[1, 2] = 0;
-           //layer2
-           moleculePositionSet[2, 0] = -8;
-           moleculePositionSet[2, 1] = 4.8;
-           moleculePositionSet[2, 2] = 0;
-           moleculePositionSet[3, 0] = -8;
-           moleculePositionSet[3, 1] = -2.4;
-           moleculePositionSet[3, 2] = 4;
-           moleculePositionSet[4, 0] = -8;
-           moleculePositionSet[4, 1] = -2.4;
-           moleculePositionSet[4, 2] = -4;
-           //layer3
-           moleculePositionSet[5, 0] = -16;
-           moleculePositionSet[5, 1] = 9.6;
-           moleculePositionSet[5, 2] = 0;
-           moleculePositionSet[6, 0] = -16;
-           moleculePositionSet[6, 1] = 2.4;
-           moleculePositionSet[6, 2] = 4;
-           moleculePositionSet[7, 0] = -16;
-           moleculePositionSet[7, 1] = 2.4;
-           moleculePositionSet[7, 2] = -4;
-
-           moleculePositionSet[8, 0] = -16;
-           moleculePositionSet[8, 1] = -4.8;
-           moleculePositionSet[8, 2] = 0;
-           moleculePositionSet[9, 0] = -16;
-           moleculePositionSet[9, 1] = -4.8;
-           moleculePositionSet[9, 2] = 8;
-           moleculePositionSet[10, 0] = -16;
-           moleculePositionSet[10, 1] = -4.8;
-           moleculePositionSet[10, 2] = -8;
-
-           //layer4 begin
-           moleculePositionSet[11, 0] = -24;
-           moleculePositionSet[11, 1] = 14.4;
-           moleculePositionSet[11, 2] = 0;
-           moleculePositionSet[12, 0] = -24;
-           moleculePositionSet[12, 1] = 7.2;
-           moleculePositionSet[12, 2] = 4;
-           moleculePositionSet[13, 0] = -24;
-           moleculePositionSet[13, 1] = 7.2;
-           moleculePositionSet[13, 2] = -4;
-           moleculePositionSet[14, 0] = -24;
-           moleculePositionSet[14, 1] = 0;
-           moleculePositionSet[14, 2] = 0;
-           moleculePositionSet[15, 0] = -24;
-           moleculePositionSet[15, 1] = 0;
-           moleculePositionSet[15, 2] = 8;
-           moleculePositionSet[16, 0] = -24;
-           moleculePositionSet[16, 1] = 0;
-           moleculePositionSet[16, 2] = -8;
-           moleculePositionSet[17, 0] = -24;
-           moleculePositionSet[17, 1] = -7.2;
-           moleculePositionSet[17, 2] = 4;
-           moleculePositionSet[18, 0] = -24;
-           moleculePositionSet[18, 1] = -7.2;
-           moleculePositionSet[18, 2] = -4;
-           moleculePositionSet[19, 0] = -24;
-           moleculePositionSet[19, 1] = -7.2;
-           moleculePositionSet[19, 2] = 12;
-           moleculePositionSet[20, 0] = -24;
-           moleculePositionSet[20, 1] = -7.2;
-           moleculePositionSet[20, 2] = -12;
-            
-            for (int i = 0;( i < moleculeNum) ; i++)
+            //画球体
             {
-                //创建并初始化molecule的属性
-                Molecule molecule = new Molecule()
+                SphereMesh sphereMesh = new SphereMesh();
+                sphereMesh.Slices = 72 / 1;
+                sphereMesh.Stacks = 36 / 1;
+                sphereMesh.Radius = radius;
+                MeshGeometry3D sphere = sphereMesh.Geometry;
+
+
+                //用于保存所有小球的Model
+                moleculeModel3DGroup = new Model3DGroup();
+
+                Material material = (Material)gameWindows.viewport.Resources["ER_Vector___Glossy_Yellow___MediumMR2"];
+                Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
+
+                //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
+                double[,] moleculePositionSet = new double[moleculeNum, 3];
+                moleculePositionSet[0, 0] = 50;
+                moleculePositionSet[0, 1] = 0;
+                moleculePositionSet[0, 2] = 0;
+                //layer1 begin
+                moleculePositionSet[1, 0] = 0.0000000001;
+                moleculePositionSet[1, 1] = 0;
+                moleculePositionSet[1, 2] = 0;
+                //layer2
+                moleculePositionSet[2, 0] = -8;
+                moleculePositionSet[2, 1] = 4.8;
+                moleculePositionSet[2, 2] = 0;
+                moleculePositionSet[3, 0] = -8;
+                moleculePositionSet[3, 1] = -2.4;
+                moleculePositionSet[3, 2] = 4;
+                moleculePositionSet[4, 0] = -8;
+                moleculePositionSet[4, 1] = -2.4;
+                moleculePositionSet[4, 2] = -4;
+                //layer3
+                moleculePositionSet[5, 0] = -16;
+                moleculePositionSet[5, 1] = 9.6;
+                moleculePositionSet[5, 2] = 0;
+                moleculePositionSet[6, 0] = -16;
+                moleculePositionSet[6, 1] = 2.4;
+                moleculePositionSet[6, 2] = 4;
+                moleculePositionSet[7, 0] = -16;
+                moleculePositionSet[7, 1] = 2.4;
+                moleculePositionSet[7, 2] = -4;
+
+                moleculePositionSet[8, 0] = -16;
+                moleculePositionSet[8, 1] = -4.8;
+                moleculePositionSet[8, 2] = 0;
+                moleculePositionSet[9, 0] = -16;
+                moleculePositionSet[9, 1] = -4.8;
+                moleculePositionSet[9, 2] = 8;
+                moleculePositionSet[10, 0] = -16;
+                moleculePositionSet[10, 1] = -4.8;
+                moleculePositionSet[10, 2] = -8;
+
+                //layer4 begin
+                moleculePositionSet[11, 0] = -24;
+                moleculePositionSet[11, 1] = 14.4;
+                moleculePositionSet[11, 2] = 0;
+                moleculePositionSet[12, 0] = -24;
+                moleculePositionSet[12, 1] = 7.2;
+                moleculePositionSet[12, 2] = 4;
+                moleculePositionSet[13, 0] = -24;
+                moleculePositionSet[13, 1] = 7.2;
+                moleculePositionSet[13, 2] = -4;
+                moleculePositionSet[14, 0] = -24;
+                moleculePositionSet[14, 1] = 0;
+                moleculePositionSet[14, 2] = 0;
+                moleculePositionSet[15, 0] = -24;
+                moleculePositionSet[15, 1] = 0;
+                moleculePositionSet[15, 2] = 8;
+                moleculePositionSet[16, 0] = -24;
+                moleculePositionSet[16, 1] = 0;
+                moleculePositionSet[16, 2] = -8;
+                moleculePositionSet[17, 0] = -24;
+                moleculePositionSet[17, 1] = -7.2;
+                moleculePositionSet[17, 2] = 4;
+                moleculePositionSet[18, 0] = -24;
+                moleculePositionSet[18, 1] = -7.2;
+                moleculePositionSet[18, 2] = -4;
+                moleculePositionSet[19, 0] = -24;
+                moleculePositionSet[19, 1] = -7.2;
+                moleculePositionSet[19, 2] = 12;
+                moleculePositionSet[20, 0] = -24;
+                moleculePositionSet[20, 1] = -7.2;
+                moleculePositionSet[20, 2] = -12;
+
+                for (int i = 0; (i < moleculeNum); i++)
                 {
-                    //position = new Point3D(GetRandomInRange(positionRange), GetRandomInRange(positionRange), GetRandomInRange(positionRange)),
-                    position = new Point3D(moleculePositionSet[i,0], moleculePositionSet [i,1], moleculePositionSet[i,2]),
-                    //currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
-                    mass = 1,
-                    radius = radius
-                };
-                
-                //创建每个球体的GeometryModel并添加进显示窗口
-                MaterialGroup materialGroup = new MaterialGroup();
-                
-                DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255))));
-                materialGroup.Children.Add(diffuseMaterial);
-                materialGroup.Children.Add(specularMaterial);
-                
-                molecule.MoleculeGeometryModel = new GeometryModel3D(sphere, materialGroup);
-                //molecule.MoleculeGeometryModel.BackMaterial = materialGroup;
+                    //创建并初始化molecule的属性
+                    Molecule molecule = new Molecule()
+                    {
+                        //position = new Point3D(GetRandomInRange(positionRange), GetRandomInRange(positionRange), GetRandomInRange(positionRange)),
+                        position = new Point3D(moleculePositionSet[i, 0], moleculePositionSet[i, 1], moleculePositionSet[i, 2]),
+                        //currentVelocity = new Vector3D(GetRandomInRange(velocityRange), GetRandomInRange(velocityRange), GetRandomInRange(velocityRange)),
+                        mass = 1,
+                        radius = radius
+                    };
 
-                molecule.MoleculeGeometryModel.Transform = new TranslateTransform3D(molecule.position.X, molecule.position.Y, molecule.position.Z);
+                    //创建每个球体的GeometryModel并添加进显示窗口
+                    MaterialGroup materialGroup = new MaterialGroup();
 
-                moleculeModel3DGroup.Children.Add(molecule.MoleculeGeometryModel);
+                    int R,G,B;
 
-                MoleculeSet.Add(molecule);
+                    while (true)
+                    {
+                        R = random.Next(255);
+                        G = random.Next(255);
+                        B = random.Next(255);
+
+                        if(R + G + B < 350)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    DiffuseMaterial diffuseMaterial = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb((byte)R, (byte)G, (byte)B)));
+                    materialGroup.Children.Add(diffuseMaterial);
+                    materialGroup.Children.Add(specularMaterial);
+
+                    molecule.MoleculeGeometryModel = new GeometryModel3D(sphere, materialGroup);
+                    //molecule.MoleculeGeometryModel.BackMaterial = materialGroup;
+
+                    molecule.MoleculeGeometryModel.Transform = new TranslateTransform3D(molecule.position.X, molecule.position.Y, molecule.position.Z);
+
+                    moleculeModel3DGroup.Children.Add(molecule.MoleculeGeometryModel);
+
+                    MoleculeSet.Add(molecule);
+                }
+
+                {
+                    ModelVisual3D moleculeSetModel = new ModelVisual3D();
+                    moleculeSetModel.Content = moleculeModel3DGroup;
+                    gameWindows.model.Children.Add(moleculeSetModel);
+                }
+
+                //设置白球
+                whiteBall = MoleculeSet[0];
+                ((MaterialGroup)whiteBall.MoleculeGeometryModel.Material).Children[0] = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255, 255, 255)));
+                //Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
+                //DiffuseMaterial white= new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255,255,255)));
+                //whiteBall.Add(white);
             }
-
-
-
-            {
-                ModelVisual3D moleculeSetModel = new ModelVisual3D();
-                moleculeSetModel.Content = moleculeModel3DGroup;
-                gameWindows.model.Children.Add(moleculeSetModel);
-            }
-
-
-
-            //设置白球
-            whiteBall = MoleculeSet[0];
-            ((MaterialGroup)whiteBall.MoleculeGeometryModel.Material).Children[0] = new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255, 255, 255)));
-            //Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
-            //DiffuseMaterial white= new DiffuseMaterial(new SolidColorBrush(Color.FromRgb(255,255,255)));
-            //whiteBall.Add(white);
-
-            
-            //whiteBall.currentVelocity = new Vector3D(5, 5, 5);
 
             //画球棍
             stick.Length = 120;
@@ -315,8 +426,11 @@ namespace MolecularThermalmotion
                     m.position.X = gridMapOrigin.X + m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); 
-                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    if (BallInHole(m))
+                    {
+                        BallInHoleList.Add(m);
+                        gameWindows.PlayBallCollisionWithWallSound();
+                    }
                     else { gameWindows.PlayBallInHoleSound(); }
                 }
                 if (m.position.X > gridMapOrigin.X + length - m.radius)
@@ -324,8 +438,11 @@ namespace MolecularThermalmotion
                     m.position.X = gridMapOrigin.X + length - m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); 
-                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    if (BallInHole(m))
+                    {
+                        BallInHoleList.Add(m);
+                        gameWindows.PlayBallCollisionWithWallSound();
+                    }
                     else { gameWindows.PlayBallInHoleSound(); }
                 }
 
@@ -334,8 +451,11 @@ namespace MolecularThermalmotion
                     m.position.Y = gridMapOrigin.Y + m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); 
-                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    if (BallInHole(m))
+                    {
+                        BallInHoleList.Add(m);
+                        gameWindows.PlayBallCollisionWithWallSound();
+                    }
                     else { gameWindows.PlayBallInHoleSound(); }
                 }
                 if (m.position.Y > gridMapOrigin.Y + width - m.radius)
@@ -343,8 +463,11 @@ namespace MolecularThermalmotion
                     m.position.Y = gridMapOrigin.Y + width - m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); 
-                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    if (BallInHole(m))
+                    {
+                        BallInHoleList.Add(m);
+                        gameWindows.PlayBallCollisionWithWallSound();
+                    }
                     else { gameWindows.PlayBallInHoleSound(); }
                 }
 
@@ -353,8 +476,11 @@ namespace MolecularThermalmotion
                     m.position.Z = gridMapOrigin.Z + m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); 
-                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    if (BallInHole(m))
+                    {
+                        BallInHoleList.Add(m);
+                        gameWindows.PlayBallCollisionWithWallSound();
+                    }
                     else { gameWindows.PlayBallInHoleSound(); }
                 }
                 if (m.position.Z > gridMapOrigin.Z + height - m.radius)
@@ -362,8 +488,11 @@ namespace MolecularThermalmotion
                     m.position.Z = gridMapOrigin.Z + height - m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); 
-                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    if (BallInHole(m))
+                    {
+                        BallInHoleList.Add(m);
+                        gameWindows.PlayBallCollisionWithWallSound();
+                    }
                     else { gameWindows.PlayBallInHoleSound(); }
                 }
             };
@@ -453,9 +582,9 @@ namespace MolecularThermalmotion
                 //force.Y = -k * (m.currentVelocity.Y * Math.Abs(m.currentVelocity.Y));
                 //force.Z = -k * (m.currentVelocity.Z * Math.Abs(m.currentVelocity.Z));
 
-                force.X = -k * (m.currentVelocity.X);
-                force.Y = -k * (m.currentVelocity.Y);
-                force.Z = -k * (m.currentVelocity.Z);
+                force.X = (m.currentVelocity.X > 0 ? -1 : 1) * k * Math.Pow(Math.Abs(m.currentVelocity.X), 1);
+                force.Y = (m.currentVelocity.Y > 0 ? -1 : 1) * k * Math.Pow(Math.Abs(m.currentVelocity.Y), 1);
+                force.Z = (m.currentVelocity.Z > 0 ? -1 : 1) * k * Math.Pow(Math.Abs(m.currentVelocity.Z), 1);
 
                 var tempVector = (force / m.mass) * t;
 
