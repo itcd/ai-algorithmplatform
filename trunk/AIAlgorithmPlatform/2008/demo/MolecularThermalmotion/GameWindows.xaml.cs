@@ -26,7 +26,7 @@ namespace MolecularThermalmotion
             get { return game; }
             set { game = value; }
         }
-
+              
         internal GameWindows(Game game)
         {
             InitializeComponent();
@@ -34,7 +34,26 @@ namespace MolecularThermalmotion
             model.Transform = new Transform3DGroup();
 
             this.game = game;
+
             game.ShootForceFactor = progressBar1.Value;
+        }
+
+        public void PlayBallCollisionSound()
+        {
+            collisionSound.Stop();
+            collisionSound.Play();
+        }
+
+        public void PlayBallInHoleSound()
+        {
+            collisionSound.Stop();
+            collisionSound.Play();
+        }
+
+        public void PlayBallCollisionWithWallSound()
+        {
+            collisionSound.Stop();
+            collisionSound.Play();
         }
 
         public void SetShootDirectionAndForceFactor()
@@ -49,14 +68,9 @@ namespace MolecularThermalmotion
         private Point middleStartPos;
         private bool rightDown = false;
         private Point rightLastPos;
-
+        
         private GameWindows()
         {
-            InitializeComponent();
-
-            model.Transform = new Transform3DGroup();
-
-            game.ShootForceFactor = progressBar1.Value;
         }
 
         private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -134,7 +148,7 @@ namespace MolecularThermalmotion
 
                     double axisAngle = mouseAngle + Math.PI / 2;
                     Vector3D axis = new Vector3D(Math.Cos(axisAngle) * 4, Math.Sin(axisAngle) * 4, 0);
-                    double rotation = 0.002 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
+                    double rotation = 0.005 * Math.Sqrt(Math.Pow(dx, 2) + Math.Pow(dy, 2));
 
                     var tempMatrix = model.Transform.Value;
                     tempMatrix.Invert();
@@ -195,27 +209,6 @@ namespace MolecularThermalmotion
                     rightDown = false;
                     break;
             }
-        }
-
-        private void sliderShootDIrectionX_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            game.ShotDirection = new Vector3D(sliderShootDIrectionX.Value,
-                sliderShootDIrectionY.Value,
-                sliderShootDIrectionZ.Value);
-        }
-
-        private void sliderShootDIrectionY_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            game.ShotDirection = new Vector3D(sliderShootDIrectionX.Value,
-                sliderShootDIrectionY.Value,
-                sliderShootDIrectionZ.Value);
-        }
-
-        private void sliderShootDIrectionZ_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            game.ShotDirection = new Vector3D(sliderShootDIrectionX.Value,
-                sliderShootDIrectionY.Value,
-                sliderShootDIrectionZ.Value);
         }
 
         private void sliderShootForeceFactor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

@@ -129,28 +129,7 @@
                 
             </ModelVisual3D>
         </Viewport3D>
-		
-        <Slider Grid.Row="1" Height="21" Margin="0.5,0,279,42" Name="sliderShootDIrectionX" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionX_ValueChanged" Minimum="-10" Background="#FF000000">
-		<Slider.BitmapEffect>
-		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
-         Opacity="0.4" />
-		</Slider.BitmapEffect>
-		</Slider>
-		
-        <Slider Grid.Row="1" Height="21" Margin="0,0,279.5,21" Name="sliderShootDIrectionY" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionY_ValueChanged" Minimum="-10" Background="#FF000000" >
-		<Slider.BitmapEffect>
-		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
-         Opacity="0.4" />
-		</Slider.BitmapEffect>
-		</Slider>
-        <Slider Grid.Row="1" Height="21" Margin="0,0,279,0" Name="sliderShootDIrectionZ" VerticalAlignment="Bottom" ValueChanged="sliderShootDIrectionZ_ValueChanged" Minimum="-10" Background="#FF000000" >
-		<Slider.BitmapEffect>
-		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
-         Opacity="0.4" />
-		</Slider.BitmapEffect>
-		</Slider>
-		
-        <Slider Grid.Row="1" Height="21" HorizontalAlignment="Right" Margin="0,0,59,0" Name="sliderShootForeceFactor" VerticalAlignment="Bottom" Width="120" Maximum="1000" ValueChanged="sliderShootForeceFactor_ValueChanged" Background="#FF000000" SmallChange="10">
+        <Slider Grid.Row="1" Height="21" HorizontalAlignment="Right" Margin="0,0,59,0" Name="sliderShootForeceFactor" VerticalAlignment="Bottom" Width="120" Maximum="400" ValueChanged="sliderShootForeceFactor_ValueChanged" Background="#FF000000" SmallChange="10" Value="0">
 		<Slider.BitmapEffect>
 		<OuterGlowBitmapEffect GlowColor="Green" GlowSize="20" Noise="1"
          Opacity="0.4" />
@@ -179,6 +158,8 @@
         		</TransformGroup>
         	</Button.RenderTransform>
         </Button>
-        <ProgressBar Grid.Row="1" HorizontalAlignment="Right" Name="progressBar1" Width="10" Maximum="500" SmallChange="1" Orientation="Vertical" Value="0" Margin="0,88,8,8" LargeChange="10" />
+        <ProgressBar Grid.Row="1" HorizontalAlignment="Right" Name="progressBar1" Width="10" Maximum="400" SmallChange="1" Orientation="Vertical" Value="100" Margin="0,88,8,8" LargeChange="10" IsEnabled="True" />
+        <MediaElement Grid.Row="1" Height="27" Margin="0,0,50,91" Name="mediaElement" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="44" Source = "../../resource/spring.mp3" LoadedBehavior="Manual"/>
+        <MediaElement Grid.Row="1" Height="27" Margin="0,0,50,91" Name="collisionSound" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="44" Source = "../../resource/boink1.wav" LoadedBehavior="Manual"/>
     </Grid>
 </Window>

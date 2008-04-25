@@ -83,7 +83,7 @@ namespace MolecularThermalmotion
             get { return whiteBall; }
         }
 
-        Vector3D shotDirection = new Vector3D(1, 1, 1);
+        Vector3D shotDirection = new Vector3D(-1, 0, 0);
         public Vector3D ShotDirection
         {
             get { return shotDirection; }
@@ -134,7 +134,7 @@ namespace MolecularThermalmotion
                 ImageBrush imageBrush = new ImageBrush();
                 imageBrush.ImageSource = new BitmapImage(new Uri("../../resource/board.jpg", UriKind.Relative));
                 //imageBrush.Viewbox = new Rect(0, 0, imageBrush.ImageSource.Width, imageBrush.ImageSource.Height);
-                imageBrush.Viewbox = new Rect(0, 0, 78, 72);
+                imageBrush.Viewbox = new Rect(0, 0, 100, 100);
                 //imageBrush.TileMode = TileMode.FlipXY;
                 imageBrush.TileMode = TileMode.Tile;
                 imageBrush.ViewboxUnits = BrushMappingMode.Absolute;
@@ -169,45 +169,6 @@ namespace MolecularThermalmotion
             Material material = (Material)gameWindows.viewport.Resources["ER_Vector___Glossy_Yellow___MediumMR2"];
             Material specularMaterial = new SpecularMaterial(new SolidColorBrush(Color.FromArgb(255, 255, 255, 255)), 1024);
             
-
-           // //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
-           //double[,] moleculePositionSet = new double[moleculeNum,3];
-           //moleculePositionSet[0, 0] = 50;
-           //moleculePositionSet[0, 1] = 0;
-           //moleculePositionSet[0, 2] = 0;
-           //moleculePositionSet[1, 0] = 0;
-           //moleculePositionSet[1, 1] = 0;
-           //moleculePositionSet[1, 2] = 8;
-           ////layer2
-           //moleculePositionSet[2, 0] = 4.8;
-           //moleculePositionSet[2, 1] = 0;
-           //moleculePositionSet[2, 2] = 0;
-           //moleculePositionSet[3, 0] = -2;
-           //moleculePositionSet[3, 1] = 4;
-           //moleculePositionSet[3, 2] = 0;
-           //moleculePositionSet[4, 0] = -2;
-           //moleculePositionSet[4, 1] = -4;
-           //moleculePositionSet[4, 2] = 0;
-           ////layer3
-           //moleculePositionSet[5, 0] = 9.6;
-           //moleculePositionSet[5, 1] = 0;
-           //moleculePositionSet[5, 2] = -4;
-           //moleculePositionSet[6, 0] = 2.4;
-           //moleculePositionSet[6, 1] = 4;
-           //moleculePositionSet[6, 2] = -4;
-           //moleculePositionSet[7, 0] = 2.4;
-           //moleculePositionSet[7, 1] = -4;
-           //moleculePositionSet[7, 2] = -4;
-           //moleculePositionSet[8, 0] = -4.8;
-           //moleculePositionSet[8, 1] = 8.7;
-           //moleculePositionSet[8, 2] = -4;
-           //moleculePositionSet[9, 0] = -4.8;
-           //moleculePositionSet[9, 1] = 0;
-           //moleculePositionSet[9, 2] = -4;
-           //moleculePositionSet[10, 0] = -4.8;
-           //moleculePositionSet[10, 1] = -8.7;
-           //moleculePositionSet[10, 2] = -4;
-
             //定义二维数组，分别存放molelecule的数量，和x,y,z的坐标
            double[,] moleculePositionSet = new double[moleculeNum,3];
            moleculePositionSet[0, 0] = 50;
@@ -339,6 +300,8 @@ namespace MolecularThermalmotion
 
             CDE.CollisionResponse += delegate(int index1, int index2)
             {
+                gameWindows.PlayBallCollisionSound();
+
                 PhysicEngine.UpdateVelocityByCollide(MoleculeSet[index1].position, MoleculeSet[index2].position, ref MoleculeSet[index1].currentVelocity, ref MoleculeSet[index2].currentVelocity,
                     MoleculeSet[index1].mass, MoleculeSet[index2].mass, MoleculeSet[index1].radius, MoleculeSet[index2].radius);
             };
@@ -352,14 +315,18 @@ namespace MolecularThermalmotion
                     m.position.X = gridMapOrigin.X + m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
 
-                    if (BallInHole(m)){ BallInHoleList.Add(m);}
+                    if (BallInHole(m)) { BallInHoleList.Add(m); 
+                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    else { gameWindows.PlayBallInHoleSound(); }
                 }
                 if (m.position.X > gridMapOrigin.X + length - m.radius)
                 {
                     m.position.X = gridMapOrigin.X + length - m.radius;
                     m.currentVelocity.X = -m.currentVelocity.X;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); }
+                    if (BallInHole(m)) { BallInHoleList.Add(m); 
+                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    else { gameWindows.PlayBallInHoleSound(); }
                 }
 
                 if (m.position.Y < gridMapOrigin.Y + m.radius)
@@ -367,14 +334,18 @@ namespace MolecularThermalmotion
                     m.position.Y = gridMapOrigin.Y + m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); }
+                    if (BallInHole(m)) { BallInHoleList.Add(m); 
+                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    else { gameWindows.PlayBallInHoleSound(); }
                 }
                 if (m.position.Y > gridMapOrigin.Y + width - m.radius)
                 {
                     m.position.Y = gridMapOrigin.Y + width - m.radius;
                     m.currentVelocity.Y = -m.currentVelocity.Y;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); }
+                    if (BallInHole(m)) { BallInHoleList.Add(m); 
+                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    else { gameWindows.PlayBallInHoleSound(); }
                 }
 
                 if (m.position.Z < gridMapOrigin.Z + m.radius)
@@ -382,14 +353,18 @@ namespace MolecularThermalmotion
                     m.position.Z = gridMapOrigin.Z + m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); }
+                    if (BallInHole(m)) { BallInHoleList.Add(m); 
+                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    else { gameWindows.PlayBallInHoleSound(); }
                 }
                 if (m.position.Z > gridMapOrigin.Z + height - m.radius)
                 {
                     m.position.Z = gridMapOrigin.Z + height - m.radius;
                     m.currentVelocity.Z = -m.currentVelocity.Z;
 
-                    if (BallInHole(m)) { BallInHoleList.Add(m); }
+                    if (BallInHole(m)) { BallInHoleList.Add(m); 
+                        gameWindows.PlayBallCollisionWithWallSound(); }
+                    else { gameWindows.PlayBallInHoleSound(); }
                 }
             };
         }
