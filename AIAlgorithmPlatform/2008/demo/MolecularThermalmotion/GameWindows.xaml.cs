@@ -213,12 +213,106 @@ namespace MolecularThermalmotion
 
         private void sliderShootForeceFactor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            game.ShootForceFactor = sliderShootForeceFactor.Value;
+            //game.ShootForceFactor = sliderShootForeceFactor.Value;
         }
 
         private void ShootButton_Click(object sender, RoutedEventArgs e)
         {
+            //game.ShootWhiteBallAndContinueGameLoop();
+        }
+
+        private void ElipseButton_Released(Ellipse ellipse, Label label)
+        {
+            label.RenderTransform = new TranslateTransform(0, 0);
+            ellipse.RenderTransform = new TranslateTransform(0, 0);
+            System.Windows.Media.Effects.DropShadowBitmapEffect dsEffect = new System.Windows.Media.Effects.DropShadowBitmapEffect();
+            dsEffect.Color = Color.FromRgb(0, 128, 0);
+            ellipse.BitmapEffect = dsEffect;
+            ellipse.Fill = new System.Windows.Media.LinearGradientBrush(Color.FromRgb(0, 0, 0), Color.FromRgb(255, 255, 255), 90);
+        }
+
+        private void ElipseButton_Pressed(Ellipse ellipse, Label label)
+        {
+            label.RenderTransform = new TranslateTransform(5, 5);
+            ellipse.RenderTransform = new TranslateTransform(5, 5);
+            ellipse.BitmapEffect = null;
+            ellipse.Fill = new LinearGradientBrush(Color.FromRgb(255, 255, 255), Color.FromRgb(0, 0, 0), 90);
+        }
+
+        private void ElipseButton_Hover(Ellipse ellipse, Label label)
+        {
+            ellipse.Fill = new LinearGradientBrush(Color.FromRgb(255, 255, 255), Color.FromRgb(255, 255, 255), 90);
+        }
+
+        private void ellipseShoot_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ElipseButton_Released(ellipseShoot, labelShoot);
             game.ShootWhiteBallAndContinueGameLoop();
+        }
+
+        private void ellipseShoot_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ElipseButton_Pressed(ellipseShoot, labelShoot);
+        }
+
+        private void ellipseShoot_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton != MouseButtonState.Pressed)
+                ElipseButton_Hover(ellipseShoot, labelShoot);
+        }
+
+        private void ellipseShoot_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ElipseButton_Released(ellipseShoot, labelShoot);
+        }
+//
+
+        private void ellipsePause_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ElipseButton_Released(ellipsePause, labelPause);
+            game.StopGameLoop();
+            if (labelPause.Content.Equals("Continue"))
+            {
+                game.ContinueGameLoop();
+                labelPause.Content = "Pause";
+            }
+            else
+            {
+                game.StopGameLoop();
+                labelPause.Content = "Continue";
+            }
+        }
+
+        private void ellipsePause_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ElipseButton_Pressed(ellipsePause, labelPause);
+        }
+
+        private void ellipsePause_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton != MouseButtonState.Pressed)
+                ElipseButton_Hover(ellipsePause, labelPause);
+        }
+
+        private void ellipsePause_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ElipseButton_Released(ellipsePause, labelPause);
+        }
+
+        private void sliderTriangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point pTriangle = Mouse.GetPosition(sliderTriangle);
+                pTriangle.X -= sliderTriangle.ActualWidth / 2;
+                if (sliderTriangle.RenderTransform is TranslateTransform)
+                    pTriangle.X += ((TranslateTransform)sliderTriangle.RenderTransform).X;
+                if (pTriangle.X < sliderStick.ActualWidth && pTriangle.X >= 0)
+                {
+                    sliderTriangle.RenderTransform = new TranslateTransform(pTriangle.X, 0);
+                    game.ShootForceFactor = pTriangle.X / sliderStick.ActualWidth * 400;
+                }
+            }
         }
     }
 }
