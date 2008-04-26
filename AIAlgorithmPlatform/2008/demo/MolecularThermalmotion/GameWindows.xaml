@@ -9,7 +9,7 @@
         </Grid.RowDefinitions>
         <MediaElement Margin="0,8,56,-12" x:Name="collisionSound" HorizontalAlignment="Right" Width="44" Source = "../../resource/boink1.wav" LoadedBehavior="Manual"/>
         <MediaElement Margin="0,8,8,-12" x:Name="mediaElement" HorizontalAlignment="Right" Width="44" Source = "../../resource/spring.mp3" LoadedBehavior="Manual"/>
-        <Grid Margin="16,8,8,71.666" Grid.RowSpan="2"
+        <Grid Margin="16,8,8,0" Grid.RowSpan="2"
                MouseWheel="Grid_MouseWheel"
 		MouseDown="Grid_MouseDown" MouseUp="Grid_MouseUp"
 		MouseMove="Grid_MouseMove">
