@@ -9,7 +9,7 @@ using Configuration;
 using Position_Implement;
 using PositionSet3D = System.Collections.Generic.List<M2M.Position.Position3D>;
 
-namespace RandomPositionSetGenerator
+namespace RandomPositionSetGenerator3D
 {
     class LaplaceGen3D: IRandomGenerator3D
     {
