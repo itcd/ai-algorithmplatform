@@ -8,7 +8,7 @@ using Troschuetz;
 using Configuration;
 using RandomPositionSetGenerator;
 using PositionSet3D = System.Collections.Generic.List<M2M.Position.Position3D>;
-using IPosition3DSet = System.Collections.Generic.List<M2M.Position.IPosition3D>;
+using Position3DSet = System.Collections.Generic.List<M2M.Position.IPosition3D>;
 //using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
 
 namespace Position_Implement
@@ -262,7 +262,7 @@ namespace Position_Implement
         double maxY = 0;
         double maxZ = 0;
 
-        public GetRandomPosition3DFromPositionSetRectangle3D(IPosition3DSet positionSet)
+        public GetRandomPosition3DFromPositionSetRectangle3D(Position3DSet positionSet)
         {
             IPosition3D[] positionArray = positionSet.ToArray();
 
