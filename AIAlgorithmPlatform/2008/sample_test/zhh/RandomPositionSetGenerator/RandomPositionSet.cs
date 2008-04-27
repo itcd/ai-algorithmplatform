@@ -6,7 +6,7 @@ using Troschuetz.Random;
 using Troschuetz;
 //using M2M.Position.RandomGenerator;
 using Configuration;
-using RandomPositionSetGenerator;
+using RandomPositionSetGenerator3D;
 using PositionSet3D = System.Collections.Generic.List<M2M.Position.Position3D>;
 using Position3DSet = System.Collections.Generic.List<M2M.Position.IPosition3D>;
 //using IPosition3DSet = System.Collections.Generic.ICollection<M2M.Position.Interface.IPosition3D>;
