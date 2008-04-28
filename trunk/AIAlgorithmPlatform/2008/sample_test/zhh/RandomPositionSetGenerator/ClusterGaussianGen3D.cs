@@ -14,6 +14,14 @@ namespace RandomPositionSetGenerator3D
     {
         int clusterPointNum = 10;
 
+        private int scale = 1;
+
+        public int Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
+
         public int ClusterPointNum
         {
             get { return clusterPointNum; }
@@ -73,13 +81,15 @@ namespace RandomPositionSetGenerator3D
 
                 Random r = new Random();
 
+                //int scale = 1;
+
                 for (int i = 0; i < clusterPointNum; i++)
                 {
                     distributionX.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
                     distributionY.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
                     distributionZ.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
                     RandomPositionSet3D randomPositionSet3D =
-                        new RandomPositionSet3D((int) (pointNum/clusterPointNum), 1000, distributionX, distributionY, distributionZ);
+                        new RandomPositionSet3D((int) (pointNum/clusterPointNum), scale, distributionX, distributionY, distributionZ);
                     positionSet3D = randomPositionSet3D;
                 }
             }
