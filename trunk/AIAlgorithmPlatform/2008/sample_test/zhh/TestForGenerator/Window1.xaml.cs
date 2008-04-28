@@ -31,7 +31,9 @@ namespace TestForGenerator
         }
 
         public void Test1(){
-            PositionSet3D pointSet3D = new RandomPositionSet_Square3D(100, 0, 100);
+            RandomPositionSet_InFixedDistribution3D pointSet3D = new RandomPositionSet_InFixedDistribution3D();
+            pointSet3D.ConfiguratedByGUI();
+            pointSet3D.Produce();
             Position3DSet point3DSet = new Position3DSet();
             for(int i = 0; i < pointSet3D.Count; i++){
                 point3DSet.Add(pointSet3D.ElementAt(i));
