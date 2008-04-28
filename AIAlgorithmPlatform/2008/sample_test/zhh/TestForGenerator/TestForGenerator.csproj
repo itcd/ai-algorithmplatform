@@ -56,6 +56,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -74,6 +78,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\algorithm\position\M2M.Position\M2M.Position.csproj">
+      <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
+      <Name>M2M.Position</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\M2M.Util\M2M.Util.csproj">
+      <Project>{EA18F83D-ED8B-427C-8F05-915B522FA10B}</Project>
+      <Name>M2M.Util</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\Scene\Scene.csproj">
+      <Project>{573E3438-EED3-495B-8044-7D4614FF05D4}</Project>
+      <Name>Scene</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RandomPositionSetGenerator\RandomPositionSetGenerator3D.csproj">
+      <Project>{E65A302C-D957-401D-B540-130989AC798B}</Project>
+      <Name>RandomPositionSetGenerator3D</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
