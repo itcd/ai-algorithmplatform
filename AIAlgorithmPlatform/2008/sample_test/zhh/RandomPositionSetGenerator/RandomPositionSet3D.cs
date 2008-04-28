@@ -209,7 +209,7 @@ namespace Position_Implement
             else //if (dStyle == distributionStyle.LaplaceDistribution || dStyle == distributionStyle.ClusterLaplaceDistribution)
             {
 
-
+                                
                 positionSet3D = RandomGen.getRandomPositionSet(pointNum);
                 //LaplaceDistribution distributionX = new LaplaceDistribution(new StandardGenerator(seed++));
                 //distributionX.Alpha = 4;

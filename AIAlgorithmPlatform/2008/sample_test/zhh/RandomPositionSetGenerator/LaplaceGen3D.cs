@@ -14,6 +14,15 @@ namespace RandomPositionSetGenerator3D
     class LaplaceGen3D: IRandomGenerator3D
     {
         int clusterPointNum=1;
+        private int scale = 1;
+
+        public int Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
+
+
         double X_Alpha = 4;
 
         public double X_Alpha1
@@ -73,7 +82,7 @@ namespace RandomPositionSetGenerator3D
                     distributionY.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
                     distributionZ.Mu = minMu + (float)(r.NextDouble() * (maxMu - minMu));
                     RandomPositionSet3D randomPositionSet =
-                        new RandomPositionSet3D((int) (pointNum/clusterPointNum), 1000, distributionX, distributionY,distributionZ);
+                        new RandomPositionSet3D((int) (pointNum/clusterPointNum), scale, distributionX, distributionY,distributionZ);
                     positionSet3D = (PositionSet3D)randomPositionSet;
                 }
             }
