@@ -69,7 +69,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateGridInSurfaceEngin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForCalculateGridInSurface", "sample_test\TestForCalculateGridInSurface\TestForCalculateGridInSurface.csproj", "{69169E5D-D7E1-45B4-8839-5334A17979A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomPositionSetGenerator", "sample_test\zhh\RandomPositionSetGenerator\RandomPositionSetGenerator.csproj", "{E65A302C-D957-401D-B540-130989AC798B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomPositionSetGenerator3D", "sample_test\zhh\RandomPositionSetGenerator\RandomPositionSetGenerator3D.csproj", "{E65A302C-D957-401D-B540-130989AC798B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample_test", "sample_test", "{E1B3D20A-59FA-41AE-B9BE-7F3E2806AAD2}"
 EndProject
@@ -98,6 +98,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MolecularThermalmotion", "demo\MolecularThermalmotion\MolecularThermalmotion.csproj", "{320D93A5-D430-414B-B938-F10AB97A0537}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2M.Util", "util\M2M.Util\M2M.Util.csproj", "{EA18F83D-ED8B-427C-8F05-915B522FA10B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForGenerator", "TestForGenerator\TestForGenerator.csproj", "{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -345,6 +347,14 @@ Global
 		{EA18F83D-ED8B-427C-8F05-915B522FA10B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA18F83D-ED8B-427C-8F05-915B522FA10B}.ReleaseSnk|Any CPU.ActiveCfg = Release|Any CPU
 		{EA18F83D-ED8B-427C-8F05-915B522FA10B}.ReleaseSnk|Any CPU.Build.0 = Release|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.DebugSnk|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.DebugSnk|Any CPU.Build.0 = Debug|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.ReleaseSnk|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}.ReleaseSnk|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -390,6 +400,7 @@ Global
 		{C0B19265-2047-42F5-AC09-1516A77F1F55} = {D5937E94-31EA-4499-8402-826751A934D4}
 		{E1BDF7A9-2440-48A0-9CA8-0AF6C132C64D} = {844100E9-1960-4BA8-A82F-627992A1EBFB}
 		{E65A302C-D957-401D-B540-130989AC798B} = {16EC83E1-8EF1-42BE-A0A0-7073CDADD499}
+		{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C} = {16EC83E1-8EF1-42BE-A0A0-7073CDADD499}
 		{D70489CD-ABDA-48FF-BD1E-BE3F7495BE71} = {CD7A45D9-CC27-4B73-87AD-195EA0C662CA}
 		{4BF77085-D5EA-4759-A0C6-2B22C7A46712} = {BEEA1469-B2CC-40A9-AC3C-8E24FADB4668}
 		{1E3E6B15-05B9-4F6A-BA17-BFB590B26913} = {7E086825-AB19-4E6F-AB0C-C6518F96D28F}
