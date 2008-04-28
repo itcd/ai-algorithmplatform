@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using M2M.Position;
 using Position_Implement;
 using M2M.Util;
+using PositionSet3D = System.Collections.Generic.List<M2M.Position.Position3D>;
+using Position3DSet = System.Collections.Generic.List<M2M.Position.IPosition3D>;
 
 namespace TestForGenerator
 {
@@ -28,12 +30,13 @@ namespace TestForGenerator
         }
 
         public void Test1(){
-            List<IPosition3D> point3DList = new RandomPositionSet_Square3D(100, 0, 300);
+            /*PositionSet3D pointSet3D = new RandomPositionSet_Square3D(100, 0, 300);
+            Position3DSet point3DSet = pointSet3D;
 
             Scene scene = new Scene();
-            scene.AddElement(new GridSetElement(point3DList));
+            scene.AddElement(new GridSetElement(point3DSet));
 
-            scene.ShowScene();
+            scene.ShowScene();*/
         }
 
         public void Test2(){
