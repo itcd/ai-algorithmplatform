@@ -99,7 +99,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MolecularThermalmotion", "d
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2M.Util", "util\M2M.Util\M2M.Util.csproj", "{EA18F83D-ED8B-427C-8F05-915B522FA10B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForGenerator", "TestForGenerator\TestForGenerator.csproj", "{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForGenerator", "sample_test\zhh\TestForGenerator\TestForGenerator.csproj", "{BEA23BE5-47B9-435D-A0C2-37FFE41F5D4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
