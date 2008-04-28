@@ -27,16 +27,20 @@ namespace TestForGenerator
         public Window1()
         {
             InitializeComponent();
+            Test1();
         }
 
         public void Test1(){
-            /*PositionSet3D pointSet3D = new RandomPositionSet_Square3D(100, 0, 300);
-            Position3DSet point3DSet = pointSet3D;
+            PositionSet3D pointSet3D = new RandomPositionSet_Square3D(100, 0, 100);
+            Position3DSet point3DSet = new Position3DSet();
+            for(int i = 0; i < pointSet3D.Count; i++){
+                point3DSet.Add(pointSet3D.ElementAt(i));
+            }
 
             Scene scene = new Scene();
             scene.AddElement(new GridSetElement(point3DSet));
 
-            scene.ShowScene();*/
+            scene.ShowScene();
         }
 
         public void Test2(){
