@@ -36,12 +36,13 @@ namespace MolecularThermalmotion
         }
 
         double positionRange = 50;
+
+
         public double PositionRange
         {
             get { return positionRange; }
             set { positionRange = value; }
         }
-
         double velocityRange = 50;
         public double VelocityRange
         {
@@ -412,6 +413,8 @@ namespace MolecularThermalmotion
             CDE.CollisionResponse += delegate(int index1, int index2)
             {
                 gameWindows.PlayBallCollisionSound();
+                gameWindows.myMediaElement.Stop();
+                gameWindows.myMediaElement.Play();
 
                 PhysicEngine.UpdateVelocityByCollide(MoleculeSet[index1].position, MoleculeSet[index2].position, ref MoleculeSet[index1].currentVelocity, ref MoleculeSet[index2].currentVelocity,
                     MoleculeSet[index1].mass, MoleculeSet[index2].mass, MoleculeSet[index1].radius, MoleculeSet[index2].radius);
