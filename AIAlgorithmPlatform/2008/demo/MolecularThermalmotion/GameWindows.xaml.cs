@@ -20,6 +20,7 @@ namespace MolecularThermalmotion
     /// </summary>
     public partial class GameWindows : Window
     {
+        public MediaElement myMediaElement;
         private Game game;
         internal Game CurrentGame
         {
@@ -30,6 +31,13 @@ namespace MolecularThermalmotion
         internal GameWindows(Game game)
         {
             InitializeComponent();
+
+            myMediaElement = new MediaElement();
+            myMediaElement.Source = new Uri("hit.wav", UriKind.RelativeOrAbsolute);
+            myMediaElement.LoadedBehavior = MediaState.Manual;
+            myMediaElement.Volume = 1;
+            myMediaElement.Stop();
+            rootGrid.Children.Add(myMediaElement);
 
             model.Transform = new Transform3DGroup();
 
