@@ -108,7 +108,7 @@ namespace Position_Implement
             }
         }
 
-        public new void Clear()
+        public void Clear()
         {
             positionSetList.Clear();
             positionSetEdit.Clear();
@@ -124,6 +124,8 @@ namespace Position_Implement
         {
             throw new Exception("PositionSetEditSet Can not Add IPositionSet");
         }
+
+
     }
 
     /// <summary>

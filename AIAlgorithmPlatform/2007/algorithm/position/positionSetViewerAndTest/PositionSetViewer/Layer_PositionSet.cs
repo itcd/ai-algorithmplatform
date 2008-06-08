@@ -354,9 +354,66 @@ namespace PositionSetViewer
                 positionSetDrawerPump.DrawLineOpen(pathLineDrawer);
                 positionSetDrawerPump.DrawPoint(pathPointDrawer);
                 positionSetDrawerPump.Run();
+                
             }
         }
     }
+
+    public class Layer_PositionSet_Polygon : Layer_PositionSet
+    {
+        PositionSetDrawerPump positionSetDrawerPump;
+
+        public Layer_PositionSet_Polygon(IPositionSet positionSet)
+            : base(positionSet)
+        {
+            positionSetDrawerPump = new PositionSetDrawerPump(this);
+
+            polygonPointCoordinateDrawer.Visible = false;
+        }
+
+        public override Color MainColor
+        {
+            get { return polygonLineDrawer.LineColor; }
+            set { polygonLineDrawer.LineColor = value; SpringLayerRepresentationChangedEvent(this); }
+        }
+
+        PointDrawer polygonPointDrawer = new PointDrawer();
+        public PointDrawer PathPoint
+        {
+            get { return polygonPointDrawer; }
+            set { polygonPointDrawer = value; SpringLayerRepresentationChangedEvent(this); }
+        }
+
+        CoordinateDrawer polygonPointCoordinateDrawer = new CoordinateDrawer();
+        public CoordinateDrawer polygonPointCoordinate
+        {
+            get { return polygonPointCoordinateDrawer; }
+            set { polygonPointCoordinateDrawer = value; SpringLayerRepresentationChangedEvent(this); }
+        }
+
+        CloseLineDrawer polygonLineDrawer = new CloseLineDrawer();
+        public CloseLineDrawer PolygonLine
+        {
+            get { return polygonLineDrawer; }
+            set { polygonLineDrawer = value; SpringLayerRepresentationChangedEvent(this); }
+        }
+
+        public override void Draw(Graphics graphics)
+        {
+            if (Visible)
+            {
+                SetDrawerGraphic(graphics);
+
+                positionSetDrawerPump.ResetPump();
+                positionSetDrawerPump.DrawCoordinate(polygonPointCoordinateDrawer);
+                positionSetDrawerPump.DrawLineClose(polygonLineDrawer);
+                positionSetDrawerPump.DrawPoint(polygonPointDrawer);
+                positionSetDrawerPump.Run();
+
+            }
+        }
+    }
+
 
     public class Layer_PositionSet_Point : Layer_PositionSet
     {

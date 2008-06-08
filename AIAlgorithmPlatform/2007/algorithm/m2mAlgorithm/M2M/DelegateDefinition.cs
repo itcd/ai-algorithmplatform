@@ -19,4 +19,8 @@ namespace M2M
 
     public delegate IPositionSet dConvexHull(IPositionSet positionSet);
     public delegate void dPreProcess(IPositionSet positionSet);
+
+    public delegate void dCollision(IPositionSet positionSet);
+    public delegate void dNoCollision(IPositionSet positionSet);
+    public delegate void dGetIntersectPart(ILevel level,IPositionSet Part);
 }
