@@ -239,6 +239,16 @@ namespace Position_Implement
         {
             return (IPosition)positionSetList[currentSequence].GetPosition();
         }
+
+        public IPositionSet GetNthPositionSet(int n)
+        {
+            return positionSetList[n];
+        }
+
+        public int GetPositionSetNum()
+        {
+            return positionSetList.Count;
+        }
     }
 
 

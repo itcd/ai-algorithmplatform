@@ -1,7 +1,7 @@
 using System;
 
 using System.Threading;
-using Microsoft.VisualStudio.DebuggerVisualizers;
+//using Microsoft.VisualStudio.DebuggerVisualizers;
 using System.Diagnostics;
 
 namespace Position_Interface

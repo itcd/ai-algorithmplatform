@@ -12,7 +12,7 @@ namespace M2M
         double set_pointInPartFactor = 33;
 
         //上一层分块包含下一层分块数目的开平方
-        int set_UnitNumInGridLength = 4;
+        int set_UnitNumInGridLength = 2;
 
         //如果地图尺寸太大，或者分块太细可能出现问题，应该调整bias使得更大
         const float set_Bias = 1.00001f;
@@ -175,7 +175,78 @@ namespace M2M
                 set_UnitNumInGridLength, CalculateEffectiveLevelNum(PointNum, MicPartNumInMacPart));
 
             return Create();
+        }
+
+        public M2MStructure_General CreateAutomatically(IPositionSet positionSet,int level)
+        {
+            int PointNum = 0;
+
+            float leftestX = 0;
+            float rightestX = 0;
+            float lowestY = 0;
+            float highestY = 0;
+
+            positionSet.InitToTraverseSet();
+            if (positionSet.NextPosition())
+            {
+                leftestX = positionSet.GetPosition().GetX();
+                rightestX = positionSet.GetPosition().GetX();
+                lowestY = positionSet.GetPosition().GetY();
+                highestY = positionSet.GetPosition().GetY();
+
+                PointNum++;
+            }
+
+            while (positionSet.NextPosition())
+            {
+                if (positionSet.GetPosition().GetX() > rightestX)
+                {
+                    rightestX = positionSet.GetPosition().GetX();
+                }
+                else if (positionSet.GetPosition().GetX() < leftestX)
+                {
+                    leftestX = positionSet.GetPosition().GetX();
+                }
+
+                if (positionSet.GetPosition().GetY() > highestY)
+                {
+                    highestY = positionSet.GetPosition().GetY();
+                }
+                else if (positionSet.GetPosition().GetY() < lowestY)
+                {
+                    lowestY = positionSet.GetPosition().GetY();
+                }
+
+                PointNum++;
+            }
+
+            if (PointNum == 0)
+            {
+                throw new Exception("PointNum == 0");
+            }
+
+            float mapWidth = (rightestX - leftestX) * set_Bias;
+            float mapHeight = (highestY - lowestY) * set_Bias;
+
+            int MicPartNumInMacPart = set_UnitNumInGridLength * set_UnitNumInGridLength;
+
+            float maxGridLength;
+
+            if (mapWidth > mapHeight)
+            {
+                maxGridLength = mapHeight / set_UnitNumInGridLength + float.Epsilon;
+            }
+            else
+            {
+                maxGridLength = mapWidth / set_UnitNumInGridLength + float.Epsilon;
+            }
+
+            Init(leftestX, lowestY, mapWidth, mapHeight, maxGridLength,
+                set_UnitNumInGridLength, level);
+
+            return Create();
         }        
+
 
         public void SetPointInPartFactor(double factor)
         {
