@@ -19,10 +19,10 @@ namespace M2M.Algorithm.Pathfinding
         protected IPriorityQueue<IPosition_Connected> open;
         protected IList<Tag> list;
 
-        public SearchPathEngine()
+        protected void base_init()
         {
             time_stamp = 0;
-            open = new IntervalHeap_C5<IPosition_Connected>(com);
+            open = new PriorityQueue<IPosition_Connected>(com);
             list = new List<Tag>();
         }
 
@@ -66,7 +66,7 @@ namespace M2M.Algorithm.Pathfinding
             foreach (IPosition_Connected p in positionSet)
             {
                 Tag t = new Tag();
-                t.Clear();
+                //t.Clear();
                 p.SetTagIndex(list.Count);
                 list.Add(t);
             }

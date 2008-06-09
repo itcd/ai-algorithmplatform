@@ -17,6 +17,7 @@ namespace M2M.Algorithm.Pathfinding
         public Dijkstra()
         {
             com = new DijkstraTagComparer(list);
+            base_init();
         }
 
         #region ISearchPathEngine Members

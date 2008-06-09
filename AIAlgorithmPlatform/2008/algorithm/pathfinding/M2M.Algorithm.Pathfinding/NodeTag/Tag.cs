@@ -8,7 +8,7 @@ using Real = System.Double;
 namespace M2M.Algorithm.Pathfinding.NodeTag
 {
     [Serializable]
-    public struct Tag : ITag
+    public class Tag : ITag
     {
         public IPosition_Connected parent;
         public Real f;
@@ -26,10 +26,10 @@ namespace M2M.Algorithm.Pathfinding.NodeTag
             this.timeStamp = 0;
         }
 
-        //public Tag()
-        //{
-        //    Clear();
-        //}
+        public Tag()
+        {
+            Clear();
+        }
 
         public Tag(IPosition_Connected parent, float f, float g, bool closed)
         {

@@ -17,6 +17,7 @@ namespace M2M.Algorithm.Pathfinding
         {
             com = new AStarTagComparer(list);
             evaluator = new EuclidDistanceEvaluator();
+            base_init();
         }
 
         public IEvaluator Evaluator

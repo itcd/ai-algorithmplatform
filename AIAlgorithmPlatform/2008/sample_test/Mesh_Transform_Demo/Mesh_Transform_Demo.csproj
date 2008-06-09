@@ -93,12 +93,6 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\reference\Petzold.Media3D\Petzold.Media3D\Petzold.Media3D.csproj">
-      <Project>{BEBED159-4DB6-4550-8342-7F3607177B71}</Project>
-      <Name>Petzold.Media3D</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
