@@ -93,13 +93,13 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\reference\Petzold.Media3D\Petzold.Media3D\Petzold.Media3D.csproj">
-      <Project>{BEBED159-4DB6-4550-8342-7F3607177B71}</Project>
-      <Name>Petzold.Media3D</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\algorithm\position\M2M.Position\M2M.Position.csproj">
       <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
       <Name>M2M.Position</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\reference\Petzold.Media3D\Petzold.Media3D\Petzold.Media3D.csproj">
+      <Project>{BEBED159-4DB6-4550-8342-7F3607177B71}</Project>
+      <Name>Petzold.Media3D</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\util\Scene\Scene.csproj">
       <Project>{573E3438-EED3-495B-8044-7D4614FF05D4}</Project>

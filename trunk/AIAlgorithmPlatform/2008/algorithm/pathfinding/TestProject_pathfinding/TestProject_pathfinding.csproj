@@ -43,11 +43,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagClass.cs" />
     <Compile Include="Tag_UnitTest.cs" />
+    <Compile Include="UnitTest_SearchPathEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\util\Configuration\Configuration.csproj">
+      <Project>{6C70838F-465B-492A-BB06-E46ECF1AEA29}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\util\M2M.Media3D\M2M.Media3D.csproj">
+      <Project>{C26E9E8B-CB0A-49C9-9831-65FC2B3011FF}</Project>
+      <Name>M2M.Media3D</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\position\M2M.Position\M2M.Position.csproj">
       <Project>{985A5D54-AB5F-4894-9650-CEC35E1184AE}</Project>
       <Name>M2M.Position</Name>
