@@ -6,6 +6,8 @@ using M2M.Algorithm.Pathfinding.NodeTag;
 using M2M.Position;
 using Real = System.Double;
 using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.IPosition_Connected>;
+using M2M.Util.DataStructure;
+using M2M.Util.DataStructure.PriorityQueue;
 
 namespace M2M.Algorithm.Pathfinding
 {
@@ -16,8 +18,9 @@ namespace M2M.Algorithm.Pathfinding
     {
         public Dijkstra()
         {
-            com = new DijkstraTagComparer(list);
             base_init();
+            com = new DijkstraTagComparer(list);
+            open = new PriorityQueue<IPosition_Connected>(com);
         }
 
         #region ISearchPathEngine Members
