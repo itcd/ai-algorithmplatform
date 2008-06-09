@@ -6,6 +6,8 @@ using M2M.Algorithm.Pathfinding.NodeTag;
 using M2M.Position;
 using Real = System.Double;
 using IPosition_ConnectedSet = System.Collections.Generic.ICollection<M2M.Position.IPosition_Connected>;
+using M2M.Util.DataStructure;
+using M2M.Util.DataStructure.PriorityQueue;
 
 namespace M2M.Algorithm.Pathfinding
 {
@@ -15,9 +17,10 @@ namespace M2M.Algorithm.Pathfinding
 
         public AStar()
         {
-            com = new AStarTagComparer(list);
-            evaluator = new EuclidDistanceEvaluator();
             base_init();
+            com = new AStarTagComparer(list);
+            open = new PriorityQueue<IPosition_Connected>(com);
+            evaluator = new EuclidDistanceEvaluator();
         }
 
         public IEvaluator Evaluator

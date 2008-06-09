@@ -22,7 +22,6 @@ namespace M2M.Algorithm.Pathfinding
         protected void base_init()
         {
             time_stamp = 0;
-            open = new PriorityQueue<IPosition_Connected>(com);
             list = new List<Tag>();
         }
 
