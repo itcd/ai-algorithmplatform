@@ -33,7 +33,7 @@ namespace MolecularThermalmotion
             InitializeComponent();
 
             myMediaElement = new MediaElement();
-            myMediaElement.Source = new Uri("hit.wav", UriKind.RelativeOrAbsolute);
+            myMediaElement.Source = new Uri("res/hit.wav", UriKind.Relative);
             myMediaElement.LoadedBehavior = MediaState.Manual;
             myMediaElement.Volume = 1;
             myMediaElement.Stop();

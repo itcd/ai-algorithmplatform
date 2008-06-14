@@ -232,7 +232,7 @@ namespace MolecularThermalmotion
                 boardGeometryModel.Material = null;//材料
 
                 ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = new BitmapImage(new Uri("../../resource/board.jpg", UriKind.Relative));
+                imageBrush.ImageSource = new BitmapImage(new Uri("res/board.jpg", UriKind.Relative));
                 //imageBrush.Viewbox = new Rect(0, 0, imageBrush.ImageSource.Width, imageBrush.ImageSource.Height);
                 imageBrush.Viewbox = new Rect(0, 0, 100, 100);
                 //imageBrush.TileMode = TileMode.FlipXY;
