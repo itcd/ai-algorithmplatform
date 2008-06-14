@@ -10,8 +10,11 @@ namespace M2M.Position.RandomMap
 {
     public class RandomMaze_IPosition_Connected_Config
     {
-        int width = 30, height = 20, depth = 10, branch_max = 2;
-        RandomMapStyle style = RandomMapStyle.RandomMaze;
+        static int width = 30;
+        static int height = 20;
+        static int depth = 10;
+        static int branch_max = 2;
+        static RandomMapStyle style = RandomMapStyle.RandomMaze;
 
         public IPosition_ConnectedSet Produce()
         {

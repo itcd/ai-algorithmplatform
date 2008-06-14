@@ -65,7 +65,6 @@ namespace M2M.Algorithm.Pathfinding
             foreach (IPosition_Connected p in positionSet)
             {
                 Tag t = new Tag();
-                //t.Clear();
                 p.SetTagIndex(list.Count);
                 list.Add(t);
             }

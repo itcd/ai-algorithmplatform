@@ -15,18 +15,28 @@ namespace M2M.Algorithm.Pathfinding
     {
         protected IEvaluator evaluator;
 
-        public AStar()
-        {
-            base_init();
-            com = new AStarTagComparer(list);
-            open = new PriorityQueue<IPosition_Connected>(com);
-            evaluator = new EuclidDistanceEvaluator();
-        }
-
         public IEvaluator Evaluator
         {
             get { return evaluator; }
             set { evaluator = value; }
+        }
+
+        protected void init_astar(IEvaluator e)
+        {
+            base_init();
+            com = new AStarTagComparer(list);
+            open = new PriorityQueue<IPosition_Connected>(com);
+            evaluator = e;
+        }
+
+        public AStar()
+        {
+            init_astar(new EuclidDistanceEvaluator());
+        }
+
+        public AStar(IEvaluator e)
+        {
+            init_astar(e);
         }
 
         #region ISearchPathEngine Members
