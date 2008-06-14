@@ -33,12 +33,12 @@
 
 
         <WrapPanel Grid.Row="0"  Name="wrapPanel1" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Button x:Name="button" Content="Reset" Click="button_Click" Width="75" Height="23"  />
-            <Button Height="23" Name="button4" Width="75" Click="button4_Click" >Clear</Button>
-            <Button Height="23" Name="button2" Click="button2_Click"  Width="75">Maze(Nodes)</Button>
+            <Button Height="23" Name="button2" Click="button2_Click"  Width="75">New Map</Button>
             <Button Height="23" Name="button3" Width="75" Click="button3_Click">Dijkstra</Button>
             <Button Height="23" Width="75" Click="button5_Click">A*(Euclid)</Button>
-            <Button Height="23"  Width="75" Click="button6_Click">A*(Manhattan)</Button>
+            <Button Height="23"  Width="85" Click="button6_Click">A*(Manhattan)</Button>
+            <Button x:Name="button" Content="Reset Camera" Click="button_Click" Width="80" Height="23"  />
+            <Button Height="23" Name="button4" Width="75" Click="button4_Click" >Clear Map</Button>
         </WrapPanel>
 
 
