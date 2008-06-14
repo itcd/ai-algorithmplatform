@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace Wpf_RandomMap_Demo
+namespace Map_Path_3D
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -6,7 +6,7 @@ using Real = System.Double;
 
 namespace M2M.Position
 {
-    public class EuclidDistanceEvaluator : IEvaluator
+    public class ManhattanDistanceEvaluator : IEvaluator
     {
         #region IEvaluator Members
 
@@ -15,11 +15,10 @@ namespace M2M.Position
             int d1 = p1.GetDimension();
             int d2 = p2.GetDimension();
             int d = d1 < d2 ? d1 : d2;
-            Real r = 0, dist;
+            Real r = 0;
             for (int i = 0; i < d; i++)
             {
-                dist = p1.GetValue(i) - p2.GetValue(i);
-                r += dist * dist;
+                r += Math.Abs(p1.GetValue(i) - p2.GetValue(i));
             }
             return Math.Sqrt(r);
         }

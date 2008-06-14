@@ -58,6 +58,7 @@
     <Compile Include="AbstractPositionSet.cs" />
     <Compile Include="Adjacency.cs" />
     <Compile Include="EuclidDistanceEvaluator.cs" />
+    <Compile Include="ManhattanDistanceEvaluator.cs" />
     <Compile Include="PositionSetConvertor.cs" />
     <Compile Include="Position3D.cs" />
     <Compile Include="Position3D_Connected.cs" />
