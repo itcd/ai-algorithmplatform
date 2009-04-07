@@ -1,5 +1,0 @@
-G:\work\MicroPayment\MicroPayment.Model\bin\Debug\MicroPayment.Model.dll
-G:\work\MicroPayment\MicroPayment.Model\bin\Debug\MicroPayment.Model.pdb
-G:\work\MicroPayment\MicroPayment.Model\obj\Debug\ResolveAssemblyReference.cache
-G:\work\MicroPayment\MicroPayment.Model\obj\Debug\MicroPayment.Model.dll
-G:\work\MicroPayment\MicroPayment.Model\obj\Debug\MicroPayment.Model.pdb
