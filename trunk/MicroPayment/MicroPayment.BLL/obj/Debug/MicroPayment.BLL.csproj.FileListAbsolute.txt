@@ -1,0 +1,11 @@
+G:\work\MicroPayment\MicroPayment.BLL\obj\Debug\ResolveAssemblyReference.cache
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.BLL.dll
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.BLL.pdb
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.DALFactory.dll
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.IDAL.dll
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.Model.dll
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.Model.pdb
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.IDAL.pdb
+G:\work\MicroPayment\MicroPayment.BLL\bin\Debug\MicroPayment.DALFactory.pdb
+G:\work\MicroPayment\MicroPayment.BLL\obj\Debug\MicroPayment.BLL.dll
+G:\work\MicroPayment\MicroPayment.BLL\obj\Debug\MicroPayment.BLL.pdb

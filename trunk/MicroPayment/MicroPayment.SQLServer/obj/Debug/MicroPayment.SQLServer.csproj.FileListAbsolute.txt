@@ -1,0 +1,9 @@
+G:\work\MicroPayment\MicroPayment.SqlServer\obj\Debug\ResolveAssemblyReference.cache
+G:\work\MicroPayment\MicroPayment.SqlServer\bin\Debug\MicroPayment.SQLServer.dll
+G:\work\MicroPayment\MicroPayment.SqlServer\bin\Debug\MicroPayment.SQLServer.pdb
+G:\work\MicroPayment\MicroPayment.SqlServer\bin\Debug\MicroPayment.IDAL.dll
+G:\work\MicroPayment\MicroPayment.SqlServer\bin\Debug\MicroPayment.Model.dll
+G:\work\MicroPayment\MicroPayment.SqlServer\bin\Debug\MicroPayment.Model.pdb
+G:\work\MicroPayment\MicroPayment.SqlServer\bin\Debug\MicroPayment.IDAL.pdb
+G:\work\MicroPayment\MicroPayment.SqlServer\obj\Debug\MicroPayment.SQLServer.dll
+G:\work\MicroPayment\MicroPayment.SqlServer\obj\Debug\MicroPayment.SQLServer.pdb
