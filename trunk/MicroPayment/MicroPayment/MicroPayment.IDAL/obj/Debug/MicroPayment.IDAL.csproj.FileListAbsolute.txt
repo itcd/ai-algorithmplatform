@@ -1,0 +1,7 @@
+G:\work\MicroPayment\MicroPayment.IDAL\obj\Debug\ResolveAssemblyReference.cache
+G:\work\MicroPayment\MicroPayment.IDAL\bin\Debug\MicroPayment.IDAL.dll
+G:\work\MicroPayment\MicroPayment.IDAL\bin\Debug\MicroPayment.IDAL.pdb
+G:\work\MicroPayment\MicroPayment.IDAL\bin\Debug\MicroPayment.Model.dll
+G:\work\MicroPayment\MicroPayment.IDAL\bin\Debug\MicroPayment.Model.pdb
+G:\work\MicroPayment\MicroPayment.IDAL\obj\Debug\MicroPayment.IDAL.dll
+G:\work\MicroPayment\MicroPayment.IDAL\obj\Debug\MicroPayment.IDAL.pdb
