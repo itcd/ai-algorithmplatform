@@ -1,0 +1,7 @@
+﻿2009-7-16 增加Ajax demo
+1、增加/Service/Favor/FavorLevelUpdateHandler.ashx用于Ajax修改FavorLevel
+2、增加/Views/Test/AjaxTest.aspx用于测试修改FavorLevel
+3、增加Latermoon.Web类库，提供常用页面交互函数
+4、修改Latermoon.Data.Database中的ExecuteObject<T>到Execute<T>
+Tag: Ajax, jQuery, JSON
+Author: peter
