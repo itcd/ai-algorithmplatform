@@ -1,0 +1,55 @@
+﻿
+<script language="javascript">
+
+function AddUrl(href, title, from)
+{
+    //这里要改成有效的
+	var url = "http://bookmark.com/add.aspx";
+	url += "?url=" + encodeURIComponent(href);
+	url += "&title=" + encodeURIComponent(title);
+	url += "&from=" + encodeURIComponent(from);
+	url += "&t=" + Math.random();
+	//showModalDialog
+	external.menuArguments.showModelessDialog(url, null, 'dialogWidth=750px;dialogHeight=500px;help:no;status:no')
+}
+
+function OnContextMenu()
+{
+	
+	var srcEvent = external.menuArguments.event;
+	var EventElement;
+	
+	if(typeof(srcEvent.clientX) == "undefined")
+	{
+		EventElement = external.menuArguments.document.elementFromPoint ( srcEvent.pointerX, srcEvent.pointerY );
+	}
+	else
+	{
+		EventElement = external.menuArguments.document.elementFromPoint ( srcEvent.clientX, srcEvent.clientY );
+	}
+		
+	if(EventElement != null && EventElement.tagName == "A")
+	{
+		var href = EventElement.getAttribute("HREF");
+		var title = EventElement.innerText;
+		if(!title){
+	    	title = EventElement.alt || EventElement.title;
+		}
+		if(!title){
+		    title = external.menuArguments.document.title;
+		}
+		var from = external.menuArguments.location.href;
+		AddUrl(href, title, from);
+	  	return;
+	}
+	else
+	{
+		alert("无法处理的超链接 - bookmark " + EventElement.tagName + " / " + typeof(EventElement));
+	}
+	
+}
+
+
+OnContextMenu();
+
+</script>

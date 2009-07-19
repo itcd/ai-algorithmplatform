@@ -1,0 +1,25 @@
+﻿body{ color:#444444;}
+a{ color:#017676;}
+
+.headbg{ background:url(images/bg1.jpg) repeat-x center 50%;}
+.headline{ background:url(images/g.png) repeat-x center bottom; padding-bottom:7px}
+
+.pagecontent{ background:url(images/contenttop.png) no-repeat -7px 70px}
+
+ul.category{ float:left}
+ul.category li{ float:left; padding:2px; margin-right:5px; font-size:15px;}
+
+ul.sizelist{ float:left}
+ul.sizelist li{ float:left; padding:2px; margin-right:5px; font-size:15px;}
+
+
+/*壁纸*/
+.wallsite{}
+.sitehead{ border-bottom:1px solid #CCCCCC; padding-bottom:9px;}
+.sitehead h3{ }
+.sitehead .info{ float:right;}
+ul.wallthumbs{ margin-top:6px;}
+ul.wallthumbs li{ float:left; padding:4px; margin:0 16px 10px 0;}
+
+
+.footer{ border-top:solid 1px #CCC; margin-top:10px; margin-bottom:10px;}

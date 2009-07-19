@@ -1,0 +1,17 @@
+﻿* {margin:0; padding:0;}
+body {font-size:12px; font-family:"Georgia" "Verdana" "Arial" "宋体"; color:#333333}
+h1, h2, h3, h4, h5, h6{font-size:12px; font-weight:normal;}
+.center {width:960px; margin:0 auto;}
+ul, ol {list-style-type:none; list-style:none;}
+img {border:0; }
+table{border-collapse:collapse;}
+td{ padding:0; vertical-align:top;}
+.left {float:left;}
+.right {float:right;}
+.clear {clear:both;}
+a {text-decoration:none; color:#38463E;}
+a:hover {text-decoration:underline;}
+.hand{ cursor:pointer;}
+
+
+.blank12 {clear:both; display:block; height:12px; overflow:hidden;}
