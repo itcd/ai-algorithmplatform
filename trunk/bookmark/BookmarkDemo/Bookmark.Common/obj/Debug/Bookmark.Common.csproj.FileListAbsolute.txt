@@ -1,0 +1,30 @@
+C:\Users\TC\Desktop\Bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.dll
+C:\Users\TC\Desktop\Bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.pdb
+C:\Users\TC\Desktop\Bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\TC\Desktop\Bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.dll
+C:\Users\TC\Desktop\Bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.pdb
+H:\移动工作区\Bookmark Document\Bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.dll
+H:\移动工作区\Bookmark Document\Bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.pdb
+H:\移动工作区\Bookmark Document\Bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\ResolveAssemblyReference.cache
+H:\移动工作区\Bookmark Document\Bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.dll
+H:\移动工作区\Bookmark Document\Bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.pdb
+C:\Users\TC\Desktop\bookmark增加ajax\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.dll
+C:\Users\TC\Desktop\bookmark增加ajax\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.pdb
+C:\Users\TC\Desktop\bookmark增加ajax\BookmarkDemo\Bookmark.Common\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\TC\Desktop\bookmark增加ajax\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.dll
+C:\Users\TC\Desktop\bookmark增加ajax\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.pdb
+E:\program\New Project 4\bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.dll
+E:\program\New Project 4\bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.pdb
+E:\program\New Project 4\bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\ResolveAssemblyReference.cache
+E:\program\New Project 4\bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.dll
+E:\program\New Project 4\bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.pdb
+E:\program\New Project 4\MicroPayment\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.dll
+E:\program\New Project 4\MicroPayment\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.pdb
+E:\program\New Project 4\MicroPayment\BookmarkDemo\Bookmark.Common\obj\Debug\ResolveAssemblyReference.cache
+E:\program\New Project 4\MicroPayment\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.dll
+E:\program\New Project 4\MicroPayment\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.pdb
+E:\program\New Project 4\MicroPayment\bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.dll
+E:\program\New Project 4\MicroPayment\bookmark\BookmarkDemo\Bookmark.Common\bin\Debug\Bookmark.Common.pdb
+E:\program\New Project 4\MicroPayment\bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\ResolveAssemblyReference.cache
+E:\program\New Project 4\MicroPayment\bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.dll
+E:\program\New Project 4\MicroPayment\bookmark\BookmarkDemo\Bookmark.Common\obj\Debug\Bookmark.Common.pdb
