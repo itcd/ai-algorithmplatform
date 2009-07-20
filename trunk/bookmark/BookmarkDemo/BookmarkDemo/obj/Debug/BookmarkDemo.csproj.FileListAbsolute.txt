@@ -1,7 +1,0 @@
-H:\移动工作区\BookmarkDemo\BookmarkDemo\bin\BookmarkDemo.dll
-H:\移动工作区\BookmarkDemo\BookmarkDemo\bin\BookmarkDemo.pdb
-H:\移动工作区\BookmarkDemo\BookmarkDemo\obj\Debug\ResolveAssemblyReference.cache
-H:\移动工作区\BookmarkDemo\BookmarkDemo\obj\Debug\BookmarkDemo.dll
-H:\移动工作区\BookmarkDemo\BookmarkDemo\obj\Debug\BookmarkDemo.pdb
-H:\移动工作区\BookmarkDemo\BookmarkDemo\bin\URLRewriter.pdb
-H:\移动工作区\BookmarkDemo\BookmarkDemo\bin\ActionlessForm.pdb
