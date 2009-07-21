@@ -29,12 +29,12 @@ public partial class FavorsTableDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void InsertFavors(Favors instance);
-  partial void UpdateFavors(Favors instance);
-  partial void DeleteFavors(Favors instance);
   partial void InsertAppraiseOfWebSite(AppraiseOfWebSite instance);
   partial void UpdateAppraiseOfWebSite(AppraiseOfWebSite instance);
   partial void DeleteAppraiseOfWebSite(AppraiseOfWebSite instance);
+  partial void InsertFavors(Favors instance);
+  partial void UpdateFavors(Favors instance);
+  partial void DeleteFavors(Favors instance);
   #endregion
 	
 	public FavorsTableDataContext() : 
@@ -67,6 +67,14 @@ public partial class FavorsTableDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
+	public System.Data.Linq.Table<AppraiseOfWebSite> AppraiseOfWebSite
+	{
+		get
+		{
+			return this.GetTable<AppraiseOfWebSite>();
+		}
+	}
+	
 	public System.Data.Linq.Table<Favors> Favors
 	{
 		get
@@ -74,12 +82,258 @@ public partial class FavorsTableDataContext : System.Data.Linq.DataContext
 			return this.GetTable<Favors>();
 		}
 	}
+}
+
+[Table(Name="dbo.AppraiseOfWebSite")]
+public partial class AppraiseOfWebSite : INotifyPropertyChanging, INotifyPropertyChanged
+{
 	
-	public System.Data.Linq.Table<AppraiseOfWebSite> AppraiseOfWebSite
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private string _Href;
+	
+	private string _Titles;
+	
+	private string _TitlesCount;
+	
+	private string _Tags;
+	
+	private string _TagsCount;
+	
+	private System.Nullable<short> _FavorLevel;
+	
+	private System.Nullable<short> _QueryFrequency;
+	
+	private string _Remarks;
+	
+	private string _RemarksCount;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnHrefChanging(string value);
+    partial void OnHrefChanged();
+    partial void OnTitlesChanging(string value);
+    partial void OnTitlesChanged();
+    partial void OnTitlesCountChanging(string value);
+    partial void OnTitlesCountChanged();
+    partial void OnTagsChanging(string value);
+    partial void OnTagsChanged();
+    partial void OnTagsCountChanging(string value);
+    partial void OnTagsCountChanged();
+    partial void OnFavorLevelChanging(System.Nullable<short> value);
+    partial void OnFavorLevelChanged();
+    partial void OnQueryFrequencyChanging(System.Nullable<short> value);
+    partial void OnQueryFrequencyChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
+    partial void OnRemarksCountChanging(string value);
+    partial void OnRemarksCountChanged();
+    #endregion
+	
+	public AppraiseOfWebSite()
+	{
+		OnCreated();
+	}
+	
+	[Column(Storage="_Href", DbType="VarChar(500) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+	public string Href
 	{
 		get
 		{
-			return this.GetTable<AppraiseOfWebSite>();
+			return this._Href;
+		}
+		set
+		{
+			if ((this._Href != value))
+			{
+				this.OnHrefChanging(value);
+				this.SendPropertyChanging();
+				this._Href = value;
+				this.SendPropertyChanged("Href");
+				this.OnHrefChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Titles", DbType="NVarChar(255)")]
+	public string Titles
+	{
+		get
+		{
+			return this._Titles;
+		}
+		set
+		{
+			if ((this._Titles != value))
+			{
+				this.OnTitlesChanging(value);
+				this.SendPropertyChanging();
+				this._Titles = value;
+				this.SendPropertyChanged("Titles");
+				this.OnTitlesChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_TitlesCount", DbType="NVarChar(50)")]
+	public string TitlesCount
+	{
+		get
+		{
+			return this._TitlesCount;
+		}
+		set
+		{
+			if ((this._TitlesCount != value))
+			{
+				this.OnTitlesCountChanging(value);
+				this.SendPropertyChanging();
+				this._TitlesCount = value;
+				this.SendPropertyChanged("TitlesCount");
+				this.OnTitlesCountChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Tags", DbType="NVarChar(255)")]
+	public string Tags
+	{
+		get
+		{
+			return this._Tags;
+		}
+		set
+		{
+			if ((this._Tags != value))
+			{
+				this.OnTagsChanging(value);
+				this.SendPropertyChanging();
+				this._Tags = value;
+				this.SendPropertyChanged("Tags");
+				this.OnTagsChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_TagsCount", DbType="NVarChar(50)")]
+	public string TagsCount
+	{
+		get
+		{
+			return this._TagsCount;
+		}
+		set
+		{
+			if ((this._TagsCount != value))
+			{
+				this.OnTagsCountChanging(value);
+				this.SendPropertyChanging();
+				this._TagsCount = value;
+				this.SendPropertyChanged("TagsCount");
+				this.OnTagsCountChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_FavorLevel", DbType="SmallInt")]
+	public System.Nullable<short> FavorLevel
+	{
+		get
+		{
+			return this._FavorLevel;
+		}
+		set
+		{
+			if ((this._FavorLevel != value))
+			{
+				this.OnFavorLevelChanging(value);
+				this.SendPropertyChanging();
+				this._FavorLevel = value;
+				this.SendPropertyChanged("FavorLevel");
+				this.OnFavorLevelChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_QueryFrequency", DbType="SmallInt")]
+	public System.Nullable<short> QueryFrequency
+	{
+		get
+		{
+			return this._QueryFrequency;
+		}
+		set
+		{
+			if ((this._QueryFrequency != value))
+			{
+				this.OnQueryFrequencyChanging(value);
+				this.SendPropertyChanging();
+				this._QueryFrequency = value;
+				this.SendPropertyChanged("QueryFrequency");
+				this.OnQueryFrequencyChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Remarks", DbType="NVarChar(1000)")]
+	public string Remarks
+	{
+		get
+		{
+			return this._Remarks;
+		}
+		set
+		{
+			if ((this._Remarks != value))
+			{
+				this.OnRemarksChanging(value);
+				this.SendPropertyChanging();
+				this._Remarks = value;
+				this.SendPropertyChanged("Remarks");
+				this.OnRemarksChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_RemarksCount", DbType="NChar(50)")]
+	public string RemarksCount
+	{
+		get
+		{
+			return this._RemarksCount;
+		}
+		set
+		{
+			if ((this._RemarksCount != value))
+			{
+				this.OnRemarksCountChanging(value);
+				this.SendPropertyChanging();
+				this._RemarksCount = value;
+				this.SendPropertyChanged("RemarksCount");
+				this.OnRemarksCountChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
@@ -409,260 +663,6 @@ public partial class Favors : INotifyPropertyChanging, INotifyPropertyChanged
 				this._Remark = value;
 				this.SendPropertyChanged("Remark");
 				this.OnRemarkChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[Table(Name="dbo.AppraiseOfWebSite")]
-public partial class AppraiseOfWebSite : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private string _Href;
-	
-	private string _Titles;
-	
-	private string _TitlesCount;
-	
-	private string _Tags;
-	
-	private string _TagsCount;
-	
-	private System.Nullable<short> _FavorLevel;
-	
-	private System.Nullable<short> _QueryFrequency;
-	
-	private string _Remarks;
-	
-	private string _RemarksCount;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnHrefChanging(string value);
-    partial void OnHrefChanged();
-    partial void OnTitlesChanging(string value);
-    partial void OnTitlesChanged();
-    partial void OnTitlesCountChanging(string value);
-    partial void OnTitlesCountChanged();
-    partial void OnTagsChanging(string value);
-    partial void OnTagsChanged();
-    partial void OnTagsCountChanging(string value);
-    partial void OnTagsCountChanged();
-    partial void OnFavorLevelChanging(System.Nullable<short> value);
-    partial void OnFavorLevelChanged();
-    partial void OnQueryFrequencyChanging(System.Nullable<short> value);
-    partial void OnQueryFrequencyChanged();
-    partial void OnRemarksChanging(string value);
-    partial void OnRemarksChanged();
-    partial void OnRemarksCountChanging(string value);
-    partial void OnRemarksCountChanged();
-    #endregion
-	
-	public AppraiseOfWebSite()
-	{
-		OnCreated();
-	}
-	
-	[Column(Storage="_Href", DbType="VarChar(500) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-	public string Href
-	{
-		get
-		{
-			return this._Href;
-		}
-		set
-		{
-			if ((this._Href != value))
-			{
-				this.OnHrefChanging(value);
-				this.SendPropertyChanging();
-				this._Href = value;
-				this.SendPropertyChanged("Href");
-				this.OnHrefChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_Titles", DbType="NVarChar(255)")]
-	public string Titles
-	{
-		get
-		{
-			return this._Titles;
-		}
-		set
-		{
-			if ((this._Titles != value))
-			{
-				this.OnTitlesChanging(value);
-				this.SendPropertyChanging();
-				this._Titles = value;
-				this.SendPropertyChanged("Titles");
-				this.OnTitlesChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_TitlesCount", DbType="NVarChar(50)")]
-	public string TitlesCount
-	{
-		get
-		{
-			return this._TitlesCount;
-		}
-		set
-		{
-			if ((this._TitlesCount != value))
-			{
-				this.OnTitlesCountChanging(value);
-				this.SendPropertyChanging();
-				this._TitlesCount = value;
-				this.SendPropertyChanged("TitlesCount");
-				this.OnTitlesCountChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_Tags", DbType="NVarChar(255)")]
-	public string Tags
-	{
-		get
-		{
-			return this._Tags;
-		}
-		set
-		{
-			if ((this._Tags != value))
-			{
-				this.OnTagsChanging(value);
-				this.SendPropertyChanging();
-				this._Tags = value;
-				this.SendPropertyChanged("Tags");
-				this.OnTagsChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_TagsCount", DbType="NVarChar(50)")]
-	public string TagsCount
-	{
-		get
-		{
-			return this._TagsCount;
-		}
-		set
-		{
-			if ((this._TagsCount != value))
-			{
-				this.OnTagsCountChanging(value);
-				this.SendPropertyChanging();
-				this._TagsCount = value;
-				this.SendPropertyChanged("TagsCount");
-				this.OnTagsCountChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_FavorLevel", DbType="SmallInt")]
-	public System.Nullable<short> FavorLevel
-	{
-		get
-		{
-			return this._FavorLevel;
-		}
-		set
-		{
-			if ((this._FavorLevel != value))
-			{
-				this.OnFavorLevelChanging(value);
-				this.SendPropertyChanging();
-				this._FavorLevel = value;
-				this.SendPropertyChanged("FavorLevel");
-				this.OnFavorLevelChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_QueryFrequency", DbType="SmallInt")]
-	public System.Nullable<short> QueryFrequency
-	{
-		get
-		{
-			return this._QueryFrequency;
-		}
-		set
-		{
-			if ((this._QueryFrequency != value))
-			{
-				this.OnQueryFrequencyChanging(value);
-				this.SendPropertyChanging();
-				this._QueryFrequency = value;
-				this.SendPropertyChanged("QueryFrequency");
-				this.OnQueryFrequencyChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_Remarks", DbType="NVarChar(1000)")]
-	public string Remarks
-	{
-		get
-		{
-			return this._Remarks;
-		}
-		set
-		{
-			if ((this._Remarks != value))
-			{
-				this.OnRemarksChanging(value);
-				this.SendPropertyChanging();
-				this._Remarks = value;
-				this.SendPropertyChanged("Remarks");
-				this.OnRemarksChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_RemarksCount", DbType="NChar(50)")]
-	public string RemarksCount
-	{
-		get
-		{
-			return this._RemarksCount;
-		}
-		set
-		{
-			if ((this._RemarksCount != value))
-			{
-				this.OnRemarksCountChanging(value);
-				this.SendPropertyChanging();
-				this._RemarksCount = value;
-				this.SendPropertyChanged("RemarksCount");
-				this.OnRemarksCountChanged();
 			}
 		}
 	}
