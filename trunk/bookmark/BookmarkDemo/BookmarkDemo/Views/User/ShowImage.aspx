@@ -8,20 +8,23 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:DataList ID="DataList1" runat="server" DataKeyField="Href" 
-        DataSourceID="SqlDataSource2">
+    <asp:DataList ID="DataList1" runat="server">
         <ItemTemplate>
             <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("ImageUrl") %>'  Height="300" Width="300" />
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("Href") %>' 
                 Text='<%# Eval("Titles") %>'></asp:HyperLink>
         </ItemTemplate>
     </asp:DataList>
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:bookmark1ConnectionString %>" 
-        SelectCommand="SELECT [Href], [Titles], [ImageUrl] FROM [AppraiseOfWebSite]">
-    </asp:SqlDataSource>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-    <asp:Button ID="Button1" runat="server" Text="Button" />
+   
+    <asp:Panel ID="Panel1" runat="server">
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="/"></asp:Label>
+        <asp:Label ID="Label2" runat="server"></asp:Label>
+        <asp:Button ID="prevButton" runat="server" Text="上一页" 
+            onclick="prevButton_Click" />
+        <asp:Button ID="nextButton" runat="server" onclick="nextButton_Click" 
+            Text="下一页" />
+    </asp:Panel>
     </form>
 </body>
 </html>
