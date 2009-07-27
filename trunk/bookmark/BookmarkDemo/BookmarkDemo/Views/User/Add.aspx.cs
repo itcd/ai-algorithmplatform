@@ -26,10 +26,10 @@ public partial class Views_User_Add : System.Web.UI.Page
         {
             labUserID.Text = UserID;
             //收藏信息
-            txtTitle.Text = Request["title"];
-            txtTag.Text = Request["tag"];
-            txtHref.Text = Request["url"];
-            txtReferSite.Text = Request["from"];
+            //txtTitle.Text = Request["title"];
+            //txtTag.Text = Request["tag"];
+            //txtHref.Text = Request["url"];
+            //txtReferSite.Text = Request["from"];
         }
     }
 
@@ -82,10 +82,13 @@ public partial class Views_User_Add : System.Web.UI.Page
 
         //获取一条数据库空行
         Hashtable fields = FavorField.EmptyRow();
-        fields[FavorField.Username] = txtUsername.Text;
-        fields[FavorField.Title] = txtTitle.Text.Length > 250 ? txtTitle.Text.Substring(0, 250) : txtTitle.Text;
+        fields[FavorField.Username] =  txtUsername.Text;
+        string txtTitle = Request["txtTitle"];
+        fields[FavorField.Title] = txtTitle.Length > 250 ? txtTitle.Substring(0, 250) : txtTitle;
         fields[FavorField.Href] = txtHref.Text;
-        fields[FavorField.Tag] = txtTag.Text;
+        fields[FavorField.Tag] = Request["txtTag"];
+        fields["Remark"] = Request["txtRemark"];
+        fields[FavorField.FavorLevel] = Request["txtFavorLevel"];
         fieldsList.Add(fields);
 
         BookmarkFavors Favors = new BookmarkFavors(new BookmarkUser(txtUsername.Text));
@@ -95,16 +98,46 @@ public partial class Views_User_Add : System.Web.UI.Page
         //批量添加
         //long[] idList = Favors.Add(fieldsList.ToArray());
     }
+
     protected void Button1_Click(object sender, EventArgs e)
     {
         FavorsTableDataContext db = new FavorsTableDataContext();
 
-        var query = from site in db.AppraiseOfWebSite where site.Href == txtHref.Text select site;
+        string href = txtHref.Text.Trim().ToLowerInvariant();
 
-        foreach(var site in query)
+        var query = from site in db.AppraiseOfWebSite where site.Href == href select site;
+
+        AppraiseOfWebSite candidateRow = null;
+
+        foreach(var row in query)
         {
-            txtTag.Text = site.FavorLevel.ToString();
+            candidateRow = row;
+            //候选选项表中存在当前网址的记录
+            GetUrlInfo = true;
             break;
         }
+
+        if (candidateRow != null)
+        {
+            TagList = candidateRow.Tags.Split(';');
+            TitleList = candidateRow.Titles.Split(new string[] { "##" }, StringSplitOptions.RemoveEmptyEntries);
+            RemarkList = candidateRow.Remarks.Split(new string[] { "##" }, StringSplitOptions.RemoveEmptyEntries);
+            txtFavorLevel.Text = candidateRow.FavorLevel.ToString();
+            WebSiteImage.ImageUrl = "~/Content/images/WebSiteImages/" + candidateRow.ImageUrl.Trim() + ".jpeg";
+        }
     }
+
+    bool getUrlInfo = false;
+
+    public bool GetUrlInfo
+    {
+        get { return getUrlInfo; }
+        set { getUrlInfo = value; }
+    }
+
+    public string[] TagList;
+
+    public string[] TitleList;
+
+    public string[] RemarkList;
 }
