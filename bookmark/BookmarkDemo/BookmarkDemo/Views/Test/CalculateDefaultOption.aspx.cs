@@ -222,4 +222,25 @@ public partial class Views_Test_CalculateDefaultOption : System.Web.UI.Page
 
         db.SubmitChanges();
     }
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        FavorsTableDataContext db = new FavorsTableDataContext();
+
+        using (TransactionScope scope = new TransactionScope())
+        {
+            var webSiteToUpdate = from site in db.AppraiseOfWebSite select site;
+
+            int index = 0;
+
+            foreach (var site in webSiteToUpdate)
+            {
+                site.SiteID = index;
+                index++;
+            }
+
+            db.SubmitChanges();
+
+            scope.Complete();
+        }
+    }
 }

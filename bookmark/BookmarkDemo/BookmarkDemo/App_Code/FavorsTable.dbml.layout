@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="FavorsTable">
   <DataContextMoniker Name="/FavorsTableDataContext" />
   <nestedChildShapes>
-    <classShape Id="f4d42e11-7d0e-42df-8a12-6a0f457c6b8e" absoluteBounds="1.25, 1.625, 2, 2.5266442871093751">
+    <classShape Id="a66f09bf-bff6-467e-a338-f1f272c56796" absoluteBounds="3.625, 1.75, 2, 2.6286848958333331">
       <DataClassMoniker Name="/FavorsTableDataContext/AppraiseOfWebSite" />
       <nestedChildShapes>
-        <elementListCompartment Id="6dec1467-a821-4b9f-a409-397654d730c0" absoluteBounds="1.2649999999999997, 2.085, 1.9700000000000002, 1.966644287109375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4cdd091b-dd2e-4f49-b095-5ee149bf9a30" absoluteBounds="3.64, 2.21, 1.9700000000000002, 2.068684895833333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="346b18c2-d513-4514-a452-ac71e9db6fd1" absoluteBounds="3.625, 4.125, 2, 3.2907230631510416">
+    <classShape Id="ac849c6b-ff6d-468d-af02-4914bbcf801e" absoluteBounds="2.75, 4.875, 2, 2.9659244791666666">
       <DataClassMoniker Name="/FavorsTableDataContext/Favors" />
       <nestedChildShapes>
-        <elementListCompartment Id="4e3b96d3-fd8d-4cd0-9e9c-fb7c234afe1c" absoluteBounds="3.64, 4.585, 1.9700000000000002, 2.7307230631510415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3af25dce-1ca0-45af-a640-e373c320e8bb" absoluteBounds="2.765, 5.335, 1.9700000000000002, 2.4059244791666665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

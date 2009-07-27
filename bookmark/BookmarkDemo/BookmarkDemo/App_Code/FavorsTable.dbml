@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="bookmark" Class="FavorsTableDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\bookmark.mdf;Integrated Security=True;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="bookmarkConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\bookmark.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="bookmarkConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AppraiseOfWebSite" Member="AppraiseOfWebSite">
     <Type Name="AppraiseOfWebSite">
-      <Column Name="Href" Type="System.String" DbType="VarChar(500) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SiteID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Href" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="Titles" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="TitlesCount" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Tags" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -12,6 +13,7 @@
       <Column Name="QueryFrequency" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="Remarks" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Column Name="RemarksCount" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="ImageUrl" Type="System.String" DbType="NChar(200)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Favors" Member="Favors">

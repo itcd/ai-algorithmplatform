@@ -14,6 +14,10 @@
             onclick="Button3_Click" Text="开始" />
     
         <br />
+        把AppraiseOfWebSIte表的SiteID赋值<asp:Button ID="Button4" runat="server" 
+            Text="开始" onclick="Button4_Click" />
+    
+        <br />
     
         生成默认选项数据库
     
