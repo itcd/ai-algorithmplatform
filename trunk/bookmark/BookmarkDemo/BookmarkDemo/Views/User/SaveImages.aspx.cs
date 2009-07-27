@@ -20,122 +20,48 @@ using System.Threading;
 
 public partial class Views_User_Default : System.Web.UI.Page
 {
-    //private WebBrowser _webBrowser;
+    String str = "ABCDEF";
 
+    public String Str
+    {
+        get { return str; }
+        set { str = value; }
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-      
+
     }
 
     protected void Unnamed1_Click(object sender, EventArgs e)
     {
-        SaveImageList();
+        String CommandText = "SELECT * FROM AppraiseOfWebSite";
+        SqlConnection cnn = new SqlConnection();
+        cnn.ConnectionString = ConfigurationManager.ConnectionStrings["bookmark"].ConnectionString.ToString();
+
+        SqlCommand cmd = cnn.CreateCommand();
+        cmd.CommandText = CommandText;
+
+        var dataAdapter = new SqlDataAdapter(cmd);
+        var dataSet = new DataSet();
+        dataAdapter.Fill(dataSet, "AppraiseOfWebSite");
+
+        dataTable = dataSet.Tables["AppraiseOfWebSite"];
+
+        //SaveImageByUrlWithBrowsers(0, dataTable.Rows.Count, 10, @"D:\WebSiteImages\", @"D:/WebSiteSmallImages/", GetUrlByIndexByDataTable, SaveFileNameToDB);
+
+        SaveImageByUrlWithBrowsers(0, dataTable.Rows.Count, 10, Server.MapPath("~/Content/images/WebSiteImages/"), Server.MapPath("~/Content/images/WebSiteSmallImages/"), GetUrlByIndexByDataTable, SaveFileNameToDB);
+
         SqlCommandBuilder cmdb = new SqlCommandBuilder(dataAdapter);
         dataAdapter.Update(dataTable);
+        
     }
 
-    //private ManualResetEvent _doneEvent;
-
-    //private void ThreadPoolCallback(Object threadContext)
-    //{
-    //    var pairUrlAndIndex = (RairUrlAndEvent)threadContext;
-    //    SaveImageListHelp(pairUrlAndIndex.WebBrowser, pairUrlAndIndex.Url, pairUrlAndIndex.Index);
-    //}
-
-    //[STAThread]
-    //protected void SaveImageListHelp(WebBrowser _webBrowser, string url, int index)
-    //{
-    //    if (string.IsNullOrEmpty(url))
-    //    {
-    //        url = Request.Url.ToString();
-    //    }
-
-    //    bool NullDocument = false;
-    //    bool ReadyStateComplete = false;        
-        
-    //    _webBrowser.Navigate(url);
-    //    //_webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(Completed);
-
-    //    var current = System.DateTime.Now;
-        
-    //    //int times = 0;
-    //    while (_webBrowser.ReadyState != WebBrowserReadyState.Complete)
-    //    {
-    //        {
-    //            System.Windows.Forms.Application.DoEvents(); //避免假死，若去掉则可能无法触发 DocumentCompleted 事件。??处理所有在队列中的消息， 就是在等待DocumentComPleted事件
-    //            Thread.Sleep(100);
-    //            //times++;
-
-    //            double ms = (System.DateTime.Now - current).TotalMilliseconds;
-
-    //            if (ms > 30000)
-    //                break;
-    //        }
-    //    }
-
-    //    //Thread.Sleep(1000);
-
-    //    if (_webBrowser.ReadyState == WebBrowserReadyState.Complete)
-    //    {
-    //        ReadyStateComplete = true;
-    //    }
-
-    //    if ((_webBrowser.Document != null) && (_webBrowser.Document.Body != null))
-    //    {
-    //        NullDocument = true;
-
-    //        //设置浏览器宽度、高度为文档宽度、高度，以便截取整个网页。
-    //        _webBrowser.Width = _webBrowser.Document.Body.ScrollRectangle.Width;
-    //        _webBrowser.Height = _webBrowser.Document.Body.ScrollRectangle.Height;
-    //        if (_webBrowser.Width > 0 && _webBrowser.Height > 0)
-    //        {
-    //            using (Bitmap bmp = new Bitmap(_webBrowser.Width, _webBrowser.Height))
-    //            {
-    //                _webBrowser.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-    //                string ImageUrl = @"D:\images\";
-    //                ImageUrl += index.ToString();
-    //                ImageUrl += ".png";
-    //                bmp.Save(ImageUrl, ImageFormat.Png);
-    //            }
-    //        }
-    //    }
-
-    //    Response.Write(count.ToString() + "     " + url + "        " + "  ReadyStateComplete: " + ReadyStateComplete.ToString() + "  NullDocument: " + NullDocument.ToString() + "<BR/>");
-
-    //    completeCount++;
-    //    //doEvent.Set();
-    //}
-
-    class RairUrlAndEvent
+    protected void button1_Click(object sender, EventArgs e)
     {
-        int index;
-
-        public int Index
-        {
-            get { return index; }
-            set { index = value; }
-        }
-
-        string url;
-
-        public string Url
-        {
-            get { return url; }
-            set { url = value; }
-        }
-
-        WebBrowser webBrowser;
-
-        public WebBrowser WebBrowser
-        {
-            get { return webBrowser; }
-            set { webBrowser = value; }
-        }
+        Thumb("D:/WebSiteImages3/323.png", "D:/1.jpeg");
     }
 
-    DataSet dataSet;
-    SqlDataAdapter dataAdapter;
     DataTable dataTable;
 
     delegate string dGetUrlByIndex(int index);
@@ -149,78 +75,37 @@ public partial class Views_User_Default : System.Web.UI.Page
     void SaveFileNameToDB(string fileName, int index)
     { dataTable.Rows[index]["ImageUrl"] = fileName; }
 
-    [STAThread]
-    protected void SaveImageList()
+    
+    private Bitmap GetBrowserBitmapByUrl(string url, int maxLoadingTime)
     {
-        String CommandText = "SELECT top 51 *  FROM AppraiseOfWebSite";
-        SqlConnection cnn = new SqlConnection();
-        cnn.ConnectionString = ConfigurationManager.ConnectionStrings["bookmark"].ConnectionString.ToString();
+        WebBrowser webBrowser = new WebBrowser();
+        webBrowser.ScriptErrorsSuppressed = true;
+        webBrowser.ScrollBarsEnabled = false; //不显示滚动条
 
-        SqlCommand cmd = cnn.CreateCommand();
-        cmd.CommandText = CommandText;
+        var startTimes = System.DateTime.Now;
+        webBrowser.Navigate(url, false);
 
-        dataAdapter = new SqlDataAdapter(cmd);
-        dataSet = new DataSet();
-        dataAdapter.Fill(dataSet, "AppraiseOfWebSite");
+        double ms = 0;
 
-        dataTable = dataSet.Tables["AppraiseOfWebSite"];
+        //如果加载网页未完毕且加载未超时，则继续等待
+        while (webBrowser.ReadyState != WebBrowserReadyState.Complete && ms < maxLoadingTime)
+        {
+            System.Windows.Forms.Application.DoEvents(); //避免假死，若去掉则可能无法触发 DocumentCompleted 事件。??处理所有在队列中的消息， 就是在等待DocumentComPleted事件                    
+            Thread.Sleep(100);
 
-        dGetUrlByIndex getUrlByIndex = GetUrlByIndexByDataTable;
-        dSaveFileNameToDB saveFileNameToDB =SaveFileNameToDB;
+            ms = (System.DateTime.Now - startTimes).TotalMilliseconds;
+        }
 
-        SaveImageByUrlWithBrowsers(0, 50, 10, @"D:\", getUrlByIndex, saveFileNameToDB);
+        bool NullDocument = false;
+        bool ReadyStateComplete = false;
 
-        SqlCommandBuilder bldr = new SqlCommandBuilder(dataAdapter);
-        //dataAdapter.Update(dataTable);
-
-        //foreach (DataRow dr in dataTable.Rows)
-        //for (count = 400; count < 401; count++)
-        //{
-        //    DataRow dr = dataTable.Rows[count];
-
-        //    string url = dr["Href"].ToString();
-
-        //    //string str2 = url;
-
-        //    ////str1 用于Select出当前网页在数据库存储的行
-        //    //string str1 = "Href = \'" + str2 + "\'";
-
-        //    //// 对str2 进行特殊符号的替换
-        //    //str2 = str2.Replace(@"\", @"_");
-        //    //str2 = str2.Replace(@"/", @"_");
-        //    //str2 = str2.Replace(@":", @"_");
-        //    //str2 = str2.Replace(@"*", @"_");
-        //    //str2 = str2.Replace(@"?", @"_");
-        //    //str2 = str2.Replace(@"%", @"_");
-        //    //str2 = str2.Replace(@"<", @"_");
-        //    //str2 = str2.Replace(@">", @"_");
-        //    //str2 = str2.Replace(@".", @"_");
-
-        //    ////ImageUrl 是图片将被保存的路径
-        //    ////ImageUrl = @"/BookmarkDemo/Content/images/";
-        //    //ImageUrl = @"D:\images\";
-        //    //ImageUrl += count.ToString();
-        //    //ImageUrl += ".png";
-
-        //    //DataRow[] rows = dataTable.Select(str1);
-        //    //rows[0]["ImageUrl"] = ImageUrl;
-
-        //    //int index = count - 400;
-
-        //    //doneEvents[index] = new ManualResetEvent(false);
-
-        //    WebBrowser _webBrowser = new WebBrowser();
-        //    _webBrowser.ScriptErrorsSuppressed = false;
-        //    _webBrowser.ScrollBarsEnabled = false; //不显示滚动条
-
-        //    ThreadPool.QueueUserWorkItem(ThreadPoolCallback, new RairUrlAndEvent() {WebBrowser = _webBrowser, Index = count, Url = url });
-              
-        //SqlCommandBuilder bldr = new SqlCommandBuilder(dataAdapter);
-        //dataAdapter.Update(dataTable);
+        return GetBrowserBitmap(webBrowser, out NullDocument, out ReadyStateComplete);
     }
 
-    private void SaveImageByUrlWithBrowsers(int beginIndex, int endIndex, int webBrowsersCount, string FilePath, dGetUrlByIndex getUrlByIndex, dSaveFileNameToDB saveFileNameToDB)
+    private void SaveImageByUrlWithBrowsers(int beginIndex, int endIndex, int webBrowsersCount, string FilePath, string smallImageFilePath, dGetUrlByIndex getUrlByIndex, dSaveFileNameToDB saveFileNameToDB)
     {
+        int MaxLoadingTime = 30000;
+
         WebBrowser[] webBrowsers = new WebBrowser[webBrowsersCount];
         System.DateTime[] startTimes = new System.DateTime[webBrowsersCount];
         int[] webSiteIndexs = new int[webBrowsersCount];
@@ -246,13 +131,17 @@ public partial class Views_User_Default : System.Web.UI.Page
             string url = getUrlByIndex(nextWebSiteIndex);
 
             startTimes[i] = System.DateTime.Now;
-            webBrowsers[i].Navigate(url);
+            webBrowsers[i].Navigate(url, false);
             webSiteIndexs[i] = nextWebSiteIndex;
             webSiteHrefs[i] = url;
 
             if (nextWebSiteIndex < endIndex)
             {
                 nextWebSiteIndex++;
+            }
+            else
+            {
+                break;
             }
         }
 
@@ -275,70 +164,98 @@ public partial class Views_User_Default : System.Web.UI.Page
 
             for (int k = 0; k < webBrowsers.Length; k++)
             {
-                var _webBrowser = webBrowsers[k];
-
-                double ms = (System.DateTime.Now - startTimes[k]).TotalMilliseconds;
-
-                //如果加载网页未完毕且加载未超时，则继续等待
-                if (_webBrowser.ReadyState != WebBrowserReadyState.Complete && ms < 30000)
+                //如果该浏览器资源还没被释放
+                if (webBrowsers[k] != null)
                 {
-                    continue;
-                }
+                    var _webBrowser = webBrowsers[k];
 
-                //如果加载网页完毕或者加载超时
-                bool NullDocument = false;
-                bool ReadyStateComplete = false;
+                    double ms = (System.DateTime.Now - startTimes[k]).TotalMilliseconds;
 
-                if (_webBrowser.ReadyState == WebBrowserReadyState.Complete)
-                {
-                    ReadyStateComplete = true;
-                }
-
-                if ((_webBrowser.Document != null) && (_webBrowser.Document.Body != null))
-                {
-                    NullDocument = true;
-
-                    try
+                    //如果加载网页未完毕且加载未超时，则继续等待
+                    if (_webBrowser.ReadyState != WebBrowserReadyState.Complete && ms < MaxLoadingTime)
                     {
-                        //设置浏览器宽度、高度为文档宽度、高度，以便截取整个网页。
-                        _webBrowser.Width = _webBrowser.Document.Body.ScrollRectangle.Width;
-                        _webBrowser.Height = _webBrowser.Document.Body.ScrollRectangle.Height;
-                        if (_webBrowser.Width > 0 && _webBrowser.Height > 0 && _webBrowser.Width < 9999 && _webBrowser.Height < 9999)
+                        continue;
+                    }
+
+                    bool saveIsSuccess = false;
+
+                    bool NullDocument;
+                    bool ReadyStateComplete;
+
+                    var BrowserBitmap = GetBrowserBitmap(_webBrowser, out NullDocument, out ReadyStateComplete);
+                    
+                    if(BrowserBitmap != null)
+                    {
+                        try
                         {
-                            using (Bitmap bmp = new Bitmap(_webBrowser.Width, _webBrowser.Height))
-                            {
-                                _webBrowser.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                                string ImageUrl = FilePath + webSiteIndexs[k].ToString() + ".png";
-                                bmp.Save(ImageUrl, ImageFormat.Png);
+                            //处理图片的准备工作
+                            System.Drawing.Image.GetThumbnailImageAbort myCallback = new System.Drawing.Image.GetThumbnailImageAbort(ThumbnailCallback);
+                            var ps = new EncoderParameters(1);
+                            ps.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100);
+                            var CodecInfo = GetCodecInfo("image/jpeg");
 
-                               // saveFileNameToDB(webSiteIndexs[k].ToString());
-                                SaveFileNameToDB(ImageUrl, webSiteIndexs[k]);
-                            }
+                            //g.DrawImage(srcBitmap, destRectangle/*显示图像的大小*/, srcX, srcY/*从此X，Y坐标开始截取*/, srcBitmap.Width / 4/*截取宽*/, srcBitmap.Height / 4/*截取高*/, GraphicsUnit.Pixel);
+
+                            //在这里对图片进行进一步的处理，比如去掉白边和生成缩略图，调整大小等
+                            //把图片缩小到宽度等于width
+                            int width = 500;
+                            int height = (int)((width / (float)BrowserBitmap.Width) * BrowserBitmap.Height);
+                            System.Drawing.Image thumbnailImage = BrowserBitmap.GetThumbnailImage(width, height, myCallback, IntPtr.Zero);
+
+                            //BrowserBitmap.Save(ImageUrl, ImageFormat.Jpeg);
+
+                            string ImageUrl = FilePath + webSiteIndexs[k].ToString() + ".jpeg";
+
+                            //保存缩略图
+                            thumbnailImage.Save(ImageUrl,ImageFormat.Jpeg);
+
+                            //缩小并裁减缩略图，生成更小的缩略图
+                            int smallImageWidth = 200;
+                            int smallImageHeight = (int)((smallImageWidth / (float)BrowserBitmap.Width) * BrowserBitmap.Height);
+                            System.Drawing.Image tempImage = BrowserBitmap.GetThumbnailImage(smallImageWidth, smallImageHeight, myCallback, IntPtr.Zero);
+
+                            smallImageHeight = 200;
+
+                            Bitmap smallBmp = new Bitmap(smallImageWidth, smallImageHeight);
+                            Graphics g = Graphics.FromImage(smallBmp);
+                            Rectangle destRectangle = new Rectangle(0, 0, smallImageWidth, smallImageHeight);
+                            g.DrawImage(tempImage, destRectangle/*显示图像的大小*/, 0, 0/*从此X，Y坐标开始截取*/, smallImageWidth/*截取宽*/, smallImageHeight/*截取高*/, GraphicsUnit.Pixel);
+
+                            smallBmp.Save(smallImageFilePath + webSiteIndexs[k].ToString() + ".jpeg", ImageFormat.Jpeg);
+
+                            saveFileNameToDB(webSiteIndexs[k].ToString(), webSiteIndexs[k]);
+
+                            thumbnailImage.Dispose();
+                            BrowserBitmap.Dispose();
+                            tempImage.Dispose();
+                            smallBmp.Dispose();
+                            g.Dispose();
+
+                            saveIsSuccess = true;
                         }
+                        catch (Exception e)
+                        { }
+                        finally
+                        { }
                     }
-                    catch(Exception e)
+                    
+                    Response.Write(webSiteIndexs[k].ToString() + "     " + webSiteHrefs[k] + "        " + "  ReadyStateComplete: " + ReadyStateComplete.ToString() + "  NullDocument: " + NullDocument.ToString() + "saveSuccess: " + saveIsSuccess.ToString() + "<BR/>");
+
+                    completeWebSiteCount++;
+                    waitForBeginIndex = k;
+
+                    //如果列表里还有website需要处理就马上让该浏览器去进行处理
+                    if (nextWebSiteIndex < endIndex)
                     {
-                        Response.Write(webSiteHrefs[k].ToString() + "发生异常：" + e.ToString() + "<BR/>");
-                        //System.Console.WriteLine(webSiteHrefs[k].ToString() + "发生异常：" + e.ToString());
+                        isWaitForBegin = true;
+                        break;
                     }
-                    finally
-                    { }
-
+                    //否则释放改浏览器资源
+                    else
+                    {
+                        webBrowsers[k] = null;
+                    }
                 }
-
-                //System.Console.WriteLine(webSiteIndexs[k].ToString() + "     " + webSiteHrefs[k] + "        " + "  ReadyStateComplete: " + ReadyStateComplete.ToString() + "  NullDocument: " + NullDocument.ToString());
-                Response.Write(webSiteIndexs[k].ToString() + "     " + webSiteHrefs[k] + "        " + "  ReadyStateComplete: " + ReadyStateComplete.ToString() + "  NullDocument: " + NullDocument.ToString() + "<BR/>");
-
-                completeWebSiteCount++;
-                waitForBeginIndex = k;
-
-                //如果列表里还有website需要处理
-                if (nextWebSiteIndex < endIndex)
-                {
-                    isWaitForBegin = true;
-                }
-
-                break;
             }
 
             //如果某个Browser已经完成上一个网页，则马上给它新任务
@@ -350,66 +267,117 @@ public partial class Views_User_Default : System.Web.UI.Page
         }
     }
 
-    //string ImageUrl = null;
-    
-    //public void Completed(object sender, WebBrowserDocumentCompletedEventArgs e)
-    //{
-    //    //lock (this)
-    //    {
-    //        //设置浏览器宽度、高度为文档宽度、高度，以便截取整个网页。
-    //        _webBrowser.Width = _webBrowser.Document.Body.ScrollRectangle.Width;
-    //        _webBrowser.Height = _webBrowser.Document.Body.ScrollRectangle.Height;
-    //        using (Bitmap bmp = new Bitmap(_webBrowser.Width, _webBrowser.Height))
-    //        {
-    //            _webBrowser.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-    //            bmp.Save(ImageUrl, ImageFormat.Png);
-    //        }
-    //    }
-    //}
+    private Bitmap GetBrowserBitmap(WebBrowser _webBrowser, out bool NullDocument, out bool ReadyStateComplete)
+    {
+        //如果加载网页完毕或者加载超时则进行截图
+        NullDocument = false;
+        ReadyStateComplete = false;
+
+        if (_webBrowser.ReadyState == WebBrowserReadyState.Complete)
+        {
+            ReadyStateComplete = true;
+        }
+
+        if ((_webBrowser.Document != null) && (_webBrowser.Document.Body != null))
+        {
+            NullDocument = true;
+
+            try
+            {
+                //设置浏览器宽度、高度为文档宽度、高度，以便截取整个网页。
+                _webBrowser.Width = _webBrowser.Document.Body.ScrollRectangle.Width;
+                _webBrowser.Height = _webBrowser.Document.Body.ScrollRectangle.Height;
+                if (_webBrowser.Width > 0 && _webBrowser.Height > 0 && _webBrowser.Width < 9999 && _webBrowser.Height < 9999)
+                {
+                    Bitmap bmp = new Bitmap(_webBrowser.Width, _webBrowser.Height);
+
+                    {
+                        _webBrowser.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                        return bmp;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Response.Write("发生异常：" + e.ToString() + "<BR/>");
+                //System.Console.WriteLine(webSiteHrefs[k].ToString() + "发生异常：" + e.ToString());
+            }
+            finally
+            { }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// 取消操作回调
+    /// </summary>
+    /// <returns></returns>
+    private bool ThumbnailCallback()
+    {
+        return false;
+    }
+
+    /// <summary>
+    /// 生成缩略图
+    /// </summary>
+    /// <param name="imgPath"></param>
+    /// <param name="ThumbPath"></param>
+    private void Thumb(string imgPath, string ThumbPath)
+    {
+        System.Drawing.Image.GetThumbnailImageAbort myCallback = new System.Drawing.Image.GetThumbnailImageAbort(ThumbnailCallback);
+        System.Drawing.Image img1 = System.Drawing.Image.FromFile(imgPath);//通过文件构造
+        //生成缩略图
+        System.Drawing.Image myThumbnail = img1.GetThumbnailImage(350, 200, myCallback, IntPtr.Zero);
+        //myThumbnail.Save(ThumbPath);//保存缩略图
+
+        KiSaveAsJPEG(myThumbnail, ThumbPath, 100);
+    }
+
+    /// <summary>
+    /// 保存JPG时用
+    /// </summary>
+    /// <param name="mimeType"></param>
+    /// <returns>得到指定mimeType的ImageCodecInfo</returns>
+    private static ImageCodecInfo GetCodecInfo(string mimeType)
+    {
+        ImageCodecInfo[] CodecInfo = ImageCodecInfo.GetImageEncoders();
+        foreach (ImageCodecInfo ici in CodecInfo)
+        {
+            if (ici.MimeType == mimeType) return ici;
+        }
+        return null;
+    }
 
 
+    /// <summary>
+    /// 保存为JPEG格式，支持压缩质量选项
+    /// </summary>
+    /// <param name="bmp"></param>
+    /// <param name="FileName"></param>
+    /// <param name="Qty"></param>
+    /// <returns></returns>
+    public static bool KiSaveAsJPEG(System.Drawing.Image image, string FileName, int Qty)
+    {
+        try
+        {
+            EncoderParameter p;
+            EncoderParameters ps;
 
+            ps = new EncoderParameters(1);
 
-    //protected void SaveImage(string url)
-    //{
-    //    if (string.IsNullOrEmpty(url))
-    //    {
-    //        url = Request.Url.ToString();
-    //    }
+            p = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, Qty);
+            ps.Param[0] = p;
 
-    //    _webBrowser = new WebBrowser();
-    //    _webBrowser.ScrollBarsEnabled = false; //不显示滚动条
-    //    _webBrowser.Navigate(url);
-    //    _webBrowser.DocumentCompleted += new WebBrowserDocumentCompletedEventHandler(Completed1);
-        
-    //    int times = 0;
-    //    while (_webBrowser.ReadyState != WebBrowserReadyState.Complete && times < 5)
-    //    {
-    //        {
-    //            //避免假死，若去掉则可能无法触发 DocumentCompleted 事件。??处理所有在队列中的消息， 就是在等待DocumentComPleted事件
-    //            System.Windows.Forms.Application.DoEvents(); 
-    //            Thread.Sleep(2000);
-    //            times++;
-    //        }
-    //    }
-    //}
+            image.Save(FileName, GetCodecInfo("image/jpeg"), ps);
 
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
 
-    //protected void SaveImage()
-    //{
-    //    SaveImage(null);
-    //}
-
-    //public void Completed1(object sender, WebBrowserDocumentCompletedEventArgs e)
-    //{
-    //    //设置浏览器宽度、高度为文档宽度、高度，以便截取整个网页。
-    //    _webBrowser.Width = _webBrowser.Document.Body.ScrollRectangle.Width;
-    //    _webBrowser.Height = _webBrowser.Document.Body.ScrollRectangle.Height;
-    //    using (Bitmap bmp = new Bitmap(_webBrowser.Width, _webBrowser.Height))
-    //    {
-    //        _webBrowser.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-    //        bmp.Save("D:\\Capture.png", ImageFormat.Png);
-    //    }
-    //}
-
+    }
 }
