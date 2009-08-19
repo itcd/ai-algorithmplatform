@@ -1,4 +1,6 @@
-Copyright (c) 2009 M2M Group, South China University of Technology.
+The MIT License
+
+Copyright (c) 2007-2009 M2M Group, South China University of Technology.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
