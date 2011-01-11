@@ -30,7 +30,7 @@
     http://ai-algorithmplatform.googlecode.com/files/traffic_intermediate.jpg
 </p>
 <p>
-    The result path (the line in red):
+    A result path in the map (the line in red):
 </p>
 <p>
     http://ai-algorithmplatform.googlecode.com/files/traffic_result.jpg
