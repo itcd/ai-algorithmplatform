@@ -14,16 +14,13 @@
     <p>
         A traffic map of Beijing:</p>
     <p>
-        <img alt="" 
-            src="http://ai-algorithmplatform.googlecode.com/files/traffic_original.jpg" /></p>
+http://ai-algorithmplatform.googlecode.com/files/traffic_original.jpg</p>
     <p>
         Different levels of abstract for the map:</p>
     <p>
-        <img alt="" 
-            src="http://ai-algorithmplatform.googlecode.com/files/traffic_intermediate.jpg" /></p>
+http://ai-algorithmplatform.googlecode.com/files/traffic_intermediate.jpg</p>
     <p>
         The result path (the line in red):</p>
     <p>
-        <img alt="" 
-            src="http://ai-algorithmplatform.googlecode.com/files/traffic_result.jpg" /></p>
+http://ai-algorithmplatform.googlecode.com/files/traffic_result.jpg</p>
     
