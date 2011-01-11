@@ -1,41 +1,38 @@
+<p>
+    The M2M Pathfinding Algorithm</p>
+<p>
+    Macro-to-micro (M2M) model is an implementation model that inherits the GrC idea 
+    and extends it to some additional highly desirable characteristics. In this 
+    paper we introduce an effective pathfinding algorithm based on the M2M model. 
+    This algorithm takes O(n) time to preprocess, constructing the M2M data 
+    structure. Such hierarchical structure occupies O(n) bit memory space and can be 
+    updated in O(1) expected time to handle changes. Although the resulting path is 
+    not always the shortest one, it can make a trade-off between accuracy and time 
+    cost by adjusting a parameter - range value to satisfy various applications. At 
+    last, we will discuss the advantages of the M2M pathfinding algorithm (M2M-PF) 
+    and demonstrate the academic and applied prospect of M2M model.</p>
+<p>
+    For more details, please refer to our paper:
 
-The M2M Pathfinding Algorithm
+    The M2M Pathfinding Algorithm Based on the Idea of Granular Computing
 
-
-Macro-to-micro (M2M) model is an implementation model that inherits the GrC idea 
-and extends it to some additional highly desirable characteristics. In this 
-paper we introduce an effective pathfinding algorithm based on the M2M model. 
-This algorithm takes O(n) time to preprocess, constructing the M2M data 
-structure. Such hierarchical structure occupies O(n) bit memory space and can be 
-updated in O(1) expected time to handle changes. Although the resulting path is 
-not always the shortest one, it can make a trade-off between accuracy and time 
-cost by adjusting a parameter - range value to satisfy various applications. At 
-last, we will discuss the advantages of the M2M pathfinding algorithm (M2M-PF) 
-and demonstrate the academic and applied prospect of M2M model.
-
-
-For more details, please refer to our paper:
-
-
-The M2M Pathfinding Algorithm Based on the Idea of Granular Computing
-
-
-http://ai-algorithmplatform.googlecode.com/files/pathfinding_2009.pdf
-
-
-A traffic map of Beijing:</p>
-
-
-http://ai-algorithmplatform.googlecode.com/files/traffic_original.jpg
-
-
-Different levels of abstract for the map:</p>
-
-
-http://ai-algorithmplatform.googlecode.com/files/traffic_intermediate.jpg
-
-
-The result path (the line in red):</p>
-
-
-http://ai-algorithmplatform.googlecode.com/files/traffic_result.jpg
+    http://ai-algorithmplatform.googlecode.com/files/pathfinding_2009.pdf
+</p>
+<p>
+    A traffic map of Beijing:</p>
+<p>
+    http://ai-algorithmplatform.googlecode.com/files/traffic_original.jpg
+</p>
+<p>
+    Different levels of abstract for the map:
+</p>
+<p>
+    http://ai-algorithmplatform.googlecode.com/files/traffic_intermediate.jpg
+</p>
+<p>
+    The result path (the line in red):
+</p>
+<p>
+    http://ai-algorithmplatform.googlecode.com/files/traffic_result.jpg
+</p>
+    
