@@ -11,9 +11,9 @@
     cost by adjusting a parameter - range value to satisfy various applications. At 
     last, we will discuss the advantages of the M2M pathfinding algorithm (M2M-PF) 
     and demonstrate the academic and applied prospect of M2M model.</p>
-    <p>
-        For more information, please refer to our paper:<br />
-        http://ai-algorithmplatform.googlecode.com/files/pathfinding_2009.pdf </p>
+<p>
+    For more details, please refer to our paper:<br />
+    http://ai-algorithmplatform.googlecode.com/files/pathfinding_2009.pdf </p>
 <p>
     A traffic map of Beijing:</p>
 <p>
