@@ -1,4 +1,4 @@
-    <p>
+   <p>
         The M2M Pathfinding Algorithm</p>
     <p>
         Macro-to-micro (M2M) model is an implementation model that inherits the GrC idea 
@@ -12,21 +12,18 @@
         last, we will discuss the advantages of the M2M pathfinding algorithm (M2M-PF) 
         and demonstrate the academic and applied prospect of M2M model.</p>
     <p>
+        A traffic map of Beijing:</p>
+    <p>
         <img alt="" 
             src="http://ai-algorithmplatform.googlecode.com/files/traffic_original.jpg" /></p>
     <p>
-        A traffic map of Beijing</p>
-    <p>
-       </p>
+        Different levels of abstract for the map:</p>
     <p>
         <img alt="" 
             src="http://ai-algorithmplatform.googlecode.com/files/traffic_intermediate.jpg" /></p>
     <p>
-        Different levels of abstract for the map</p>
-    <p>
-        </p>
+        The result path (the line in red):</p>
     <p>
         <img alt="" 
             src="http://ai-algorithmplatform.googlecode.com/files/traffic_result.jpg" /></p>
-    <p>
-        The result path (the line in red)</p>
+    
