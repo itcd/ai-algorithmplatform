@@ -13,7 +13,11 @@
     and demonstrate the academic and applied prospect of M2M model.</p>
 <p>
     For more details, please refer to our paper:
+
+
     The M2M Pathfinding Algorithm Based on the Idea of Granular Computing
+
+
     http://ai-algorithmplatform.googlecode.com/files/pathfinding_2009.pdf </p>
 <p>
     A traffic map of Beijing:</p>
