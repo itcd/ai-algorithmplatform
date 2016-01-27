@@ -7,8 +7,10 @@ We both develop some classic algorithms, and some new algorithms based on our M2
 
 For more details, please refer to our papers: 
 
-The M2M Pathfinding Algorithm Based on the Idea of Granular Computing 
+The M2M Pathfinding Algorithm Based on the Idea of Granular Computing
+
 http://ai-algorithmplatform.googlecode.com/files/pathfinding_2009.pdf 
 
-A Parallel Dynamic Convex Hull Algorithm Based on the Macro to Micro Model 
+A Parallel Dynamic Convex Hull Algorithm Based on the Macro to Micro Model
+
 http://ai-algorithmplatform.googlecode.com/files/convex_hull_2009.pdf
