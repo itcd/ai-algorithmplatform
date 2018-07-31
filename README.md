@@ -20,9 +20,11 @@ and demonstrate the academic and applied prospect of M2M model.
 ## Example
 ### A traffic map of Beijing:
 Different levels of abstract for the map:
+#### Original
 ![original](traffic_original.jpg)
+#### Intermediate
 ![intermediate](traffic_intermediate.jpg)
-A result path in the map (the line in red):
+#### A result path in the map (the line in red):
 ![result](traffic_result.jpg)
 
 ## For more details, please refer to our papers:
