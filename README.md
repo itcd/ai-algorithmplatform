@@ -1,4 +1,4 @@
-# ai-algorithmplatform
+# AI Algorithm Platform
 Automatically exported from code.google.com/p/ai-algorithmplatform
 
 AI Algorithm Platform -- a series of AI agorithms, including convex hull, nearest neighbor, pathfinding and concollision detection. (Written in C#)
