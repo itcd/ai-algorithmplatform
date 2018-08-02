@@ -17,14 +17,13 @@ cost by adjusting a parameter - range value to satisfy various applications. At
 last, we will discuss the advantages of the M2M pathfinding algorithm (M2M-PF)
 and demonstrate the academic and applied prospect of M2M model.
 
-## Example
-### A traffic map of Beijing:
+## Example - A traffic map of Beijing
 Different levels of abstract for the map:
-#### Original
+### Original
 ![original](traffic_original.jpg)
-#### Intermediate
+### Intermediate
 ![intermediate](traffic_intermediate.jpg)
-#### A result path in the map (the line in red):
+### A result path in the map (the line in red):
 ![result](traffic_result.jpg)
 
 ## For more details, please refer to our papers:
